@@ -321,10 +321,16 @@ main {
   }
 
   #new-task-input {
+    margin: 0;
     font-size: 1rem;
+    width: 100%;
+
     &::placeholder {
       font-size: 0.8rem;
     }
+  }
+  #new-task-submit {
+    width: 50%;
   }
 
   .task-wrapper {

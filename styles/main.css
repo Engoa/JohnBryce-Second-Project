@@ -552,7 +552,9 @@ main {
     top: -1.5rem;
   }
   #new-task-input {
+    margin: 0;
     font-size: 1rem;
+    width: 100%;
   }
   #new-task-input::-webkit-input-placeholder {
     font-size: 0.8rem;
@@ -565,6 +567,9 @@ main {
   }
   #new-task-input::placeholder {
     font-size: 0.8rem;
+  }
+  #new-task-submit {
+    width: 50%;
   }
   .task-wrapper .task .text {
     max-width: 200px;
