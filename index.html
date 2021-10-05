@@ -5,7 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task List</title>
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
   <body>
     <header>
@@ -19,19 +38,37 @@
           spellcheck="false"
         />
         <button type="submit" id="new-task-submit" click="ToDo.addTask()">
-          Submit
+          SUBMIT
         </button>
       </form>
     </header>
     <main>
       <div class="task-list">
-        <h2>Tasks</h2>
+        <div class="task-list--header"></div>
+        <h6>Double click on a task to complete ✔</h6>
         <div class="tasks"></div>
       </div>
     </main>
 
-    <script defer src="helpers.js"></script>
-    <script defer src="ToDo.js"></script>
-    <script defer src="main.js"></script>
+    <div class="modal__overlay" onclick="closeModal()"></div>
+    <div class="modal" id="modal--active">
+      <div class="modal-contents">
+        <div class="container">
+          <div class="modal__header">
+            <h3>Are you sure you want to delete all tasks?</h3>
+          </div>
+          <div class="modal__actions">
+            <button class="close-modal" onclick="closeModal()">Close</button>
+            <button class="delete-all" onclick="ToDo.deleteAllTasks()">
+              I'm sure
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script defer src="./scripts/helpers.js"></script>
+    <script defer src="./scripts/ToDo.js"></script>
+    <script defer src="./scripts/main.js"></script>
   </body>
 </html>
