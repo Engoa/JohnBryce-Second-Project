@@ -511,6 +511,8 @@ main {
 
 .edited {
   cursor: default !important;
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
 }
 
 .edited .savebtn {
