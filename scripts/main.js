@@ -43,6 +43,7 @@ const renderTasks = () => {
       ToDo.deleteTask(btn.dataset.id);
     });
   });
+
   const task = document.querySelectorAll(".task");
   task.forEach((btn) => {
     btn.addEventListener("dblclick", () => {
@@ -54,10 +55,6 @@ const renderTasks = () => {
   deleteAll.addEventListener("click", () => ToDo.deleteAllTasks());
 };
 
-let isOpen = false;
-const deleteModal = document.querySelector(".modal");
-const deleteModalOverlay = document.querySelector(".modal__overlay");
-
 const renderTaskHeader = () => {
   const drawTaskHeader = document.querySelector(".task-list--header");
   const modalClass = ToDo.tasks.length <= 0 ? "hide-btn" : ``;
@@ -66,18 +63,26 @@ const renderTaskHeader = () => {
    <button class="open-modal ${modalClass}">Delete All</button>
   `;
   // Open Delete Modal
-  $(".open-modal").click(() => {
-    if (!isOpen) {
-      deleteModal.classList.add("modal--active");
-      deleteModalOverlay.classList.add("overlay--active");
-      isOpen = true;
-    }
-  });
+  $(".open-modal").click(() => openModal());
+};
+
+let isOpen = false;
+const deleteModal = document.querySelector(".modal");
+const deleteModalOverlay = document.querySelector(".modal__overlay");
+
+const openModal = () => {
+  if (!isOpen) {
+    deleteModal.classList.add("modal--active");
+    deleteModalOverlay.classList.add("overlay--active");
+    isOpen = true;
+  }
 };
 const closeModal = () => {
-  deleteModal.classList.remove("modal--active");
-  deleteModalOverlay.classList.remove("overlay--active");
-  isOpen = false;
+  if (isOpen) {
+    deleteModal.classList.remove("modal--active");
+    deleteModalOverlay.classList.remove("overlay--active");
+    isOpen = false;
+  }
 };
 
 document.addEventListener("tasks-updated", () => {

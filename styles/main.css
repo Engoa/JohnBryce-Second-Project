@@ -3,12 +3,14 @@
   inset: 0;
   min-height: 100vh;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.565);
+  background-color: rgba(0, 0, 0, 0.63);
   position: fixed;
   inset: 0;
   z-index: 5;
   visibility: hidden;
   opacity: 0;
+  -webkit-transition: all 100ms linear;
+  transition: all 100ms linear;
 }
 
 .modal {
@@ -18,7 +20,7 @@
   right: 50%;
   -webkit-transform: translateX(50%);
           transform: translateX(50%);
-  background-color: var(--darkest);
+  background-color: var(--modal);
   border: 2px solid var(--purple);
   border-radius: 0.5rem;
   z-index: 150;
@@ -29,6 +31,8 @@
           box-shadow: var(--box-shadow);
   visibility: hidden;
   opacity: 0;
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
 }
 
 .modal-contents {
@@ -60,6 +64,7 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 0.5rem;
+  color: var(--text);
 }
 
 .modal__actions {
@@ -77,14 +82,13 @@
 
 .modal__actions button {
   cursor: pointer;
-  color: var(--light);
-  background-color: var(--darker);
+  color: var(--btn-bg1);
+  background-color: var(--text);
   padding: 0.6rem 1rem;
   border-radius: 0.5rem;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
   font-weight: bold;
-  border: 2px solid var(--light);
   text-align: center;
 }
 
@@ -111,15 +115,100 @@
   visibility: visible !important;
 }
 
-:root {
-  --dark: #374151;
+.theme--wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.theme--wrapper_btn {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  position: relative;
+  width: 43px;
+  height: 22px;
+  border: 2px solid var(--border);
+  outline: none;
+  border-radius: 2rem;
+  -webkit-transition: all 350ms ease;
+  transition: all 350ms ease;
+  opacity: 0.9;
+}
+
+.theme--wrapper_btn:hover {
+  -webkit-transform: translatey(4px);
+          transform: translatey(4px);
+  opacity: 1;
+}
+
+.theme--wrapper_btn::before {
+  content: "";
+  position: absolute;
+  top: 1.2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--text);
+  -webkit-transition: all 350ms ease;
+  transition: all 350ms ease;
+}
+
+.theme--wrapper_btn:checked::before {
+  -webkit-transform: translateX(20px);
+          transform: translateX(20px);
+  background: var(--header);
+}
+
+.bgdark {
+  --dark: #0e1524;
   --darker: #1f2937;
   --darkest: #111827;
   --grey: #6b7280;
   --pink: #ec4899;
   --purple: #8b5cf6;
   --light: #eee;
+  --bg: #374151;
+  --border: rgb(206, 206, 206);
+  --header: rgb(206, 206, 206);
+  --text: rgb(206, 206, 206);
+  --task-text: rgb(255, 255, 255);
+  --btn-bg1: #111827;
+  --btn-bg2: #eee;
+  --modal: #111827;
+  --white: #eee;
+}
+
+.bglight {
+  --dark: #0e1524;
+  --darker: rgba(197, 194, 194, 0.884);
+  --darkest: rgba(197, 194, 194, 0.884);
+  --grey: #6b7280;
+  --pink: #ec4899;
+  --purple: #8b5cf6;
+  --light: #eee;
+  --bg: #eee;
+  --border: #111827;
+  --header: #111827;
+  --text: #111827;
+  --task-text: #0e1524;
+  --btn-bg1: #eee;
+  --btn-bg2: #111827;
+  --modal: rgb(255, 255, 255);
+  --white: #eee;
+  --white: #eee;
+}
+
+:root {
   --transition-250: all 250ms linear;
+  --box-shadow: rgba(0, 0, 0, 0.74) -10px 3px 40px -15px;
 }
 
 * {
@@ -139,7 +228,7 @@ body {
           flex-direction: column;
   min-height: 100vh;
   color: #fff;
-  background-color: var(--dark);
+  background-color: var(--bg);
   padding: 0 1rem;
 }
 
@@ -153,9 +242,11 @@ header {
 header h1 {
   text-align: center;
   font-size: 2.5rem;
-  color: var(--white);
+  color: var(--header);
   margin-bottom: 1rem;
-  opacity: 0.7;
+  opacity: 0.8;
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
 }
 
 #new-task-form {
@@ -185,14 +276,14 @@ button {
   padding: 1rem;
   border-radius: 1.5rem;
   margin-right: 1rem;
-  color: var(--light);
+  color: var(--text);
   font-size: 1.25rem;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
 }
 
 #new-task-input:focus-within {
-  outline: 1px solid var(--pink);
+  outline: 2px solid var(--pink);
 }
 
 #new-task-input::-webkit-input-placeholder {
@@ -222,9 +313,14 @@ button {
   cursor: pointer;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-  background-color: var(--darkest);
+  background: var(--btn-bg1);
   border-radius: 3rem;
   padding: 1rem 2rem;
+  outline: 2px solid var(--pink);
+}
+
+#new-task-submit:hover {
+  background: var(--btn-bg2);
 }
 
 #new-task-submit:hover {
@@ -272,16 +368,18 @@ main {
 
 .task-list--header h2 {
   font-size: 1.5rem;
-  color: var(--white);
-  opacity: 0.7;
+  color: var(--text);
+  opacity: 0.8;
   margin: 0 auto;
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
 }
 
 .task-list--header .open-modal {
   position: absolute;
   cursor: pointer;
   color: var(--pink);
-  background: var(--darkest);
+  background: var(--btn-bg1);
   border-radius: 2rem;
   padding: 0.7rem;
   -webkit-transition: var(--transition-250);
@@ -289,12 +387,13 @@ main {
   font-weight: bold;
   left: 0;
   top: 0;
+  outline: 2px solid var(--pink);
 }
 
 .task-list--header .open-modal:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
-  outline: 1px solid var(--pink);
+  background: var(--btn-bg2);
 }
 
 .task-list--header .hide-btn {
@@ -341,6 +440,14 @@ main {
   transition: var(--transition-250);
   margin-top: 1rem;
   min-width: 100%;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  border: 2px solid var(--border);
+  opacity: 0.9;
+}
+
+.task-wrapper .task:hover {
+  opacity: 1;
 }
 
 .task-wrapper .task__status {
@@ -357,12 +464,9 @@ main {
 }
 
 .task-wrapper .task .text {
-  color: var(--light);
-  font-size: 1.125rem;
+  color: var(--task-text);
+  font-size: 1.05rem;
   width: 100%;
-  display: block;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
   overflow-x: auto;
   max-width: 670px;
   -webkit-transition: var(--transition-250);
@@ -370,18 +474,18 @@ main {
 }
 
 .task-wrapper .task .text::-webkit-scrollbar {
-  background: var(--light);
-  border-radius: 2rem;
-  height: 8px;
+  background: var(--task);
+  height: 11px;
   cursor: pointer;
 }
 
 .task-wrapper .task .text::-webkit-scrollbar-button {
-  background: var(--pink);
+  background: var(--task);
 }
 
 .task-wrapper .task .text::-webkit-scrollbar-thumb {
-  background: var(--darker);
+  border-radius: 2rem;
+  background: var(--pink);
   max-width: 10px;
 }
 
@@ -411,34 +515,18 @@ main {
   font-size: 1.3rem;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-  opacity: 0.8;
   position: relative;
-}
-
-.task-wrapper .actions button:hover::before {
-  background: var(--darker);
-}
-
-.task-wrapper .actions button::before {
-  position: absolute;
-  content: "";
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 35px;
-  height: 35px;
+  border: 2px solid var(--pink);
+  background: var(--btn-bg2);
   border-radius: 50%;
-  background: var(--light);
-  z-index: -1;
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
+  width: 36px;
+  height: 36px;
 }
 
 .task-wrapper .actions button:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
-  opacity: 1;
+  background: var(--btn-bg1);
 }
 
 .task-wrapper .actions button:active {
@@ -449,14 +537,9 @@ main {
 
 .task-wrapper .actions .edit,
 .task-wrapper .actions .delete {
-  color: var(--purple);
+  color: var(--pink);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-}
-
-.task-wrapper .actions .edit:hover,
-.task-wrapper .actions .delete:hover {
-  color: var(--light);
 }
 
 .task-wrapper .actions .editbtn {
@@ -476,7 +559,7 @@ main {
 }
 
 .completed .content .text {
-  color: var(--darkest);
+  color: var(--task-text);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
   position: relative;
@@ -488,7 +571,7 @@ main {
 .completed .content .text::before {
   content: "";
   position: absolute;
-  background: var(--darkest);
+  background: var(--task-text);
   inset: 0;
   top: 50%;
   height: 2px;
@@ -519,7 +602,7 @@ main {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
-  color: #fd394a;
+  color: #39f0fd;
 }
 
 .edited .editbtn {

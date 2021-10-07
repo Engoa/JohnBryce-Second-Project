@@ -1,0 +1,42 @@
+.bgdark {
+  --dark: #0e1524;
+  --darker: #1f2937;
+  --darkest: #111827;
+  --grey: #6b7280;
+  --pink: #ec4899;
+  --purple: #8b5cf6;
+  --light: #eee;
+  --bg: #374151;
+  --border: rgb(206, 206, 206);
+  --header: rgb(206, 206, 206);
+  --text: rgb(206, 206, 206);
+  --task-text: rgb(255, 255, 255);
+  --btn-bg1: #111827;
+  --btn-bg2: #eee;
+  --modal: #111827;
+  --white: #eee;
+}
+.bglight {
+  --dark: #0e1524;
+  --darker: rgba(197, 194, 194, 0.884);
+  --darkest: rgba(197, 194, 194, 0.884);
+  --grey: #6b7280;
+  --pink: #ec4899;
+  --purple: #8b5cf6;
+  --light: #eee;
+  --bg: #eee;
+  --border: #111827;
+  --header: #111827;
+  --text: #111827;
+  --task-text: #0e1524;
+  --btn-bg1: #eee;
+  --btn-bg2: #111827;
+  --modal: rgb(255, 255, 255);
+  --white: #eee;
+  --white: #eee;
+}
+
+:root {
+  --transition-250: all 250ms linear;
+  --box-shadow: rgba(0, 0, 0, 0.74) -10px 3px 40px -15px;
+}

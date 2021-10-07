@@ -26,7 +26,15 @@
       referrerpolicy="no-referrer"
     ></script>
   </head>
-  <body>
+  <body class="bgdark">
+    <div class="theme--wrapper">
+      <input
+        type="checkbox"
+        id="themebtn"
+        class="theme--wrapper_btn"
+        title="Switch Theme"
+      />
+    </div>
     <header>
       <h1>Task List Project</h1>
       <form id="new-task-form" submit="ToDo.addTask()">
@@ -68,6 +76,7 @@
     </div>
 
     <script defer src="./scripts/helpers.js"></script>
+    <script defer src="./scripts/themeBtn.js"></script>
     <script defer src="./scripts/ToDo.js"></script>
     <script defer src="./scripts/main.js"></script>
   </body>

@@ -1,11 +1,9 @@
-
 const ToDo = {
   //DATA MEMBERS
   tasks: [],
   isEdited: false,
 
   //METHODS
-
   update(index, path, value) {
     return {
       ...this.tasks[index],
@@ -14,8 +12,8 @@ const ToDo = {
   },
 
   addTask(tasks) {
-    const textBox = document.querySelector("#new-task-input");
     this.tasks.push(tasks);
+    const textBox = document.querySelector("#new-task-input");
     textBox.focus();
     this.updateUI();
     setLS("tasks", this.tasks);
