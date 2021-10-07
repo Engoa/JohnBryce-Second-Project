@@ -1,6 +1,7 @@
 @import "./deleteModal";
 @import "./themeBtn";
 @import "./variables";
+@import "./snackbar";
 
 * {
   margin: 0;
@@ -9,12 +10,11 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  color: #fff;
   background-color: var(--bg);
   padding: 0 1rem;
+}
+.container-wrapper {
+  padding: 0 2rem;
 }
 
 header {
@@ -134,9 +134,8 @@ main {
         background: var(--btn-bg2);
       }
     }
-
     .hide-btn {
-      display: none !important;
+      display: none;
     }
   }
   h6 {
@@ -146,18 +145,19 @@ main {
 }
 .tasks {
   min-width: 100%;
+  padding-bottom: 2rem;
+  margin-top: 1rem;
 }
 .task-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-
   .task {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--darkest);
-    padding: 0.9rem 1rem;
+    padding: 0.85rem 1rem;
     border-radius: 1.5rem;
     margin-bottom: 1rem;
     cursor: pointer;
@@ -248,48 +248,67 @@ main {
   }
 }
 
-.completed {
-  background-color: rgb(133, 184, 133) !important;
-  transition: var(--transition-250);
-
-  .content .text {
-    color: var(--task-text);
+.task-wrapper {
+  .completed {
+    background-color: rgb(133, 184, 133);
     transition: var(--transition-250);
-    position: relative;
-    width: fit-content;
 
-    &::before {
-      content: "";
-      position: absolute;
-      background: var(--task-text);
-      inset: 0;
-      top: 50%;
-      height: 2px;
-      width: 100%;
-      z-index: 1;
+    .content .text {
+      color: var(--task-text);
       transition: var(--transition-250);
-      pointer-events: none;
+      position: relative;
+      width: fit-content;
+
+      &::before {
+        content: "";
+        position: absolute;
+        background: var(--task-text);
+        inset: 0;
+        top: 50%;
+        height: 2px;
+        width: 100%;
+        z-index: 1;
+        transition: var(--transition-250);
+        pointer-events: none;
+      }
     }
-  }
-  .task__status {
-    margin-left: 1rem;
-    font-size: 2rem;
-    color: rgb(248, 64, 80);
-    visibility: visible;
-    opacity: 1;
-    transition: var(--transition-250);
+    .task__status {
+      margin-left: 1rem;
+      font-size: 2rem;
+      color: rgb(248, 64, 80);
+      visibility: visible;
+      opacity: 1;
+      transition: var(--transition-250);
+    }
+    .actions {
+      .edit {
+        visibility: hidden;
+        transition: none;
+      }
+    }
   }
 }
 
-.edited {
-  cursor: default !important;
-  transform: scale(1.04);
-  .savebtn {
-    display: flex !important;
-    color: rgb(57, 240, 253);
-  }
-  .editbtn {
-    display: none !important;
+.task-wrapper {
+  .edited {
+    cursor: default;
+    transform: scale(1.04);
+    border: 2px solid var(--purple);
+    .actions {
+      .savebtn {
+        display: flex;
+        color: rgb(57, 240, 253);
+      }
+
+      .editbtn {
+        display: none;
+      }
+
+      .text {
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+    }
   }
 }
 

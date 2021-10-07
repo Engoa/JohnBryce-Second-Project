@@ -1,3 +1,5 @@
+let snackBarElement = document.querySelector("#snackbar");
+
 const ToDo = {
   //DATA MEMBERS
   tasks: [],
@@ -20,12 +22,16 @@ const ToDo = {
   },
   deleteTask(index) {
     this.tasks.splice(index, 1);
+    snackBarElement.innerHTML = "Task Deleted";
+    toggleSnackBar();
     this.updateUI();
     setLS("tasks", this.tasks);
   },
   deleteAllTasks() {
     this.tasks = [];
     closeModal();
+    snackBarElement.innerHTML = "All Tasks Deleted";
+    toggleSnackBar();
     this.updateUI();
     setLS("tasks", this.tasks);
   },
@@ -36,6 +42,8 @@ const ToDo = {
       textDiv.removeAttribute("contenteditable");
       this.tasks[index] = this.update(index, "text", textDiv.textContent);
       divTask.classList.remove("edited");
+      snackBarElement.innerHTML = "Task Edited";
+      toggleSnackBar();
       setLS("tasks", this.tasks);
     } else {
       textDiv.setAttribute("contenteditable", true);
@@ -51,6 +59,8 @@ const ToDo = {
     const { completed } = this.tasks[index];
     if (!completed) {
       divTask.classList.add("completed");
+      snackBarElement.innerHTML = "Task Completed";
+      toggleSnackBar();
     } else {
       divTask.classList.remove("completed");
     }
@@ -76,6 +86,8 @@ form.addEventListener("submit", (e) => {
     $(".task-wrapper:last-of-type").css("display", "none");
     $(".task-wrapper:last-of-type").fadeIn(350);
     textBox.value = "";
+    snackBarElement.innerHTML = "Task Added";
+    toggleSnackBar();
   }
 });
 

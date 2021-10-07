@@ -27,36 +27,38 @@
     ></script>
   </head>
   <body class="bgdark">
-    <div class="theme--wrapper">
-      <input
-        type="checkbox"
-        id="themebtn"
-        class="theme--wrapper_btn"
-        title="Switch Theme"
-      />
-    </div>
-    <header>
-      <h1>Task List Project</h1>
-      <form id="new-task-form" submit="ToDo.addTask()">
+    <div class="container-wrapper">
+      <div class="theme--wrapper">
         <input
-          type="text"
-          name="new-task-input"
-          id="new-task-input"
-          placeholder="What do you have planned?"
-          spellcheck="false"
+          type="checkbox"
+          id="themebtn"
+          class="theme--wrapper_btn"
+          title="Switch Theme"
         />
-        <button type="submit" id="new-task-submit" click="ToDo.addTask()">
-          SUBMIT
-        </button>
-      </form>
-    </header>
-    <main>
-      <div class="task-list">
-        <div class="task-list--header"></div>
-        <h6>Double click on a task to complete ✔</h6>
-        <div class="tasks"></div>
       </div>
-    </main>
+      <header>
+        <h1>Task List Project</h1>
+        <form id="new-task-form" submit="ToDo.addTask()">
+          <input
+            type="text"
+            name="new-task-input"
+            id="new-task-input"
+            placeholder="What do you have planned?"
+            spellcheck="false"
+          />
+          <button type="submit" id="new-task-submit" click="ToDo.addTask()">
+            SUBMIT
+          </button>
+        </form>
+      </header>
+      <main>
+        <div class="task-list">
+          <div class="task-list--header"></div>
+          <h6>Double click on a task to complete ✔</h6>
+          <div class="tasks"></div>
+        </div>
+      </main>
+    </div>
 
     <div class="modal__overlay" onclick="closeModal()"></div>
     <div class="modal" id="modal--active">
@@ -75,6 +77,7 @@
       </div>
     </div>
 
+    <div id="snackbar">Some text some message..</div>
     <script defer src="./scripts/helpers.js"></script>
     <script defer src="./scripts/themeBtn.js"></script>
     <script defer src="./scripts/ToDo.js"></script>

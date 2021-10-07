@@ -18,3 +18,11 @@ function setEndOfContenteditable(contentEditableElement) {
     range.select(); //Select the range (make it the visible selection
   }
 }
+
+const toggleSnackBar = () => {
+  let snackBarElement = document.querySelector("#snackbar");
+  snackBarElement.className = "show";
+  setTimeout(function () {
+    snackBarElement.className = snackBarElement.className.replace("show", "");
+  }, 2000);
+};
