@@ -1,5 +1,4 @@
-let snackBarElement = document.querySelector("#snackbar");
-
+let snackBarElement = document.querySelector(".snackbar");
 const ToDo = {
   //DATA MEMBERS
   tasks: [],
@@ -14,15 +13,15 @@ const ToDo = {
   },
 
   addTask(tasks) {
-    this.tasks.push(tasks);
-    const textBox = document.querySelector("#new-task-input");
+    this.tasks.unshift(tasks);
+    const textBox = document.querySelector("#text");
     textBox.focus();
     this.updateUI();
     setLS("tasks", this.tasks);
   },
   deleteTask(index) {
     this.tasks.splice(index, 1);
-    snackBarElement.innerHTML = "Task Deleted";
+    snackBarElement.innerHTML = "A task has been deleted";
     toggleSnackBar();
     this.updateUI();
     setLS("tasks", this.tasks);
@@ -30,7 +29,7 @@ const ToDo = {
   deleteAllTasks() {
     this.tasks = [];
     closeModal();
-    snackBarElement.innerHTML = "All Tasks Deleted";
+    snackBarElement.innerHTML = "All tasks have been deleted";
     toggleSnackBar();
     this.updateUI();
     setLS("tasks", this.tasks);
@@ -42,7 +41,7 @@ const ToDo = {
       textDiv.removeAttribute("contenteditable");
       this.tasks[index] = this.update(index, "text", textDiv.textContent);
       divTask.classList.remove("edited");
-      snackBarElement.innerHTML = "Task Edited";
+      snackBarElement.innerHTML = "Task successfully edited";
       toggleSnackBar();
       setLS("tasks", this.tasks);
     } else {
@@ -59,7 +58,7 @@ const ToDo = {
     const { completed } = this.tasks[index];
     if (!completed) {
       divTask.classList.add("completed");
-      snackBarElement.innerHTML = "Task Completed";
+      snackBarElement.innerHTML = "Task is now completed ✔";
       toggleSnackBar();
     } else {
       divTask.classList.remove("completed");
@@ -71,22 +70,43 @@ const ToDo = {
   updateUI() {
     document.dispatchEvent(new CustomEvent("tasks-updated"));
   },
+  resetForm() {
+    const form = document.querySelector("#new-task-form");
+    $(".redo-form").hide();
+    form.reset();
+  },
 };
 const form = document.querySelector("#new-task-form");
 form.addEventListener("submit", (e) => {
+  let textBox = document.querySelector("#text").value;
+  let dateBox = document.querySelector("#date").value;
+  let timeBox = document.querySelector("#time").value;
+  const formInputs = {
+    textBox,
+    dateBox,
+    timeBox,
+  };
+
+  console.log(new Date(dateBox + "," + timeBox).toLocaleString());
   e.preventDefault();
-  let textBox = document.querySelector("#new-task-input");
-  let textBoxValue = textBox.value;
-  if (!textBoxValue) return;
-  else {
+  if (!formInputs.textBox || !formInputs.dateBox || !formInputs.timeBox) {
+    $(".redo-form").hide();
+    snackBarElement.innerHTML = "All fields must have a value! 😟";
+    toggleSnackBar();
+    return;
+  } else {
+    $(".redo-form").show();
     ToDo.addTask({
-      text: textBoxValue,
+      text: textBox,
       completed: false,
+      date: dateBox,
+      time: timeBox,
     });
-    $(".task-wrapper:last-of-type").css("display", "none");
-    $(".task-wrapper:last-of-type").fadeIn(350);
-    textBox.value = "";
-    snackBarElement.innerHTML = "Task Added";
+    $(".task-wrapper:first-of-type").hide();
+    $(".task-wrapper:first-of-type").fadeIn(550);
+    form.reset();
+    $(".redo-form").hide();
+    snackBarElement.innerHTML = "A task has been added 👍";
     toggleSnackBar();
   }
 });
@@ -95,5 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (getLS("tasks")) {
     ToDo.tasks = getLS("tasks");
     ToDo.updateUI();
+    gsap.from(".task-wrapper", {
+      y: 500,
+      opacity: 0,
+      filter: "blur(10px)",
+      stagger: 0.08,
+      duration: 1,
+    });
   }
 });

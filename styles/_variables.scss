@@ -7,7 +7,7 @@
   --purple: #8b5cf6;
   --light: #eee;
   --bg: #374151;
-  --border: rgb(206, 206, 206);
+  --border:  #17284d;
   --header: rgb(206, 206, 206);
   --text: rgb(206, 206, 206);
   --task-text: rgb(255, 255, 255);
@@ -16,6 +16,7 @@
   --modal: #111827;
   --white: #eee;
 }
+
 .bglight {
   --dark: #0e1524;
   --darker: rgba(197, 194, 194, 0.884);
@@ -25,7 +26,7 @@
   --purple: #8b5cf6;
   --light: #eee;
   --bg: #eee;
-  --border: #111827;
+  --border: rgb(179, 179, 179);
   --header: #111827;
   --text: #111827;
   --task-text: #0e1524;
@@ -38,5 +39,11 @@
 
 :root {
   --transition-250: all 250ms linear;
-  --box-shadow: rgba(0, 0, 0, 0.74) -10px 3px 40px -15px;
+  --transition-150: all 150ms linear;
+  --box-shadow: rgba(0, 0, 0, 0.473) -10px 3px 40px -15px;
+  --ff-text: "Montserrat", sans-serif;
+  --ff-header: "Poppins", sans-serif;
 }
+$ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.55);
+

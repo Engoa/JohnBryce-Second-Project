@@ -4,6 +4,7 @@ themeBtn.addEventListener("click", () => {
     document.body.classList.toggle("bglight");
     let isLight = document.body.classList.contains("bglight");
     localStorage.setItem("lightTheme", isLight);
+    $("#meta-theme").attr("content", isLight ? "light" : "dark");
   }, 100);
 });
 

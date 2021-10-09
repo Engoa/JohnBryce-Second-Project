@@ -1,0 +1,44 @@
+.snackbar {
+  visibility: hidden;
+  min-width: 200px;
+  background-color: var(--btn-bg2);
+  color: var(--darkest);
+  font-weight: bold;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  font-size: 0.92rem;
+  text-align: center;
+  position: fixed;
+  z-index: 1;
+  right: 4rem;
+  bottom: 1rem;
+  font-family: var(--ff-header);
+}
+
+.snackbar.show {
+  visibility: visible;
+  animation: fadein 0.5s $ease-in, fadeout 1s 3s $ease-out;
+}
+
+
+@keyframes fadein {
+  from {
+    bottom: -3rem;
+    opacity: 0;
+  }
+  to {
+    bottom: 1rem;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 1rem;
+    opacity: 1;
+  }
+  to {
+    bottom: -3rem;
+    opacity: 0;
+  }
+}

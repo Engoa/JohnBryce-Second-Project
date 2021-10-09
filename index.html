@@ -3,13 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
     <title>Task List</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -25,6 +32,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
+      integrity="sha512-eP6ippJojIKXKO8EPLtsUMS+/sAGHGo1UN/38swqZa1ypfcD4I0V/ac5G3VzaHfDaklFmQLEs51lhkkVaqg60Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <meta name="color-scheme" content="dark" id="meta-theme" />
   </head>
   <body class="bgdark">
     <div class="container-wrapper">
@@ -34,27 +48,62 @@
           id="themebtn"
           class="theme--wrapper_btn"
           title="Switch Theme"
+          aria-label="Switch Theme"
         />
       </div>
       <header>
         <h1>Task List Project</h1>
         <form id="new-task-form" submit="ToDo.addTask()">
-          <input
-            type="text"
-            name="new-task-input"
-            id="new-task-input"
-            placeholder="What do you have planned?"
-            spellcheck="false"
-          />
-          <button type="submit" id="new-task-submit" click="ToDo.addTask()">
-            SUBMIT
-          </button>
+          <div class="inputs-wrapper">
+            <div class="first-input">
+              <input
+                type="text"
+                name="new-task-input"
+                class="new-task-input input"
+                id="text"
+                placeholder="What do you have planned?"
+                spellcheck="false"
+                aria-label="Task Description"
+              />
+            </div>
+            <div class="redo-form">
+              <i class="fas fa-redo" onclick="ToDo.resetForm()"></i>
+            </div>
+            <div class="second-inputs">
+              <input
+                type="text"
+                class="input"
+                id="date"
+                aria-label="Task Date"
+                onfocus="this.type='date'"
+                placeholder="Date"
+              />
+              <input
+                type="text"
+                class="input"
+                id="time"
+                onfocus="this.type='time'"
+                aria-label="Task Time"
+                placeholder="Time"
+              />
+            </div>
+          </div>
+          <div class="submit-btn">
+            <button
+              type="submit"
+              class="new-task-submit"
+              click="ToDo.addTask()"
+              aria-label="Submit Task"
+              title="Submit Task"
+            >
+              SUBMIT
+            </button>
+          </div>
         </form>
       </header>
       <main>
         <div class="task-list">
           <div class="task-list--header"></div>
-          <h6>Double click on a task to complete ✔</h6>
           <div class="tasks"></div>
         </div>
       </main>
@@ -68,8 +117,20 @@
             <h3>Are you sure you want to delete all tasks?</h3>
           </div>
           <div class="modal__actions">
-            <button class="close-modal" onclick="closeModal()">Close</button>
-            <button class="delete-all" onclick="ToDo.deleteAllTasks()">
+            <button
+              class="close-modal"
+              onclick="closeModal()"
+              aria-label="Close Modal"
+              title="Close Modal"
+            >
+              Close
+            </button>
+            <button
+              class="delete-all"
+              onclick="ToDo.deleteAllTasks()"
+              aria-label="Delete All Tasks"
+              title="Delete All Tasks"
+            >
               I'm sure
             </button>
           </div>
@@ -77,7 +138,11 @@
       </div>
     </div>
 
-    <div id="snackbar">Some text some message..</div>
+    <div class="snackbar">
+      <div>
+        <i class="fas fa-times close-snackbar"></i>
+      </div>
+    </div>
     <script defer src="./scripts/helpers.js"></script>
     <script defer src="./scripts/themeBtn.js"></script>
     <script defer src="./scripts/ToDo.js"></script>
