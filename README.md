@@ -8,6 +8,10 @@ Users should be able to:
 ✔️ Get Snackbar notifications on specific actions
 ✔️ Edit a specific task text based on index
 ✔️ Receive form validations if fields are missed or incorrect during submit
+
+
+GitHub URL:
+https://github.com/Engoa/JohnBryce-First-Project
 Live Site URL:
 https://bzproject9.netlify.app/
 Author:
