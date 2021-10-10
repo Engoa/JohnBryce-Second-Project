@@ -12,31 +12,30 @@ const renderTasks = () => {
   let tasksHtml = "";
   ToDo.tasks.forEach((task, index) => {
     const isCompletedClass = task.completed ? "completed" : "";
-    const dateAndTime = new Date(task.date + "," + task.time).toLocaleString();
     tasksHtml += `
-    <div class="task-wrapper">
-        <div class="task ${isCompletedClass}"  
-          data-id="${index}">
-          <div class="content">
-            <p class="text" spellcheck='false'>${task.text}</p>
-            <div class="times">
-            <span class="time">${dateAndTime}</span>
-            </div>
-          </div>
-          <div class="actions">
-            <button class="edit" data-id="${index}" >
-            <i class="fas fa-edit editbtn" title='Edit Task'></i>
-            <i class="fas fa-save savebtn" title='Save Task'></i>
-            </button>
-            <button class="delete" data-id="${index}" title='Delete Task' >
-            <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-          <div class="task__status" title='Task Completed'>
-          <i class="fas fa-check-square"></i>
-          </div>
-        </div>
-     </div>
+<div class="task-wrapper">
+  <div class="task ${isCompletedClass}"  
+    data-id="${index}">
+      <div class="content">
+  <div class="content-left">
+    <button class="edit btn" data-id="${index}">
+      <i class="fas fa-edit editbtn" title="Edit Task"></i>
+      <i class="fas fa-save savebtn" title="Save Task"></i>
+    </button>
+  </div>
+    <div class="content-right">
+      <p class="text" spellcheck="false">${task.text}</p>
+        <span class="time">${task.date}</span>
+    </div>
+  </div>
+    <div class="task__status" title='Task Completed'>
+    <button class="delete btn" data-id="${index}" title='Delete Task' >
+    <i class="fas fa-trash-alt"></i>
+    </button>
+    <i class="fas fa-check-square"></i>
+    </div>
+  </div>
+</div>
         `;
   });
 
@@ -110,4 +109,20 @@ textBox.on("input", () => {
 document.addEventListener("tasks-updated", () => {
   renderTasks();
   renderTaskHeader();
+});
+
+const dt = new Date();
+const fullDate = {
+  month: dt.getMonth() + 1,
+  day: dt.getDate() - 1,
+  year: dt.getFullYear(),
+};
+const { month, day, year } = fullDate;
+
+$(document).ready(() => {
+  $("#date").attr("min", `${year}-${month}-${day < 10 ? "0" + day : day}`);
+  $("#date").attr(
+    "max",
+    `${year + 3}-${month + 2}-${day + 22 < 10 ? "0" + day : String(day + 22)}`
+  );
 });

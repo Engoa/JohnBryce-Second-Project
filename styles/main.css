@@ -176,7 +176,7 @@
   --purple: #8b5cf6;
   --light: #eee;
   --bg: #374151;
-  --border:  #17284d;
+  --border: #17284d;
   --header: rgb(206, 206, 206);
   --text: rgb(206, 206, 206);
   --task-text: rgb(255, 255, 255);
@@ -370,25 +370,25 @@ form .input {
 
 form .input::-webkit-input-placeholder {
   color: var(--grey);
-  font-size: 1.35rem;
+  font-size: 1.1rem;
   text-align: center;
 }
 
 form .input:-ms-input-placeholder {
   color: var(--grey);
-  font-size: 1.35rem;
+  font-size: 1.1rem;
   text-align: center;
 }
 
 form .input::-ms-input-placeholder {
   color: var(--grey);
-  font-size: 1.35rem;
+  font-size: 1.1rem;
   text-align: center;
 }
 
 form .input::placeholder {
   color: var(--grey);
-  font-size: 1.35rem;
+  font-size: 1.1rem;
   text-align: center;
 }
 
@@ -499,10 +499,10 @@ main .task-list {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
 }
 
 main .task-list--header {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -541,13 +541,13 @@ main .task-list--header .open-modal {
   transition: var(--transition-250);
   font-weight: bold;
   left: 0;
-  top: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   border: 2px solid var(--border);
 }
 
 main .task-list--header .open-modal:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
   background: var(--btn-bg2);
 }
 
@@ -584,7 +584,7 @@ main .task-wrapper .task {
       -ms-flex-align: center;
           align-items: center;
   background-color: var(--darkest);
-  padding: 0.85rem 1rem;
+  padding: 1.5rem 1rem;
   border-radius: 1rem;
   cursor: pointer;
   margin-top: 1rem;
@@ -596,29 +596,67 @@ main .task-wrapper .task {
   transition: var(--transition-250);
 }
 
-main .task-wrapper .task:hover .delete {
-  visibility: visible;
-  opacity: 1;
-}
-
 main .task-wrapper .task:hover .times {
   opacity: 1;
 }
 
+main .task-wrapper .task:hover .task__status .delete {
+  visibility: visible;
+  opacity: 1;
+}
+
 main .task-wrapper .task__status {
-  visibility: hidden;
-  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-left: 1rem;
+}
+
+main .task-wrapper .task__status .fa-check-square {
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
+  visibility: hidden;
+  opacity: 0;
+  color: #0106ff;
+}
+
+main .task-wrapper .task__status .delete {
+  color: var(--pink);
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
+  visibility: hidden;
+  opacity: 0;
 }
 
 main .task-wrapper .task .content {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0%;
-          flex: 1 1 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.7rem;
 }
 
-main .task-wrapper .task .text {
+main .task-wrapper .task .content-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .task-wrapper .task .content-right .text {
   color: var(--task-text);
   font-size: 1rem;
   width: 100%;
@@ -629,69 +667,59 @@ main .task-wrapper .task .text {
   margin-bottom: 0.25rem;
 }
 
-main .task-wrapper .task .text::-webkit-scrollbar {
+main .task-wrapper .task .content-right .text::-webkit-scrollbar {
   background: var(--task);
   height: 11px;
   cursor: pointer;
 }
 
-main .task-wrapper .task .text::-webkit-scrollbar-button {
+main .task-wrapper .task .content-right .text::-webkit-scrollbar-button {
   background: var(--task);
 }
 
-main .task-wrapper .task .text::-webkit-scrollbar-thumb {
+main .task-wrapper .task .content-right .text::-webkit-scrollbar-thumb {
   border-radius: 2rem;
   background: var(--pink);
   max-width: 10px;
 }
 
-main .task-wrapper .task .text:not(:-moz-read-only) {
+main .task-wrapper .task .content-right .text:not(:-moz-read-only) {
   color: var(--pink);
   outline: none;
 }
 
-main .task-wrapper .task .text:not(:read-only) {
+main .task-wrapper .task .content-right .text:not(:read-only) {
   color: var(--pink);
   outline: none;
 }
 
-main .task-wrapper .task .times {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  gap: 0.3rem;
-  opacity: 0.8;
+main .task-wrapper .task .content-right .time {
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
+  opacity: 0.75;
+  font-size: 0.73rem;
+  font-weight: bold;
+  color: var(--text);
+  white-space: pre;
+}
+
+main .task-wrapper .task .content-left .edit {
+  color: var(--pink);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
 }
 
-main .task-wrapper .task .times .time,
-main .task-wrapper .task .times .date {
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: var(--text);
-}
-
-main .task-wrapper .actions {
-  gap: 0.5rem;
+main .task-wrapper .task .content-left .editbtn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
-main .task-wrapper .actions button {
+main .task-wrapper .task .content-left .savebtn {
+  display: none;
+}
+
+main .task-wrapper .btn {
   cursor: pointer;
   font-size: 1.2rem;
   width: 35px;
@@ -712,51 +740,31 @@ main .task-wrapper .actions button {
           justify-content: center;
 }
 
-main .task-wrapper .actions button:hover {
+main .task-wrapper .btn:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
   background: var(--btn-bg1);
 }
 
-main .task-wrapper .actions button:active {
+main .task-wrapper .btn:active {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
   opacity: 0.5;
-}
-
-main .task-wrapper .actions .edit,
-main .task-wrapper .actions .delete {
-  color: var(--pink);
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
-}
-
-main .task-wrapper .actions .delete {
-  visibility: hidden;
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
-  opacity: 0;
-}
-
-main .task-wrapper .actions .editbtn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-main .task-wrapper .actions .savebtn {
-  display: none;
 }
 
 main .task-wrapper .completed {
   background-color: #85b885;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
+  border: 2px solid #233b23;
 }
 
-main .task-wrapper .completed .content .text,
-main .task-wrapper .completed .content .date,
-main .task-wrapper .completed .content .time {
+main .task-wrapper .completed .content-left .edit {
+  display: none;
+}
+
+main .task-wrapper .completed .content-right .text,
+main .task-wrapper .completed .content-right .time {
   color: var(--task-text);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
@@ -766,9 +774,8 @@ main .task-wrapper .completed .content .time {
   width: fit-content;
 }
 
-main .task-wrapper .completed .content .text::before,
-main .task-wrapper .completed .content .date::before,
-main .task-wrapper .completed .content .time::before {
+main .task-wrapper .completed .content-right .text::before,
+main .task-wrapper .completed .content-right .time::before {
   content: "";
   position: absolute;
   background: var(--task-text);
@@ -782,19 +789,12 @@ main .task-wrapper .completed .content .time::before {
   pointer-events: none;
 }
 
-main .task-wrapper .completed .task__status {
-  margin-left: 1rem;
-  font-size: 2rem;
-  color: #0106ff;
+main .task-wrapper .completed .task__status .fa-check-square {
   visibility: visible;
   opacity: 1;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-}
-
-main .task-wrapper .completed .actions .edit {
-  visibility: hidden;
-  opacity: 0;
+  font-size: 2rem;
 }
 
 main .task-wrapper .edited {
@@ -806,20 +806,15 @@ main .task-wrapper .edited {
   transition: var(--transition-250);
 }
 
-main .task-wrapper .edited .actions .savebtn {
+main .task-wrapper .edited .content-left .savebtn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   color: #39f0fd;
 }
 
-main .task-wrapper .edited .actions .editbtn {
+main .task-wrapper .edited .content-left .editbtn {
   display: none;
-}
-
-main .task-wrapper .edited .actions .text {
-  font-weight: bold;
-  font-size: 1.1rem;
 }
 
 .task .content .text:not(:-moz-read-only) {
@@ -834,6 +829,9 @@ main .task-wrapper .edited .actions .text {
   .container-wrapper {
     padding: 1rem;
   }
+  .container-wrapper main .task-list--header {
+    margin-top: 3rem;
+  }
   .container-wrapper main .task-list--header .open-modal {
     padding: 0.4rem;
     top: -1rem;
@@ -842,12 +840,7 @@ main .task-wrapper .edited .actions .text {
     max-width: 200px;
     font-size: 1rem;
   }
-  .container-wrapper main .task-wrapper .actions button {
-    font-size: 0.8rem;
-    width: 25px;
-    height: 25px;
-  }
-  .container-wrapper main .task-wrapper .actions .delete {
+  .container-wrapper main .task-wrapper .delete {
     visibility: visible;
     opacity: 1;
   }

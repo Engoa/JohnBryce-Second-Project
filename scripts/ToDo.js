@@ -1,4 +1,5 @@
 let snackBarElement = document.querySelector(".snackbar");
+
 const ToDo = {
   //DATA MEMBERS
   tasks: [],
@@ -19,6 +20,7 @@ const ToDo = {
     this.updateUI();
     setLS("tasks", this.tasks);
   },
+
   deleteTask(index) {
     this.tasks.splice(index, 1);
     snackBarElement.innerHTML = "A task has been deleted";
@@ -87,23 +89,36 @@ form.addEventListener("submit", (e) => {
     timeBox,
   };
 
-  console.log(new Date(dateBox + "," + timeBox).toLocaleString());
+  const date = new Date(dateBox + "," + timeBox).toLocaleString([], {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   e.preventDefault();
-  if (!formInputs.textBox || !formInputs.dateBox || !formInputs.timeBox) {
-    $(".redo-form").hide();
-    snackBarElement.innerHTML = "All fields must have a value! 😟";
+
+  const isValidDate = Date.parse(formInputs.dateBox);
+  if (isNaN(isValidDate)) {
+    snackBarElement.innerHTML = "Date must have a valid format 📅";
     toggleSnackBar();
-    return;
+
+    if (!formInputs.textBox || !formInputs.dateBox || !formInputs.timeBox) {
+      $(".redo-form").hide();
+      snackBarElement.innerHTML = "All fields must have a value! 😟";
+      toggleSnackBar();
+      return;
+    }
   } else {
     $(".redo-form").show();
     ToDo.addTask({
       text: textBox,
       completed: false,
-      date: dateBox,
-      time: timeBox,
+      date,
     });
     $(".task-wrapper:first-of-type").hide();
-    $(".task-wrapper:first-of-type").fadeIn(550);
+    $(".task-wrapper:first-of-type").fadeIn(500);
     form.reset();
     $(".redo-form").hide();
     snackBarElement.innerHTML = "A task has been added 👍";
@@ -115,12 +130,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (getLS("tasks")) {
     ToDo.tasks = getLS("tasks");
     ToDo.updateUI();
-    gsap.from(".task-wrapper", {
-      y: 500,
-      opacity: 0,
-      filter: "blur(10px)",
-      stagger: 0.08,
-      duration: 1,
-    });
+
+    if ($(".task-wrapper")) {
+      gsap.from(".task-wrapper", {
+        y: 500,
+        opacity: 0,
+        filter: "blur(10px)",
+        stagger: 0.13,
+        duration: 1,
+      });
+    }
   }
 });
