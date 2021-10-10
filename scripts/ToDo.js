@@ -51,7 +51,6 @@ const ToDo = {
       textDiv.focus();
       divTask.classList.add("edited");
       setEndOfContenteditable(textDiv);
-      
     }
     this.isEdited = !this.isEdited;
   },
@@ -130,15 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if (getLS("tasks")) {
     ToDo.tasks = getLS("tasks");
     ToDo.updateUI();
-
-    if ($(".task-wrapper")) {
-      gsap.from(".task-wrapper", {
-        y: 500,
-        opacity: 0,
-        filter: "blur(12px)",
-        stagger: 0.15,
-        duration: 1,
-      });
-    }
   }
 });

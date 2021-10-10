@@ -12,5 +12,8 @@ themeBtn.addEventListener("click", () => {
 const isLightTheme = JSON.parse(localStorage.getItem("lightTheme"));
 if (isLightTheme) {
   document.body.classList.add("bglight");
+  $("#meta-theme").attr("content", "light");
   themeBtn.checked = true;
+} else {
+  $("#meta-theme").attr("content", "dark");
 }

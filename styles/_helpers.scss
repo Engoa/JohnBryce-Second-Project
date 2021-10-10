@@ -8,6 +8,9 @@ body {
   background-color: var(--bg);
   padding: 0 1rem;
 }
+.container-wrapper {
+  padding: 0 2rem;
+}
 
 h1,
 h2,
@@ -16,9 +19,6 @@ h4,
 h5,
 h6 {
   font-family: var(--ff-header);
-}
-.container-wrapper {
-  padding: 0 2rem;
 }
 input,
 button {
@@ -42,6 +42,7 @@ button {
     opacity: 0.5;
   }
 }
+
 .input {
   flex: 1 1 0%;
   background-color: var(--darker);
@@ -61,6 +62,33 @@ button {
     transform: scale(1.01);
     border: 2px solid var(--accent);
   }
+}
+//Overrides for default browser colors for placeholder text on inputs!
+
+input[type="date"]::before,
+input[type="time"]::before {
+  color: var(--text);
+  content: attr(placeholder);
+}
+input[type="date"] {
+  color: var(--grey);
+}
+input[type="time"] {
+  color: var(--grey);
+}
+input[type="time"]:focus,
+input[type="time"]:valid {
+  color: var(--text);
+}
+input[type="date"]:focus,
+input[type="date"]:valid {
+  color: var(--text);
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before,
+input[type="time"]:focus::before,
+input[type="time"]:valid::before {
+  content: "" !important;
 }
 
 .btn-cta {
@@ -99,6 +127,18 @@ button {
   bottom: 1rem;
   font-family: var(--ff-header);
   box-shadow: var(--box-shadow);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1.7rem;
+    transform: translateX(-50%) rotate(-180deg);
+    border: 20px solid transparent;
+    border-bottom-color: var(--btn-bg2);
+    z-index: -1;
+  }
 }
 
 .snackbar.show {

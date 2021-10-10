@@ -38,7 +38,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <meta name="color-scheme" content="dark" id="meta-theme" />
+    <meta name="color-scheme" id="meta-theme" />
   </head>
   <body class="bgdark">
     <div class="container-wrapper">
@@ -75,20 +75,17 @@
             </div>
             <div class="second-inputs">
               <input
-                type="text"
+                type="date"
                 class="input"
                 id="date"
+                required
                 aria-label="Task Date"
-                onfocus="this.type='date'"
-                placeholder="mm/dd/yyyy"
               />
               <input
-                type="text"
+                type="time"
                 class="input"
                 id="time"
-                onfocus="this.type='time'"
                 aria-label="Task Time"
-                placeholder="--:-- --"
               />
             </div>
           </div>
@@ -145,11 +142,7 @@
       </div>
     </div>
 
-    <div class="snackbar">
-      <div>
-        <i class="fas fa-times close-snackbar"></i>
-      </div>
-    </div>
+    <div class="snackbar"></div>
 
     <script defer src="./scripts/helpers.js"></script>
     <script defer src="./scripts/themeBtn.js"></script>

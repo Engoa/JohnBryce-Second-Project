@@ -222,6 +222,10 @@ body {
   padding: 0 1rem;
 }
 
+.container-wrapper {
+  padding: 0 2rem;
+}
+
 h1,
 h2,
 h3,
@@ -229,10 +233,6 @@ h4,
 h5,
 h6 {
   font-family: var(--ff-header);
-}
-
-.container-wrapper {
-  padding: 0 2rem;
 }
 
 input,
@@ -305,6 +305,37 @@ button {
   border: 2px solid var(--accent);
 }
 
+input[type="date"]::before,
+input[type="time"]::before {
+  color: var(--text);
+  content: attr(placeholder);
+}
+
+input[type="date"] {
+  color: var(--grey);
+}
+
+input[type="time"] {
+  color: var(--grey);
+}
+
+input[type="time"]:focus,
+input[type="time"]:valid {
+  color: var(--text);
+}
+
+input[type="date"]:focus,
+input[type="date"]:valid {
+  color: var(--text);
+}
+
+input[type="date"]:focus::before,
+input[type="date"]:valid::before,
+input[type="time"]:focus::before,
+input[type="time"]:valid::before {
+  content: "" !important;
+}
+
 .btn-cta {
   cursor: pointer;
   color: var(--text);
@@ -342,6 +373,18 @@ button {
   font-family: var(--ff-header);
   -webkit-box-shadow: var(--box-shadow);
           box-shadow: var(--box-shadow);
+}
+
+.snackbar::before, .snackbar::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1.7rem;
+  -webkit-transform: translateX(-50%) rotate(-180deg);
+          transform: translateX(-50%) rotate(-180deg);
+  border: 20px solid transparent;
+  border-bottom-color: var(--btn-bg2);
+  z-index: -1;
 }
 
 .snackbar.show {
@@ -404,6 +447,7 @@ header {
 header h1 {
   text-align: center;
   font-size: 2.5rem;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
   color: var(--header);
   margin-bottom: 1rem;
   opacity: 0.85;
@@ -448,6 +492,7 @@ form .inputs-wrapper {
   gap: 1rem;
   position: relative;
   width: 100%;
+  margin: 0 auto;
 }
 
 form .inputs-wrapper .first-input {
@@ -524,7 +569,6 @@ main .task-list {
 }
 
 main .task-list--header {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -537,6 +581,7 @@ main .task-list--header {
           flex-direction: column;
   width: 100%;
   padding: 0 1rem;
+  position: relative;
 }
 
 main .task-list--header h2 {
@@ -593,7 +638,7 @@ main .task-wrapper .task {
       -ms-flex-align: center;
           align-items: center;
   background-color: var(--darkest);
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 0.6rem;
   border-radius: 1rem;
   cursor: pointer;
   margin-top: 1rem;
@@ -619,7 +664,7 @@ main .task-wrapper .task:hover .task__status .delete {
 main .task-wrapper .task::before {
   position: absolute;
   content: "";
-  width: 10px;
+  width: 9px;
   height: 100%;
   background-color: var(--sidebar);
   bottom: 50%;
@@ -640,9 +685,8 @@ main .task-wrapper .task__status {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0.5rem;
-  width: 100%;
   z-index: 1;
+  gap: 0.3rem;
 }
 
 main .task-wrapper .task__status .fa-check {
@@ -692,26 +736,29 @@ main .task-wrapper .task .content-right .text {
   font-size: 1rem;
   width: 100%;
   overflow-x: auto;
-  max-width: 670px;
+  max-width: 750px;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
   margin-bottom: 0.25rem;
 }
 
 main .task-wrapper .task .content-right .text::-webkit-scrollbar {
-  background: var(--task);
-  height: 11px;
-  cursor: pointer;
+  background: #34353846;
+  height: 10px;
+  border-radius: 100vw;
 }
 
-main .task-wrapper .task .content-right .text::-webkit-scrollbar-button {
-  background: var(--task);
+main .task-wrapper .task .content-right .text::-webkit-scrollbar:hover {
+  background: #6b7280c0;
 }
 
 main .task-wrapper .task .content-right .text::-webkit-scrollbar-thumb {
-  border-radius: 2rem;
-  background: var(--pink);
-  max-width: 10px;
+  border-radius: 100vw;
+  background: #e2469c69;
+}
+
+main .task-wrapper .task .content-right .text::-webkit-scrollbar-thumb:hover {
+  background: #e2469c;
 }
 
 main .task-wrapper .task .content-right .text:not(:-moz-read-only) {
@@ -830,7 +877,7 @@ main .task-wrapper .edited .content-left .editbtn {
   border: none;
 }
 
-main .task-wrapper .task2::before {
+main .task-wrapper .task-reversed::before {
   right: 0;
   left: unset;
 }
@@ -877,7 +924,7 @@ main .task-wrapper .task2::before {
   font-size: clamp(4rem, 3vw, 5rem);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 550px) {
   .container-wrapper {
     padding: 1rem;
   }
@@ -886,7 +933,7 @@ main .task-wrapper .task2::before {
   }
   .container-wrapper main .task-list--header .open-modal {
     padding: 0.4rem;
-    top: -1rem;
+    top: 1.3rem;
   }
   .container-wrapper main .task-wrapper .task .text {
     max-width: 200px;
@@ -905,16 +952,18 @@ main .task-wrapper .task2::before {
   .container-wrapper form .redo-form .fa-redo {
     font-size: 1.5rem;
   }
+  .container-wrapper form .submit-btn {
+    text-align: center;
+  }
   .container-wrapper form .submit-btn .new-task-submit {
     padding: 0.5rem 1.5rem;
   }
   .container-wrapper form .inputs-wrapper {
     gap: 1rem;
+    max-width: 311px;
   }
-  .container-wrapper form .inputs-wrapper #date,
-  .container-wrapper form .inputs-wrapper #time,
-  .container-wrapper form .inputs-wrapper #text {
-    min-width: 311px;
+  .container-wrapper form .inputs-wrapper input {
+    width: 100%;
   }
   .container-wrapper form .inputs-wrapper .second-inputs {
     gap: 1rem;
@@ -938,6 +987,13 @@ main .task-wrapper .task2::before {
   }
   .container-wrapper form .inputs-wrapper #text::placeholder {
     font-size: 1rem;
+  }
+  .snackbar {
+    right: 50%;
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+    padding: 0.7rem;
+    font-size: 0.8rem;
   }
 }
 /*# sourceMappingURL=main.css.map */

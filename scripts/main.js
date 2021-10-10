@@ -13,12 +13,12 @@ const renderTasks = () => {
   let tasksHtml = "";
   ToDo.tasks.forEach((task, index) => {
     const isCompletedClass = task.completed ? "completed" : "";
-    const oddIndex = index % 2 !== 0 ? "task2" : "";
+    const oddIndex = index % 2 !== 0 ? "task-reversed" : "";
     tasksHtml += `
 <div class="task-wrapper">
   <div class="task ${isCompletedClass} ${oddIndex}"  
     data-id="${index}">
-      <div class="content">
+    <div class="content"> 
   <div class="content-left">
     <button class="edit btn" data-id="${index}">
       <i class="fas fa-pencil-alt editbtn" title="Edit Task"></i>
@@ -151,4 +151,14 @@ $(document).ready(() => {
     "max",
     `${year + 3}-${month + 2}-${day + 22 < 10 ? "0" + day : String(day + 22)}`
   );
+
+  if ($(".task-wrapper")) {
+    gsap.from(".task-wrapper", {
+      y: 500,
+      opacity: 0,
+      filter: "blur(15px)",
+      stagger: 0.15,
+      duration: 1,
+    });
+  }
 });
