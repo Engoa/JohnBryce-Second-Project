@@ -51,6 +51,7 @@ const ToDo = {
       textDiv.focus();
       divTask.classList.add("edited");
       setEndOfContenteditable(textDiv);
+      
     }
     this.isEdited = !this.isEdited;
   },
@@ -103,13 +104,12 @@ form.addEventListener("submit", (e) => {
   if (isNaN(isValidDate)) {
     snackBarElement.innerHTML = "Date must have a valid format 📅";
     toggleSnackBar();
-
-    if (!formInputs.textBox || !formInputs.dateBox || !formInputs.timeBox) {
-      $(".redo-form").hide();
-      snackBarElement.innerHTML = "All fields must have a value! 😟";
-      toggleSnackBar();
-      return;
-    }
+  }
+  if (!formInputs.textBox || !formInputs.dateBox || !formInputs.timeBox) {
+    $(".redo-form").hide();
+    snackBarElement.innerHTML = "All fields must have a value! 😟";
+    toggleSnackBar();
+    return;
   } else {
     $(".redo-form").show();
     ToDo.addTask({
@@ -118,7 +118,7 @@ form.addEventListener("submit", (e) => {
       date,
     });
     $(".task-wrapper:first-of-type").hide();
-    $(".task-wrapper:first-of-type").fadeIn(500);
+    $(".task-wrapper:first-of-type").fadeIn(800);
     form.reset();
     $(".redo-form").hide();
     snackBarElement.innerHTML = "A task has been added 👍";
@@ -135,8 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
       gsap.from(".task-wrapper", {
         y: 500,
         opacity: 0,
-        filter: "blur(10px)",
-        stagger: 0.13,
+        filter: "blur(12px)",
+        stagger: 0.15,
         duration: 1,
       });
     }

@@ -3,7 +3,7 @@
   inset: 0;
   min-height: 100vh;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.63);
+  background-color: rgba(0, 0, 0, 0.479);
   position: fixed;
   inset: 0;
   z-index: 5;
@@ -18,8 +18,8 @@
   top: 13rem;
   right: 50%;
   transform: translateX(50%);
-  background-color: var(--modal);
-  border: 2px solid var(--purple);
+  background-color: var(--darkest);
+  border: 2px solid var(--text);
   border-radius: 0.5rem;
   z-index: 150;
   max-width: 330px;
@@ -60,26 +60,25 @@
     gap: 1rem;
 
     button {
-      cursor: pointer;
-      color: var(--btn-bg1);
-      background-color: var(--text);
       padding: 0.6rem 1rem;
       border-radius: 0.5rem;
       transition: var(--transition-250);
-      font-weight: bold;
-      text-align: center;
-      &:hover {
-        background-color: var(--pink);
-        color: var(--darkest);
-        transform: scale(1.04);
-      }
+
       &:active {
         transform: scale(0.9);
         opacity: 0.5;
       }
     }
+
+    .delete-all {
+      &:hover {
+        background-color: var(--pink) !important;
+      }
+    }
   }
 }
+
+// Overrides
 .overlay--active {
   visibility: visible !important;
   opacity: 1 !important;

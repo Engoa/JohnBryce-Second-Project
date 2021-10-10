@@ -1,20 +1,18 @@
-// E2469C
-// 1D1B2D
-// E4E0E3
-// A1A7BB
-// D4ACAA
-
+// E2469C PINK
+// 1D1B2D DARK BLUE
+// E4E0E3 WHITE
+// A1A7BB LIGHT BLUE
+// D4ACAA ORANGE
 
 .bgdark {
   --dark: #0e1524;
   --darker: #1f2937;
   --darkest: #111827;
   --grey: #6b7280;
-  --pink: #ec4899;
+  --pink: #e2469c;
   --purple: #8b5cf6;
-  --light: #eee;
-  --bg: #374151;
-  --border: #17284d;
+  --bg: #2e3a4d;
+  --border: #394980;
   --header: rgb(206, 206, 206);
   --text: rgb(206, 206, 206);
   --task-text: rgb(255, 255, 255);
@@ -22,16 +20,18 @@
   --btn-bg2: #eee;
   --modal: #111827;
   --white: #eee;
+  --accent: #d4acaa;
+  --sidebar: rgba(61, 109, 199, 0.753);
+  --completed: rgba(61, 109, 199, 0.753);
 }
 
 .bglight {
   --dark: #0e1524;
-  --darker: rgba(197, 194, 194, 0.884);
-  --darkest: rgba(197, 194, 194, 0.884);
+  --darker: rgba(214, 214, 214, 0.884);
+  --darkest: #e4e0e3;
   --grey: #6b7280;
-  --pink: #ec4899;
+  --pink: #e2469c;
   --purple: #8b5cf6;
-  --light: #eee;
   --bg: #eee;
   --border: rgb(179, 179, 179);
   --header: #111827;
@@ -41,13 +41,16 @@
   --btn-bg2: #111827;
   --modal: rgb(255, 255, 255);
   --white: #eee;
-  --white: #eee;
+  --accent: #d4acaa;
+  --sidebar: #d4acaa;
+  --completed: #d4acaa;
 }
 
 :root {
+  --transition-350: all 350ms linear;
   --transition-250: all 250ms linear;
   --transition-150: all 150ms linear;
-  --box-shadow: rgba(0, 0, 0, 0.473) -10px 3px 40px -15px;
+  --box-shadow: rgba(0, 0, 0, 0.473) 1px 3px 30px -15px;
   --ff-text: "Montserrat", sans-serif;
   --ff-header: "Poppins", sans-serif;
 }

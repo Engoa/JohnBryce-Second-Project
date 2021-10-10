@@ -1,11 +1,96 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: var(--ff-text);
+}
+
+body {
+  background-color: var(--bg);
+  padding: 0 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ff-header);
+}
+.container-wrapper {
+  padding: 0 2rem;
+}
+input,
+button {
+  appearance: none;
+  border: none;
+  border: none;
+  background: none;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: var(--transition-150);
+  color: var(--btn-bg2);
+
+  &:hover {
+    transform: scale(1.2);
+  }
+  &:active {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+}
+.input {
+  flex: 1 1 0%;
+  background-color: var(--darker);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--text);
+  font-size: 1rem;
+  transition: var(--transition-150);
+  border: 2px solid var(--border);
+  outline: none;
+
+  &::placeholder {
+    color: var(--grey);
+    font-size: 1.1rem;
+  }
+  &:focus-within {
+    transform: scale(1.01);
+    border: 2px solid var(--accent);
+  }
+}
+
+.btn-cta {
+  cursor: pointer;
+  color: var(--text);
+  background-color: var(--darkest);
+  border-radius: 0.8rem;
+  font-weight: bold;
+  border: 2px solid var(--border);
+  transition: var(--transition-250);
+
+  &:hover {
+    // Override
+    background: var(--btn-bg2) !important;
+    color: var(--modal);
+  }
+}
+// Hide elements if no tasks are available
+.hide-element {
+  display: none !important;
+}
+
 .snackbar {
   visibility: hidden;
   min-width: 200px;
   background-color: var(--btn-bg2);
-  color: var(--darkest);
+  color: var(--modal);
   font-weight: bold;
   border-radius: 0.5rem;
-  padding: 0.7rem;
+  padding: 0.9rem;
   font-size: 0.92rem;
   text-align: center;
   position: fixed;
@@ -13,13 +98,13 @@
   right: 4rem;
   bottom: 1rem;
   font-family: var(--ff-header);
+  box-shadow: var(--box-shadow);
 }
 
 .snackbar.show {
   visibility: visible;
   animation: fadein 0.5s $ease-in, fadeout 1s 3s $ease-out;
 }
-
 
 @keyframes fadein {
   from {

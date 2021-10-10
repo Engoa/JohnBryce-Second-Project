@@ -3,35 +3,6 @@
 @import "./variables";
 @import "./helpers";
 
-* {
-  margin: 0;
-  box-sizing: border-box;
-  font-family: var(--ff-text);
-}
-
-body {
-  background-color: var(--bg);
-  padding: 0 1rem;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--ff-header);
-}
-.container-wrapper {
-  padding: 0 2rem;
-}
-input,
-button {
-  appearance: none;
-  border: none;
-  border: none;
-  background: none;
-}
 header {
   padding-top: 2rem;
   max-width: 900px;
@@ -44,7 +15,7 @@ header h1 {
   font-size: 2.5rem;
   color: var(--header);
   margin-bottom: 1rem;
-  opacity: 0.8;
+  opacity: 0.85;
   transition: var(--transition-250);
 }
 
@@ -57,31 +28,11 @@ form {
     transition: var(--transition-250);
     color: var(--btn-bg2);
     &:hover {
-      transform: scale(1.1);
-      color: var(--purple);
+      transform: scale(1.1) rotate(40deg);
+      color: var(--accent);
     }
     .fa-redo {
       font-size: 2.2rem;
-    }
-  }
-  .input {
-    flex: 1 1 0%;
-    background-color: var(--darker);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    color: var(--text);
-    font-size: 1rem;
-    transition: var(--transition-150);
-    border: 2px solid var(--border);
-    outline: none;
-    &::placeholder {
-      color: var(--grey);
-      font-size: 1.1rem;
-      text-align: center;
-    }
-    &:focus-within {
-      transform: scale(1.01);
-      border: 2px solid var(--pink);
     }
   }
 
@@ -117,19 +68,9 @@ form {
     text-align: right;
     margin-top: 1rem;
     .new-task-submit {
-      color: var(--pink);
       font-size: 1.1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: var(--transition-250);
-      background: var(--btn-bg1);
-      border-radius: 1rem;
+      background: var(--darker);
       padding: 0.8rem 2rem;
-      border: 2px solid var(--border);
-
-      &:hover {
-        background: var(--btn-bg2);
-      }
     }
 
     .new-task-submit:hover {
@@ -163,34 +104,22 @@ main {
       h2 {
         font-size: 1.65rem;
         color: var(--text);
-        opacity: 0.8;
+        opacity: 0.85;
         transition: var(--transition-250);
       }
       h6 {
-        font-size: 0.75rem;
-        color: rgb(133, 184, 133);
+        font-size: 0.7rem;
+        color: var(--text);
+        opacity: 0.7;
       }
 
       .open-modal {
         position: absolute;
-        cursor: pointer;
-        color: var(--pink);
-        background: var(--btn-bg1);
-        border-radius: 0.8rem;
         padding: 0.7rem;
         transition: var(--transition-250);
-        font-weight: bold;
         left: 0;
         top: 50%;
         transform: translateY(-50%);
-        border: 2px solid var(--border);
-
-        &:hover {
-          background: var(--btn-bg2);
-        }
-      }
-      .hide-btn {
-        display: none;
       }
     }
   }
@@ -237,11 +166,11 @@ main {
         content: "";
         width: 10px;
         height: 100%;
-        background-color: var(--purple);
+        background-color: var(--sidebar);
         bottom: 50%;
         left: 0;
         transform: translateY(50%);
-        transition: var(--transition-250);
+        transition: var(--transition-350);
       }
 
       &__status {
@@ -250,13 +179,13 @@ main {
         align-items: center;
         gap: 0.5rem;
         width: 100%;
-        margin-left: 1rem;
+        z-index: 1;
 
-        .fa-check-square {
-          transition: var(--transition-250);
+        .fa-check {
           visibility: hidden;
           opacity: 0;
-          color: rgb(1, 6, 255);
+          transition: var(--transition-250);
+          color: var(--pink);
         }
         .delete {
           transition: var(--transition-250);
@@ -273,7 +202,8 @@ main {
       .content {
         display: flex;
         align-items: center;
-        gap: 0.7rem;
+        gap: 0.5rem;
+        z-index: 1;
 
         &-right {
           display: flex;
@@ -329,43 +259,29 @@ main {
         }
       }
     }
-    .btn {
-      cursor: pointer;
-      font-size: 1.35rem;
-      transition: var(--transition-150);
-      color: var(--btn-bg2);
-
-      &:hover {
-        color: var(--pink);
-        transform: scale(1.2);
-      }
-      &:active {
-        transform: scale(0.9);
-        opacity: 0.5;
-      }
-    }
   }
 
   .task-wrapper {
     .completed {
-      background-color: rgb(133, 184, 133);
       transition: var(--transition-250);
-      border: 2px solid yellowgreen;
+      border: 2px solid var(border);
 
       &::before {
-        background: yellowgreen;
+        background: var(--sidebar);
+        width: 100%;
+        transition: var(--transition-350);
       }
 
       .content {
         &-left {
           .edit {
-            display: none;
+            font-size: 0;
           }
         }
         &-right {
           .text,
           .time {
-            color: var(--task-text);
+            color: var(--white);
             transition: var(--transition-250);
             position: relative;
             width: fit-content;
@@ -386,11 +302,12 @@ main {
         }
       }
       .task__status {
-        .fa-check-square {
+        .fa-check {
           visibility: visible;
           opacity: 1;
+          font-size: 1.8rem;
           transition: var(--transition-250);
-          font-size: 2rem;
+          text-shadow: 0 0 3px rgba(0, 0, 0, 0.473);
         }
       }
     }
@@ -399,14 +316,15 @@ main {
   .task-wrapper {
     .edited {
       cursor: default;
-      transform: scale(1.04);
-      border: 2px solid var(--purple);
+      transform: scale(1.02);
+      border: 2px solid var(--accent);
       transition: var(--transition-250);
 
       .content {
         &-left {
           .savebtn {
             display: flex;
+            transform: scale(1.05);
           }
 
           .editbtn {
@@ -428,6 +346,35 @@ main {
         left: unset;
       }
     }
+  }
+}
+
+.add-first-task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  .fa-tasks {
+    transition: var(--transition-250);
+    font-size: 12rem;
+    font-size: clamp(8.5rem, 10vw, 12rem);
+    color: var(--text);
+  }
+
+  p {
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-size: clamp(1.25rem, 3vw, 1.7rem);
+    opacity: 0.85;
+    transition: var(--transition-250);
+    text-transform: uppercase;
+  }
+  span {
+    font-size: 5rem;
+    font-size: clamp(4rem, 3vw, 5rem);
   }
 }
 

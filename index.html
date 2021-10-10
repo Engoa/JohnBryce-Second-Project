@@ -67,7 +67,11 @@
               />
             </div>
             <div class="redo-form">
-              <i class="fas fa-redo" onclick="ToDo.resetForm()"></i>
+              <i
+                class="fas fa-redo"
+                onclick="ToDo.resetForm()"
+                title="Reset Form"
+              ></i>
             </div>
             <div class="second-inputs">
               <input
@@ -76,7 +80,7 @@
                 id="date"
                 aria-label="Task Date"
                 onfocus="this.type='date'"
-                placeholder="Date"
+                placeholder="mm/dd/yyyy"
               />
               <input
                 type="text"
@@ -84,14 +88,14 @@
                 id="time"
                 onfocus="this.type='time'"
                 aria-label="Task Time"
-                placeholder="Time"
+                placeholder="--:-- --"
               />
             </div>
           </div>
           <div class="submit-btn">
             <button
               type="submit"
-              class="new-task-submit"
+              class="new-task-submit btn-cta"
               click="ToDo.addTask()"
               aria-label="Submit Task"
               title="Submit Task"
@@ -101,6 +105,9 @@
           </div>
         </form>
       </header>
+      <section>
+        <div class="render-if-no-tasks"></div>
+      </section>
       <main>
         <div class="task-list">
           <div class="task-list--header"></div>
@@ -118,7 +125,7 @@
           </div>
           <div class="modal__actions">
             <button
-              class="close-modal"
+              class="close-modal btn-cta"
               onclick="closeModal()"
               aria-label="Close Modal"
               title="Close Modal"
@@ -126,7 +133,7 @@
               Close
             </button>
             <button
-              class="delete-all"
+              class="delete-all btn-cta"
               onclick="ToDo.deleteAllTasks()"
               aria-label="Delete All Tasks"
               title="Delete All Tasks"
@@ -143,6 +150,7 @@
         <i class="fas fa-times close-snackbar"></i>
       </div>
     </div>
+
     <script defer src="./scripts/helpers.js"></script>
     <script defer src="./scripts/themeBtn.js"></script>
     <script defer src="./scripts/ToDo.js"></script>
