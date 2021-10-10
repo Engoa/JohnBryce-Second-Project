@@ -57,7 +57,7 @@ form {
     transition: var(--transition-250);
     color: var(--btn-bg2);
     &:hover {
-      transform: scale(1.05) rotate(250deg);
+      transform: scale(1.1);
       color: var(--purple);
     }
     .fa-redo {
@@ -217,7 +217,8 @@ main {
       box-shadow: var(--box-shadow);
       border: 2px solid var(--border);
       transition: var(--transition-250);
-
+      position: relative;
+      overflow: hidden;
       &:hover {
         .times {
           opacity: 1;
@@ -229,6 +230,18 @@ main {
             opacity: 1;
           }
         }
+      }
+      //Line on task card
+      &::before {
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 100%;
+        background-color: var(--purple);
+        bottom: 50%;
+        left: 0;
+        transform: translateY(50%);
+        transition: var(--transition-250);
       }
 
       &__status {
@@ -246,10 +259,14 @@ main {
           color: rgb(1, 6, 255);
         }
         .delete {
-          color: var(--pink);
           transition: var(--transition-250);
           visibility: hidden;
           opacity: 0;
+          font-size: 1.8rem;
+
+          &:hover {
+            transform: rotate(-90deg);
+          }
         }
       }
 
@@ -300,7 +317,6 @@ main {
 
         &-left {
           .edit {
-            color: var(--pink);
             transition: var(--transition-250);
           }
 
@@ -315,19 +331,13 @@ main {
     }
     .btn {
       cursor: pointer;
-      font-size: 1.2rem;
-      width: 35px;
-      height: 35px;
-      transition: var(--transition-250);
-      border: 2px solid var(--pink);
-      background: var(--btn-bg2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 1.35rem;
+      transition: var(--transition-150);
+      color: var(--btn-bg2);
+
       &:hover {
-        transform: scale(1.05);
-        background: var(--btn-bg1);
+        color: var(--pink);
+        transform: scale(1.2);
       }
       &:active {
         transform: scale(0.9);
@@ -340,7 +350,11 @@ main {
     .completed {
       background-color: rgb(133, 184, 133);
       transition: var(--transition-250);
-      border: 2px solid rgb(35, 59, 35);
+      border: 2px solid yellowgreen;
+
+      &::before {
+        background: yellowgreen;
+      }
 
       .content {
         &-left {
@@ -393,7 +407,6 @@ main {
         &-left {
           .savebtn {
             display: flex;
-            color: rgb(57, 240, 253);
           }
 
           .editbtn {
@@ -406,6 +419,16 @@ main {
 }
 .task .content .text:not(:read-only) {
   border: none;
+}
+main {
+  .task-wrapper {
+    .task2 {
+      &::before {
+        right: 0;
+        left: unset;
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -438,8 +461,7 @@ main {
         right: -1.8rem;
         top: 50%;
         transform: translateY(-50%);
-        &:hover {
-        }
+
         .fa-redo {
           font-size: 1.5rem;
         }

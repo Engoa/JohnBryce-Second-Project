@@ -344,8 +344,8 @@ form .redo-form {
 }
 
 form .redo-form:hover {
-  -webkit-transform: scale(1.05) rotate(250deg);
-          transform: scale(1.05) rotate(250deg);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
   color: var(--purple);
 }
 
@@ -594,6 +594,8 @@ main .task-wrapper .task {
   border: 2px solid var(--border);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
+  position: relative;
+  overflow: hidden;
 }
 
 main .task-wrapper .task:hover .times {
@@ -603,6 +605,20 @@ main .task-wrapper .task:hover .times {
 main .task-wrapper .task:hover .task__status .delete {
   visibility: visible;
   opacity: 1;
+}
+
+main .task-wrapper .task::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 100%;
+  background-color: var(--purple);
+  bottom: 50%;
+  left: 0;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
 }
 
 main .task-wrapper .task__status {
@@ -629,11 +645,16 @@ main .task-wrapper .task__status .fa-check-square {
 }
 
 main .task-wrapper .task__status .delete {
-  color: var(--pink);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
   visibility: hidden;
   opacity: 0;
+  font-size: 1.8rem;
+}
+
+main .task-wrapper .task__status .delete:hover {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 
 main .task-wrapper .task .content {
@@ -704,7 +725,6 @@ main .task-wrapper .task .content-right .time {
 }
 
 main .task-wrapper .task .content-left .edit {
-  color: var(--pink);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
 }
@@ -721,29 +741,16 @@ main .task-wrapper .task .content-left .savebtn {
 
 main .task-wrapper .btn {
   cursor: pointer;
-  font-size: 1.2rem;
-  width: 35px;
-  height: 35px;
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
-  border: 2px solid var(--pink);
-  background: var(--btn-bg2);
-  border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  font-size: 1.35rem;
+  -webkit-transition: var(--transition-150);
+  transition: var(--transition-150);
+  color: var(--btn-bg2);
 }
 
 main .task-wrapper .btn:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
-  background: var(--btn-bg1);
+  color: var(--pink);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 main .task-wrapper .btn:active {
@@ -756,7 +763,11 @@ main .task-wrapper .completed {
   background-color: #85b885;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-  border: 2px solid #233b23;
+  border: 2px solid yellowgreen;
+}
+
+main .task-wrapper .completed::before {
+  background: yellowgreen;
 }
 
 main .task-wrapper .completed .content-left .edit {
@@ -810,7 +821,6 @@ main .task-wrapper .edited .content-left .savebtn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #39f0fd;
 }
 
 main .task-wrapper .edited .content-left .editbtn {
@@ -823,6 +833,11 @@ main .task-wrapper .edited .content-left .editbtn {
 
 .task .content .text:not(:read-only) {
   border: none;
+}
+
+main .task-wrapper .task2::before {
+  right: 0;
+  left: unset;
 }
 
 @media (max-width: 768px) {

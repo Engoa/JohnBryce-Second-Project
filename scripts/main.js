@@ -12,14 +12,15 @@ const renderTasks = () => {
   let tasksHtml = "";
   ToDo.tasks.forEach((task, index) => {
     const isCompletedClass = task.completed ? "completed" : "";
+    const oddIndex = index % 2 !== 0 ? "task2" : "";
     tasksHtml += `
 <div class="task-wrapper">
-  <div class="task ${isCompletedClass}"  
+  <div class="task ${isCompletedClass} ${oddIndex}"  
     data-id="${index}">
       <div class="content">
   <div class="content-left">
     <button class="edit btn" data-id="${index}">
-      <i class="fas fa-edit editbtn" title="Edit Task"></i>
+      <i class="fas fa-pencil-alt editbtn" title="Edit Task"></i>
       <i class="fas fa-save savebtn" title="Save Task"></i>
     </button>
   </div>
@@ -28,11 +29,11 @@ const renderTasks = () => {
         <span class="time">${task.date}</span>
     </div>
   </div>
-    <div class="task__status" title='Task Completed'>
+    <div class="task__status">
     <button class="delete btn" data-id="${index}" title='Delete Task' >
-    <i class="fas fa-trash-alt"></i>
+    <i class="fas fa-times"></i>
     </button>
-    <i class="fas fa-check-square"></i>
+    <i class="fas fa-check-square" title='Task Completed'></i>
     </div>
   </div>
 </div>
