@@ -125,8 +125,8 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0 auto;
-  width: 100px;
-  height: 80px;
+  width: 80px;
+  height: 60px;
   margin-top: 0.3rem;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
@@ -139,8 +139,8 @@
 
 #theme-toggle svg {
   fill: var(--header);
-  width: 70px;
-  height: 40px;
+  width: 60px;
+  height: 30px;
 }
 
 #theme-toggle::before {
@@ -593,7 +593,6 @@ input[type="time"]:valid::before {
 }
 
 header {
-  padding-top: 1rem;
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
@@ -807,7 +806,7 @@ main .task-wrapper .task {
   overflow: hidden;
 }
 
-main .task-wrapper .task:hover .times {
+main .task-wrapper .task:hover .content .time {
   opacity: 1;
 }
 

@@ -10,8 +10,8 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  width: 100px;
-  height: 80px;
+  width: 80px;
+  height: 60px;
   margin-top: 0.3rem;
   transition: var(--transition-250);
 
@@ -22,8 +22,8 @@
 
 #theme-toggle svg {
   fill: var(--header);
-  width: 70px;
-  height: 40px;
+  width: 60px;
+  height: 30px;
 }
 #theme-toggle::before {
   content: "";

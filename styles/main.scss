@@ -4,7 +4,6 @@
 @import "./helpers";
 
 header {
-  padding-top: 1rem;
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
@@ -151,8 +150,10 @@ main {
       position: relative;
       overflow: hidden;
       &:hover {
-        .times {
-          opacity: 1;
+        .content {
+          .time {
+            opacity: 1;
+          }
         }
 
         .task__status {
