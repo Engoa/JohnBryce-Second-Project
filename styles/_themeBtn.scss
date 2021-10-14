@@ -33,7 +33,7 @@
   border-radius: inherit;
   transform: scale(0);
   opacity: 0;
-  z-index: -1;
+  z-index: -2;
 }
 .bglight #theme-toggle::before {
   animation: pulseToLight 650ms ease-out;
@@ -59,18 +59,19 @@
   transform-origin: top;
   transition: all 150ms linear;
   padding: 0.5rem 0.8rem;
+  z-index: 1;
 }
 
 #theme-toggle:hover,
 #theme-toggle:focus {
   outline: 0;
-  opacity: 1;
+  opacity: 0.8;
   background: rgba(128, 128, 128, 0.274);
 }
 
 #theme-toggle:hover::after,
 #theme-toggle:focus-visible::after {
-  opacity: 0.65;
+  opacity: 1;
   transition: transform 70ms linear, opacity 70ms linear;
 }
 
