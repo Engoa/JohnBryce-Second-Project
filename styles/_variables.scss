@@ -23,6 +23,8 @@
   --accent: #d4acaa;
   --sidebar: rgba(61, 109, 199, 0.753);
   --completed: rgba(61, 109, 199, 0.753);
+  --clr-foreground: hsl(0 0% 100%);
+  --clr-background: hsl(0 0% 0%);
 }
 
 .bglight {
@@ -44,6 +46,8 @@
   --accent: #d4acaa;
   --sidebar: #d4acaa;
   --completed: #d4acaa;
+  --clr-foreground: hsl(0 0% 0%);
+  --clr-background: hsl(0 0% 100%);
 }
 
 :root {

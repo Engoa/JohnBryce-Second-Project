@@ -9,7 +9,6 @@ Users should be able to:
 ✔️ Edit a specific task text based on index
 ✔️ Receive form validations if fields are missed or incorrect during submit
 
-
 GitHub URL:
 https://github.com/Engoa/JohnBryce-First-Project
 Live Site URL:

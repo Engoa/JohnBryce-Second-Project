@@ -53,6 +53,12 @@ const renderTasks = () => {
     });
   });
 
+  $(document).keydown((e) => {
+    if (e.keyCode === 13 && ToDo.isEdited) {
+      e.preventDefault();
+    }
+  });
+
   const deleteBtn = document.querySelectorAll(".delete");
   deleteBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -118,6 +124,13 @@ const closeModal = () => {
   }
 };
 
+// If modal is open, pressing Enter will delete all tasks!
+$(document).keydown((e) => {
+  if (e.keyCode === 13 && isOpen) {
+    ToDo.deleteAllTasks();
+  }
+});
+
 // Checks
 const textBox = $("#text");
 $(".redo-form").hide();
@@ -143,8 +156,8 @@ const fullDate = {
   day: dt.getDate() - 1,
   year: dt.getFullYear(),
 };
-const { month, day, year } = fullDate;
 
+const { month, day, year } = fullDate;
 $(document).ready(() => {
   $("#date").attr("min", `${year}-${month}-${day < 10 ? "0" + day : day}`);
   $("#date").attr(

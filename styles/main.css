@@ -107,56 +107,207 @@
   visibility: visible !important;
 }
 
-.theme--wrapper {
+#theme-toggle {
+  cursor: pointer;
+  background: none;
+  border: none;
+  opacity: 0.95;
+  border-radius: 50%;
+  position: relative;
+  isolation: isolate;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 100%;
-  padding-top: 1rem;
+  margin: 0 auto;
+  width: 100px;
+  height: 80px;
+  margin-top: 0.3rem;
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
 }
 
-.theme--wrapper_btn {
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
-  position: relative;
-  width: 43px;
-  height: 22px;
-  border: 2px solid var(--border);
-  outline: none;
-  border-radius: 2rem;
-  -webkit-transition: all 350ms ease;
-  transition: all 350ms ease;
-  opacity: 0.9;
+#theme-toggle:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
-.theme--wrapper_btn:hover {
-  -webkit-transform: translatey(4px);
-          transform: translatey(4px);
-  opacity: 1;
+#theme-toggle svg {
+  fill: var(--header);
+  width: 70px;
+  height: 40px;
 }
 
-.theme--wrapper_btn::before {
+#theme-toggle::before {
   content: "";
   position: absolute;
-  top: 1.2px;
-  left: 2px;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: var(--text);
-  -webkit-transition: all 350ms ease;
-  transition: all 350ms ease;
+  inset: 0;
+  background: rgba(128, 128, 128, 0.274);
+  border-radius: inherit;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  z-index: -1;
 }
 
-.theme--wrapper_btn:checked::before {
-  -webkit-transform: translateX(20px);
-          transform: translateX(20px);
-  background: var(--header);
+.bglight #theme-toggle::before {
+  -webkit-animation: pulseToLight 650ms ease-out;
+          animation: pulseToLight 650ms ease-out;
+}
+
+.bgdark #theme-toggle::before {
+  -webkit-animation: pulseToDark 650ms ease-out;
+          animation: pulseToDark 650ms ease-out;
+}
+
+#theme-toggle::after {
+  content: attr(aria-label);
+  position: absolute;
+  color: var(--modal);
+  background-color: var(--btn-bg2);
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 0.75rem;
+  font-weight: bold;
+  bottom: -1.6rem;
+  left: 50%;
+  border-radius: 0.35em;
+  opacity: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-transition: all 150ms linear;
+  transition: all 150ms linear;
+  padding: 0.5rem 0.8rem;
+}
+
+#theme-toggle:hover,
+#theme-toggle:focus {
+  outline: 0;
+  opacity: 1;
+  background: rgba(128, 128, 128, 0.274);
+}
+
+#theme-toggle:hover::after,
+#theme-toggle:focus-visible::after {
+  opacity: 0.65;
+  -webkit-transition: opacity 70ms linear, -webkit-transform 70ms linear;
+  transition: opacity 70ms linear, -webkit-transform 70ms linear;
+  transition: transform 70ms linear, opacity 70ms linear;
+  transition: transform 70ms linear, opacity 70ms linear, -webkit-transform 70ms linear;
+}
+
+.toggle-circle {
+  -webkit-transition: -webkit-transform 500ms ease-out;
+  transition: -webkit-transform 500ms ease-out;
+  transition: transform 500ms ease-out;
+  transition: transform 500ms ease-out, -webkit-transform 500ms ease-out;
+}
+
+.bglight .toggle-circle {
+  -webkit-transform: translateX(-15%);
+          transform: translateX(-15%);
+}
+
+.toggle-sun {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-transition: -webkit-transform 850ms cubic-bezier(0.11, 0.14, 0.29, 1.5);
+  transition: -webkit-transform 850ms cubic-bezier(0.11, 0.14, 0.29, 1.5);
+  transition: transform 850ms cubic-bezier(0.11, 0.14, 0.29, 1.5);
+  transition: transform 850ms cubic-bezier(0.11, 0.14, 0.29, 1.5), -webkit-transform 850ms cubic-bezier(0.11, 0.14, 0.29, 1.5);
+}
+
+.bglight .toggle-sun {
+  -webkit-transform: rotate(0.55turn);
+          transform: rotate(0.55turn);
+}
+
+@-webkit-keyframes pulseToLight {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0.5;
+  }
+  10% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pulseToLight {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0.5;
+  }
+  10% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes pulseToDark {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0.5;
+  }
+  10% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pulseToDark {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0.5;
+  }
+  10% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 .bgdark {
@@ -178,6 +329,8 @@
   --accent: #d4acaa;
   --sidebar: rgba(61, 109, 199, 0.753);
   --completed: rgba(61, 109, 199, 0.753);
+  --clr-foreground: hsl(0 0% 100%);
+  --clr-background: hsl(0 0% 0%);
 }
 
 .bglight {
@@ -199,6 +352,8 @@
   --accent: #d4acaa;
   --sidebar: #d4acaa;
   --completed: #d4acaa;
+  --clr-foreground: hsl(0 0% 0%);
+  --clr-background: hsl(0 0% 100%);
 }
 
 :root {
@@ -438,7 +593,7 @@ input[type="time"]:valid::before {
 }
 
 header {
-  padding-top: 2rem;
+  padding-top: 1rem;
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
