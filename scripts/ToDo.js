@@ -104,7 +104,11 @@ form.addEventListener("submit", (e) => {
     snackBarElement.innerHTML = "Date must have a valid format 📅";
     toggleSnackBar();
   }
-  if (!formInputs.textBox || !formInputs.dateBox || !formInputs.timeBox) {
+  if (
+    !formInputs.textBox.trim() ||
+    !formInputs.dateBox ||
+    !formInputs.timeBox
+  ) {
     $(".redo-form").hide();
     snackBarElement.innerHTML = "All fields must have a value! 😟";
     toggleSnackBar();
