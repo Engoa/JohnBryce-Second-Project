@@ -1,5 +1,3 @@
-let snackBarElement = document.querySelector(".snackbar");
-
 const ToDo = {
   //DATA MEMBERS
   tasks: [],
@@ -17,25 +15,22 @@ const ToDo = {
     this.tasks.unshift(tasks);
     const textBox = document.querySelector("#text");
     textBox.focus();
-    this.updateUI();
-    setLS("tasks", this.tasks);
+    this.syncLSandUI();
   },
 
   deleteTask(index) {
     this.tasks.splice(index, 1);
-    snackBarElement.innerHTML = "A task has been deleted";
-    toggleSnackBar();
-    this.updateUI();
-    setLS("tasks", this.tasks);
+    toggleSnackBar("A task has been deleted ❌");
+    this.syncLSandUI();
   },
+
   deleteAllTasks() {
     this.tasks = [];
     closeModal();
-    snackBarElement.innerHTML = "All tasks have been deleted";
-    toggleSnackBar();
-    this.updateUI();
-    setLS("tasks", this.tasks);
+    toggleSnackBar("All tasks have been deleted ❌");
+    this.syncLSandUI();
   },
+
   editTask(index) {
     let textDiv = document.querySelectorAll(`.text`)[index];
     const divTask = document.querySelectorAll(`.task`)[index];
@@ -43,8 +38,7 @@ const ToDo = {
       textDiv.removeAttribute("contenteditable");
       this.tasks[index] = this.update(index, "text", textDiv.textContent);
       divTask.classList.remove("edited");
-      snackBarElement.innerHTML = "Task successfully edited";
-      toggleSnackBar();
+      toggleSnackBar("Task successfully edited");
       setLS("tasks", this.tasks);
     } else {
       textDiv.setAttribute("contenteditable", true);
@@ -60,22 +54,46 @@ const ToDo = {
     const { completed } = this.tasks[index];
     if (!completed) {
       divTask.classList.add("completed");
-      snackBarElement.innerHTML = "Task is now completed ✔";
-      toggleSnackBar();
+      toggleSnackBar("Task is now completed ✔");
     } else {
       divTask.classList.remove("completed");
     }
     this.tasks[index] = this.update(index, "completed", !completed);
-    setLS("tasks", this.tasks);
+    this.updateUICompleted();
   },
 
-  updateUI() {
-    document.dispatchEvent(new CustomEvent("tasks-updated"));
+  completeAllTasks() {
+    this.tasks = this.tasks.map((item) => ({
+      ...item,
+      completed: true,
+    }));
+    toggleSnackBar("All tasks are now completed ✔");
+    this.syncLSandUI();
   },
+
+  unCompleteAllTasks() {
+    this.tasks = this.tasks.map((item) => ({
+      ...item,
+      completed: false,
+    }));
+    toggleSnackBar("All tasks are now uncompleted");
+    this.syncLSandUI();
+  },
+
   resetForm() {
     const form = document.querySelector("#new-task-form");
     $(".redo-form").hide();
     form.reset();
+  },
+
+  updateUICompleted() {
+    document.dispatchEvent(new CustomEvent("tasks-completed"));
+    setLS("tasks", this.tasks);
+  },
+
+  syncLSandUI() {
+    document.dispatchEvent(new CustomEvent("tasks-updated"));
+    setLS("tasks", this.tasks);
   },
 };
 const form = document.querySelector("#new-task-form");
@@ -101,8 +119,7 @@ form.addEventListener("submit", (e) => {
 
   const isValidDate = Date.parse(formInputs.dateBox);
   if (isNaN(isValidDate)) {
-    snackBarElement.innerHTML = "Date must have a valid format 📅";
-    toggleSnackBar();
+    toggleSnackBar("Date must have a valid format 📅");
   }
   if (
     !formInputs.textBox.trim() ||
@@ -110,8 +127,7 @@ form.addEventListener("submit", (e) => {
     !formInputs.timeBox
   ) {
     $(".redo-form").hide();
-    snackBarElement.innerHTML = "All fields must have a value! 😟";
-    toggleSnackBar();
+    toggleSnackBar("All fields must have a value! 😟");
     return;
   } else {
     $(".redo-form").show();
@@ -124,14 +140,13 @@ form.addEventListener("submit", (e) => {
     $(".task-wrapper:first-of-type").fadeIn(800);
     form.reset();
     $(".redo-form").hide();
-    snackBarElement.innerHTML = "A task has been added 👍";
-    toggleSnackBar();
+    toggleSnackBar("A task has been added 👍");
   }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   if (getLS("tasks")) {
     ToDo.tasks = getLS("tasks");
-    ToDo.updateUI();
+    ToDo.syncLSandUI();
   }
 });

@@ -38,6 +38,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/animations/shift-toward.css"
+      href="https://unpkg.com/tippy.js@6/dist/svg-arrow.css';"
+    />
     <meta name="color-scheme" id="meta-theme" />
   </head>
   <body class="bgdark">
@@ -76,12 +81,12 @@
                 aria-label="Task Description"
               />
             </div>
-            <div class="redo-form">
-              <i
-                class="fas fa-redo"
-                onclick="ToDo.resetForm()"
-                title="Reset Form"
-              ></i>
+            <div
+              class="redo-form tippy"
+              data-tippy-content="Reset Form"
+              data-tippy-placement="right"
+            >
+              <i class="fas fa-redo" onclick="ToDo.resetForm()"></i>
             </div>
             <div class="second-inputs">
               <input
@@ -102,10 +107,11 @@
           <div class="submit-btn">
             <button
               type="submit"
-              class="new-task-submit btn-cta"
+              class="new-task-submit btn-cta tippy"
               click="ToDo.addTask()"
               aria-label="Submit Task"
-              title="Submit Task"
+              data-tippy-content="Submit Task"
+              data-tippy-placement="right"
             >
               SUBMIT
             </button>
@@ -118,6 +124,7 @@
       <main>
         <div class="task-list">
           <div class="task-list--header"></div>
+          <div class="render-buttons"></div>
           <div class="tasks"></div>
         </div>
       </main>
@@ -129,13 +136,13 @@
         <div class="container">
           <div class="modal__header">
             <h3>Are you sure you want to delete all tasks?</h3>
+            <p>This action cannot be undone!</p>
           </div>
           <div class="modal__actions">
             <button
               class="close-modal btn-cta"
               onclick="closeModal()"
               aria-label="Close Modal"
-              title="Close Modal"
             >
               Close
             </button>
@@ -143,7 +150,6 @@
               class="delete-all btn-cta"
               onclick="ToDo.deleteAllTasks()"
               aria-label="Delete All Tasks"
-              title="Delete All Tasks"
             >
               I'm sure
             </button>
@@ -158,5 +164,7 @@
     <script defer src="./scripts/themeBtn.js"></script>
     <script defer src="./scripts/ToDo.js"></script>
     <script defer src="./scripts/main.js"></script>
+    <script defer src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer src="https://unpkg.com/tippy.js@6"></script>
   </body>
 </html>

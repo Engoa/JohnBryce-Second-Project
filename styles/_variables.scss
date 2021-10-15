@@ -23,14 +23,12 @@
   --accent: #d4acaa;
   --sidebar: rgba(61, 109, 199, 0.753);
   --completed: rgba(61, 109, 199, 0.753);
-  --clr-foreground: hsl(0 0% 100%);
-  --clr-background: hsl(0 0% 0%);
 }
 
 .bglight {
   --dark: #0e1524;
   --darker: rgba(214, 214, 214, 0.884);
-  --darkest: #e4e0e3;
+  --darkest: #e4e0e3c0;
   --grey: #6b7280;
   --pink: #e2469c;
   --purple: #8b5cf6;
@@ -46,8 +44,6 @@
   --accent: #d4acaa;
   --sidebar: #d4acaa;
   --completed: #d4acaa;
-  --clr-foreground: hsl(0 0% 0%);
-  --clr-background: hsl(0 0% 100%);
 }
 
 :root {
@@ -57,6 +53,7 @@
   --box-shadow: rgba(0, 0, 0, 0.473) 1px 3px 30px -15px;
   --ff-text: "Montserrat", sans-serif;
   --ff-header: "Poppins", sans-serif;
+  --tippy-bg: rgba(172, 73, 106, 0.877);
 }
 $ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
 $ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.55);

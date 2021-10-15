@@ -19,10 +19,11 @@ function setEndOfContenteditable(contentEditableElement) {
   }
 }
 
-const toggleSnackBar = () => {
+const toggleSnackBar = (text) => {
   let snackBarElement = document.querySelector(".snackbar");
   snackBarElement.classList.add("show");
   setTimeout(function () {
     snackBarElement.classList.remove("show");
-  }, 4000);
+  }, 2500);
+  snackBarElement.innerHTML = text;
 };

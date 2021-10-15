@@ -95,10 +95,11 @@ input[type="time"]:valid::before {
   cursor: pointer;
   color: var(--text);
   background-color: var(--darkest);
-  border-radius: 0.8rem;
+  border-radius: 0.5rem;
   font-weight: bold;
   border: 2px solid var(--border);
   transition: var(--transition-250);
+  padding: 0.7rem;
 
   &:hover {
     // Override
@@ -111,59 +112,14 @@ input[type="time"]:valid::before {
   display: none !important;
 }
 
-.snackbar {
-  visibility: hidden;
-  min-width: 200px;
-  background-color: var(--btn-bg2);
+// Tippy Theme and overrides
+.tippy-box[data-theme~="theme"] {
   color: var(--modal);
+  background-color: var(--tippy-bg);
+  font-size: 0.8rem;
   font-weight: bold;
-  border-radius: 0.5rem;
-  padding: 0.9rem;
-  font-size: 0.92rem;
-  text-align: center;
-  position: fixed;
-  z-index: 1;
-  right: 4rem;
-  bottom: 1rem;
-  font-family: var(--ff-header);
-  box-shadow: var(--box-shadow);
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -1.7rem;
-    transform: translateX(-50%) rotate(-180deg);
-    border: 20px solid transparent;
-    border-bottom-color: var(--btn-bg2);
-    z-index: -1;
-  }
 }
 
-.snackbar.show {
-  visibility: visible;
-  animation: fadein 0.5s $ease-in, fadeout 1s 3s $ease-out;
-}
-
-@keyframes fadein {
-  from {
-    bottom: -3rem;
-    opacity: 0;
-  }
-  to {
-    bottom: 1rem;
-    opacity: 1;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    bottom: 1rem;
-    opacity: 1;
-  }
-  to {
-    bottom: -3rem;
-    opacity: 0;
-  }
+.tippy-arrow {
+  color: var(--tippy-bg);
 }

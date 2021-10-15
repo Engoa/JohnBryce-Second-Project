@@ -1,13 +1,14 @@
+@import "./variables";
 @import "./deleteModal";
 @import "./themeBtn";
-@import "./variables";
+@import "./snackbar";
 @import "./helpers";
 
 header {
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
 }
 
 header h1 {
@@ -29,7 +30,7 @@ form {
     transition: var(--transition-250);
     color: var(--btn-bg2);
     &:hover {
-      transform: scale(1.1) rotate(40deg);
+      transform: scale(1.04) rotate(40deg);
       color: var(--accent);
     }
     .fa-redo {
@@ -114,15 +115,25 @@ main {
         color: var(--text);
         opacity: 0.7;
       }
-
       .open-modal {
         position: absolute;
-        padding: 0.7rem;
         transition: var(--transition-250);
         left: 0;
         top: 50%;
         transform: translateY(-50%);
       }
+    }
+  }
+  .buttons-wrapper {
+    position: relative;
+    width: 900px;
+    .complete-all,
+    .uncomplete-all {
+      position: absolute;
+      transition: var(--transition-250);
+      right: 0;
+      top: 0;
+      transform: translateY(-50%);
     }
   }
   .tasks {
@@ -189,6 +200,8 @@ main {
           opacity: 0;
           transition: var(--transition-250);
           color: var(--pink);
+          font-size: 1.8rem;
+          transform: scale(0);
         }
         .delete {
           transition: var(--transition-250);
@@ -207,6 +220,7 @@ main {
         align-items: center;
         gap: 0.5rem;
         z-index: 1;
+        user-select: none;
 
         &-right {
           display: flex;
@@ -219,9 +233,10 @@ main {
             max-width: 750px;
             transition: var(--transition-250);
             margin-bottom: 0.25rem;
+            caret-color: var(--task-text);
 
             &::-webkit-scrollbar {
-              background: #34353846;
+              background: #3435384b;
               height: 10px;
               border-radius: 100vw;
 
@@ -277,7 +292,7 @@ main {
 
       &::before {
         background: var(--sidebar);
-        width: 100%;
+        transform: scale(200);
         transition: var(--transition-350);
       }
 
@@ -290,7 +305,7 @@ main {
         &-right {
           .text,
           .time {
-            color: var(--white);
+            color: var(--btn-bg2);
             transition: var(--transition-250);
             position: relative;
             width: fit-content;
@@ -311,10 +326,11 @@ main {
         }
       }
       .task__status {
+        position: relative;
         .fa-check {
           visibility: visible;
           opacity: 1;
-          font-size: 1.8rem;
+          transform: scale(1);
           transition: var(--transition-250);
           text-shadow: 0 0 3px rgba(0, 0, 0, 0.473);
         }
@@ -330,6 +346,8 @@ main {
       transition: var(--transition-250);
 
       .content {
+        user-select: unset;
+
         &-left {
           .savebtn {
             display: flex;
@@ -386,7 +404,11 @@ main {
     font-size: clamp(4rem, 3vw, 5rem);
   }
 }
-
+@media (max-width: 1040px) {
+  .buttons-wrapper {
+    display: none;
+  }
+}
 @media (max-width: 550px) {
   .container-wrapper {
     padding: 1rem;
@@ -450,8 +472,16 @@ main {
     }
   }
 
-  //Snackbar media query
+  // Modal Media Query
+  .modal {
+    max-width: 343px;
+    height: 160px;
+    &__header {
+      font-size: 0.75rem;
+    }
+  }
 
+  //Snackbar media query
   .snackbar {
     right: 50%;
     transform: translateX(50%);

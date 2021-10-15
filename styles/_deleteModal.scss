@@ -18,12 +18,12 @@
   top: 13rem;
   right: 50%;
   transform: translateX(50%);
-  background-color: var(--darkest);
+  background-color: var(--modal);
   border: 2px solid var(--text);
   border-radius: 0.5rem;
   z-index: 150;
-  max-width: 330px;
-  height: 150px;
+  max-width: 380px;
+  height: 170px;
   width: 100%;
   box-shadow: var(--box-shadow);
   visibility: hidden;
@@ -46,11 +46,17 @@
   }
 
   &__header {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: bold;
     text-align: center;
     margin-bottom: 0.5rem;
-    color: var(--text);
+    color: var(--task-text);
+
+    p {
+      font-size: 0.715rem;
+      opacity: 0.8;
+      margin-top: 0.3rem;
+    }
   }
 
   &__actions {
@@ -60,19 +66,22 @@
     gap: 1rem;
 
     button {
-      padding: 0.6rem 1rem;
-      border-radius: 0.5rem;
-      transition: var(--transition-250);
+      padding: 0.6rem 1.2rem;
 
+      &:hover {
+        transform: scale(1.05);
+      }
       &:active {
-        transform: scale(0.9);
-        opacity: 0.5;
+        transform: scale(0.95);
+        opacity: 0.6;
       }
     }
 
     .delete-all {
       &:hover {
-        background-color: var(--pink) !important;
+        background-color: var(--tippy-bg) !important;
+        color: var(--modal) !important;
+        border: 2px solid var(--tippy-bg) !important;
       }
     }
   }
