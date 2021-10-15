@@ -1,5 +1,7 @@
 const getLS = (key) => JSON.parse(localStorage.getItem(key));
 const setLS = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+const isMobile = window.matchMedia("(max-width: 960px)").matches;
+const isDesktop = window.matchMedia("(min-width: 961px)").matches;
 
 function setEndOfContenteditable(contentEditableElement) {
   var range, selection;
@@ -26,4 +28,48 @@ const toggleSnackBar = (text) => {
     snackBarElement.classList.remove("show");
   }, 2500);
   snackBarElement.innerHTML = text;
+};
+
+// Confetti options
+const confettiLight = () => {
+  confetti({
+    particleCount: 200,
+    startVelocity: 30,
+    spread: 360,
+    gravity: 0.8,
+    scalar: 1.1,
+    drift: (Math.random() - 0.5) * 2,
+    origin: {
+      x: Math.random(),
+      y: Math.random() - 0.2,
+    },
+  });
+};
+const confettiStrong = () => {
+  const duration = 1.5 * 1000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    // launch a few confetti from the left edge
+    confetti({
+      particleCount: 6,
+      angle: 60,
+      spread: 70,
+      origin: { x: 0 },
+      drift: (Math.random() - 0.5) * 2,
+    });
+    // and launch a few from the right edge
+    confetti({
+      particleCount: 6,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      drift: (Math.random() - 0.5) * 2,
+    });
+
+    // keep going until we are out of time
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
 };

@@ -1,18 +1,18 @@
 .snackbar {
   visibility: hidden;
-  min-width: 200px;
+  min-width: max-content;
   background-color: var(--btn-bg2);
   color: var(--modal);
   font-weight: bold;
   border-radius: 0.5rem;
-  padding: 0.9rem;
-  font-size: 0.92rem;
+  padding: 0.75rem;
+  font-size: 0.9rem;
   text-align: center;
   position: fixed;
   z-index: 1;
   right: 4rem;
   bottom: 1rem;
-  font-family: var(--ff-header);
+  font-family: var(--ff-text);
   box-shadow: var(--box-shadow);
 
   &::before,
@@ -54,5 +54,3 @@
     opacity: 0;
   }
 }
-
-

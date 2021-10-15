@@ -14,15 +14,6 @@ body {
   padding: 0 2rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--ff-header);
-}
-
 input,
 button {
   -webkit-appearance: none;
@@ -65,6 +56,7 @@ button {
   transition: var(--transition-150);
   border: 2px solid var(--border);
   outline: none;
+  caret-color: var(--btn-bg2);
 }
 
 .input::-webkit-input-placeholder {
@@ -204,7 +196,7 @@ input[type="time"]:valid::before {
   --transition-150: all 150ms linear;
   --box-shadow: rgba(0, 0, 0, 0.473) 1px 3px 30px -15px;
   --ff-text: "Montserrat", sans-serif;
-  --ff-header: "Poppins", sans-serif;
+  --ff-header: "Bungee", "cursive", sans-serif;
   --tippy-bg: rgba(172, 73, 106, 0.877);
 }
 
@@ -502,21 +494,53 @@ input[type="time"]:valid::before {
   }
 }
 
+.task-search {
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.task-search input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+}
+
+.task-search input:focus-within {
+  border-color: var(--pink);
+}
+
+@media (max-width: 550px) {
+  .search-task::-webkit-input-placeholder {
+    font-size: 0.7rem;
+  }
+  .search-task:-ms-input-placeholder {
+    font-size: 0.7rem;
+  }
+  .search-task::-ms-input-placeholder {
+    font-size: 0.7rem;
+  }
+  .search-task::placeholder {
+    font-size: 0.7rem;
+  }
+}
+
 .snackbar {
   visibility: hidden;
-  min-width: 200px;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
   background-color: var(--btn-bg2);
   color: var(--modal);
   font-weight: bold;
   border-radius: 0.5rem;
-  padding: 0.9rem;
-  font-size: 0.92rem;
+  padding: 0.75rem;
+  font-size: 0.9rem;
   text-align: center;
   position: fixed;
   z-index: 1;
   right: 4rem;
   bottom: 1rem;
-  font-family: var(--ff-header);
+  font-family: var(--ff-text);
   -webkit-box-shadow: var(--box-shadow);
           box-shadow: var(--box-shadow);
 }
@@ -587,7 +611,6 @@ header {
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
-  margin-top: 1.2rem;
 }
 
 header h1 {
@@ -595,10 +618,10 @@ header h1 {
   font-size: 2.5rem;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
   color: var(--header);
-  margin-bottom: 1rem;
   opacity: 0.85;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
+  font-family: var(--ff-header);
 }
 
 form .redo-form {
@@ -669,6 +692,19 @@ form .inputs-wrapper .second-inputs #date,
 form .inputs-wrapper .second-inputs #time {
   cursor: pointer;
   border-radius: 0.5rem;
+}
+
+form .inputs-wrapper .second-inputs .current-date {
+  cursor: pointer;
+  font-size: 1.65rem;
+  color: var(--tippy-bg);
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
+  opacity: 0.8;
+}
+
+form .inputs-wrapper .second-inputs .current-date:hover {
+  opacity: 1;
 }
 
 form .submit-btn {
@@ -809,6 +845,7 @@ main .task-wrapper .task {
   border: 2px solid var(--border);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
+  will-change: background-color, color;
   position: relative;
   overflow: hidden;
 }
@@ -1094,7 +1131,7 @@ main .task-wrapper .task-reversed::before {
   color: var(--text);
   font-weight: bold;
   font-size: 1.7rem;
-  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  font-size: clamp(1.1rem, 3vw, 1.7rem);
   opacity: 0.85;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);

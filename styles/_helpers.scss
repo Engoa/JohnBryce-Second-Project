@@ -12,14 +12,6 @@ body {
   padding: 0 2rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--ff-header);
-}
 input,
 button {
   appearance: none;
@@ -53,6 +45,7 @@ button {
   transition: var(--transition-150);
   border: 2px solid var(--border);
   outline: none;
+  caret-color: var(--btn-bg2);
 
   &::placeholder {
     color: var(--grey);

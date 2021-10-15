@@ -1,0 +1,20 @@
+.task-search {
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+
+  input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    &:focus-within {
+      border-color: var(--pink);
+    }
+  }
+}
+@media (max-width: 550px) {
+  .search-task {
+    &::placeholder {
+      font-size: 0.7rem;
+    }
+  }
+}

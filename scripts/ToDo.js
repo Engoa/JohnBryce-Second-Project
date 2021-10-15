@@ -1,7 +1,15 @@
+const FUSE_OPTIONS = {
+  isCaseSensitive: false,
+  includeMatches: true,
+  threshold: 0.2,
+  keys: ["text", "completed", "date"],
+};
+
 const ToDo = {
   //DATA MEMBERS
   tasks: [],
   isEdited: false,
+  $fuse: null,
 
   //METHODS
   update(index, path, value) {
@@ -14,7 +22,13 @@ const ToDo = {
   addTask(tasks) {
     this.tasks.unshift(tasks);
     const textBox = document.querySelector("#text");
-    textBox.focus();
+    if (isDesktop) {
+      textBox.focus();
+    } else {
+      textBox.blur();
+    }
+    initializeDateAndTime(true);
+    form.reset();
     this.syncLSandUI();
   },
 
@@ -55,6 +69,7 @@ const ToDo = {
     if (!completed) {
       divTask.classList.add("completed");
       toggleSnackBar("Task is now completed ✔");
+      confettiLight();
     } else {
       divTask.classList.remove("completed");
     }
@@ -68,6 +83,7 @@ const ToDo = {
       completed: true,
     }));
     toggleSnackBar("All tasks are now completed ✔");
+    confettiStrong();
     this.syncLSandUI();
   },
 
@@ -81,8 +97,8 @@ const ToDo = {
   },
 
   resetForm() {
-    const form = document.querySelector("#new-task-form");
     $(".redo-form").hide();
+    initializeDateAndTime(true);
     form.reset();
   },
 
@@ -98,9 +114,10 @@ const ToDo = {
 };
 const form = document.querySelector("#new-task-form");
 form.addEventListener("submit", (e) => {
-  let textBox = document.querySelector("#text").value;
-  let dateBox = document.querySelector("#date").value;
-  let timeBox = document.querySelector("#time").value;
+  e.preventDefault();
+  let textBox = $("#text").val();
+  let dateBox = $("#date").val();
+  let timeBox = $("#time").val();
   const formInputs = {
     textBox,
     dateBox,
@@ -115,17 +132,8 @@ form.addEventListener("submit", (e) => {
     hour: "2-digit",
     minute: "2-digit",
   });
-  e.preventDefault();
 
-  const isValidDate = Date.parse(formInputs.dateBox);
-  if (isNaN(isValidDate)) {
-    toggleSnackBar("Date must have a valid format 📅");
-  }
-  if (
-    !formInputs.textBox.trim() ||
-    !formInputs.dateBox ||
-    !formInputs.timeBox
-  ) {
+  if (!formInputs.textBox.trim() || !formInputs.dateBox || !formInputs.timeBox) {
     $(".redo-form").hide();
     toggleSnackBar("All fields must have a value! 😟");
     return;
@@ -134,7 +142,7 @@ form.addEventListener("submit", (e) => {
     ToDo.addTask({
       text: textBox,
       completed: false,
-      date,
+      date: date,
     });
     $(".task-wrapper:first-of-type").hide();
     $(".task-wrapper:first-of-type").fadeIn(800);
@@ -144,6 +152,9 @@ form.addEventListener("submit", (e) => {
   }
 });
 
+document.addEventListener("tasks-updated", () => {
+  ToDo.$fuse = new Fuse(ToDo.tasks, FUSE_OPTIONS);
+});
 document.addEventListener("DOMContentLoaded", () => {
   if (getLS("tasks")) {
     ToDo.tasks = getLS("tasks");

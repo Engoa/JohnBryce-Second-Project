@@ -3,20 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <title>Task List</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Tourney:wght@200;400;600&display=swap"
       rel="stylesheet"
     />
     <link
@@ -43,23 +37,15 @@
       href="https://unpkg.com/tippy.js@6/animations/shift-toward.css"
       href="https://unpkg.com/tippy.js@6/dist/svg-arrow.css';"
     />
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <meta name="color-scheme" id="meta-theme" />
   </head>
   <body class="bgdark">
     <div class="container-wrapper">
       <nav>
-        <button
-          id="theme-toggle"
-          data-tippy-content="Toggle theme"
-          data-tippy-placement="left"
-          class="tippy"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="472.39"
-            height="472.39"
-            viewBox="0 0 472.39 472.39"
-          >
+        <button id="theme-toggle" data-tippy-content="Toggle theme" data-tippy-placement="left" class="tippy">
+          <svg xmlns="http://www.w3.org/2000/svg" width="472.39" height="472.39" viewBox="0 0 472.39 472.39">
             <g class="toggle-sun">
               <path
                 d="M403.21,167V69.18H305.38L236.2,0,167,69.18H69.18V167L0,236.2l69.18,69.18v97.83H167l69.18,69.18,69.18-69.18h97.83V305.38l69.18-69.18Zm-167,198.17a129,129,0,1,1,129-129A129,129,0,0,1,236.2,365.19Z"
@@ -83,30 +69,21 @@
                 id="text"
                 placeholder="What do you have planned?"
                 spellcheck="false"
+                autocomplete="off"
                 aria-label="Task Description"
               />
             </div>
-            <div
-              class="redo-form tippy"
-              data-tippy-content="Reset Form"
-              data-tippy-placement="right"
-            >
+            <div class="redo-form tippy" data-tippy-content="Reset Form" data-tippy-placement="right">
               <i class="fas fa-redo" onclick="ToDo.resetForm()"></i>
             </div>
             <div class="second-inputs">
-              <input
-                type="date"
-                class="input"
-                id="date"
-                required
-                aria-label="Task Date"
-              />
-              <input
-                type="time"
-                class="input"
-                id="time"
-                aria-label="Task Time"
-              />
+              <input type="date" class="input" id="date" aria-label="Task Date" />
+              <i
+                class="fas fa-calendar-day tippy current-date"
+                data-tippy-content="Auto-fill"
+                data-tippy-placement="bottom"
+              ></i>
+              <input type="time" class="input" id="time" aria-label="Task Time" />
             </div>
           </div>
           <div class="submit-btn">
@@ -130,6 +107,18 @@
         <div class="task-list">
           <div class="task-list--header"></div>
           <div class="render-buttons"></div>
+          <div class="task-search">
+            <label for="search">
+              <input
+                type="text"
+                name="search"
+                placeholder="Search for task description, status, date and time"
+                autocomplete="off"
+                spellcheck="false"
+                class="input search-task"
+              />
+            </label>
+          </div>
           <div class="tasks"></div>
         </div>
       </main>
@@ -144,18 +133,8 @@
             <p>This action cannot be undone!</p>
           </div>
           <div class="modal__actions">
-            <button
-              class="close-modal btn-cta"
-              onclick="closeModal()"
-              aria-label="Close Modal"
-            >
-              Close
-            </button>
-            <button
-              class="delete-all btn-cta"
-              onclick="ToDo.deleteAllTasks()"
-              aria-label="Delete All Tasks"
-            >
+            <button class="close-modal btn-cta" onclick="closeModal()" aria-label="Close Modal">Close</button>
+            <button class="delete-all btn-cta" onclick="ToDo.deleteAllTasks()" aria-label="Delete All Tasks">
               I'm sure
             </button>
           </div>
@@ -165,11 +144,12 @@
 
     <div class="snackbar"></div>
 
-    <script defer src="./scripts/helpers.js"></script>
-    <script defer src="./scripts/themeBtn.js"></script>
-    <script defer src="./scripts/ToDo.js"></script>
-    <script defer src="./scripts/main.js"></script>
-    <script defer src="https://unpkg.com/@popperjs/core@2"></script>
-    <script defer src="https://unpkg.com/tippy.js@6"></script>
+    <script src="./scripts/helpers.js"></script>
+    <script src="./scripts/themeBtn.js"></script>
+    <script src="./scripts/ToDo.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
   </body>
 </html>

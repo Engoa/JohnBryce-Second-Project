@@ -2,16 +2,16 @@
 const addToggleTaskListeners = () => {
   const task = document.querySelectorAll(".task");
   task.forEach((btn) => {
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
     btn.addEventListener(isMobile ? "click" : "dblclick", () => {
       ToDo.toggleTask(btn.dataset.id);
     });
   });
 };
 // Run on the tasks array, and render them
-const renderTasks = () => {
+const renderTasks = (searchResults) => {
+  const tasks = searchResults?.length ? searchResults : ToDo.tasks;
   let tasksHtml = "";
-  ToDo.tasks.forEach((task, index) => {
+  tasks.forEach((task, index) => {
     const isCompletedClass = task.completed ? "completed" : "";
     const oddIndex = index % 2 !== 0 ? "task-reversed" : "";
     tasksHtml += `
@@ -102,12 +102,8 @@ const renderTaskHeader = () => {
 
 const renderCompleteButtons = () => {
   const modalClass = !ToDo.tasks.length ? "hide-element" : ``;
-  const hideIfAllCompleted = ToDo.tasks.every((item) => item.completed)
-    ? "hide-element"
-    : "";
-  const hideIfSomeUnCompleted = ToDo.tasks.some((item) => !item.completed)
-    ? "hide-element"
-    : "";
+  const hideIfAllCompleted = ToDo.tasks.every((item) => item.completed) ? "hide-element" : "";
+  const hideIfSomeUnCompleted = ToDo.tasks.some((item) => !item.completed) ? "hide-element" : "";
   const renderButtons = document.querySelector(".render-buttons");
   renderButtons.innerHTML = `
     <div class="buttons-wrapper">
@@ -164,6 +160,16 @@ $(document).keydown((e) => {
   }
 });
 
+const searchInput = $(".search-task");
+searchInput.on("input", () => {
+  const mappedResults = ToDo.$fuse.search(searchInput.val()).map(({ item }) => item);
+  renderTasks(mappedResults);
+
+  if (searchInput.val().length >= 7) {
+    toggleSnackBar("Search field is too long - Showing all tasks");
+  }
+});
+
 // Checks
 const textBox = $("#text");
 $(".redo-form").hide();
@@ -181,27 +187,35 @@ document.addEventListener("tasks-updated", () => {
   renderTaskHeader();
   renderToAddFirstTask();
   renderCompleteButtons();
+  if (!ToDo.tasks.length) {
+    $(".task-search").hide();
+  } else {
+    $(".task-search").show();
+  }
 });
 document.addEventListener("tasks-completed", () => {
   renderCompleteButtons();
 });
 
 // Date conversion
-const dt = new Date();
-const fullDate = {
-  month: dt.getMonth() + 1,
-  day: dt.getDate() - 1,
-  year: dt.getFullYear(),
+const initializeDateAndTime = (reset = false) => {
+  const dateDates = {
+    min: dayjs().add(-1, "day").format("YYYY-MM-DD"),
+    max: dayjs().add(1, "year").format("YYYY-MM-DD"),
+    value: reset ? null : dayjs().format("YYYY-MM-DD"),
+  };
+  const dateTimes = {
+    value: reset ? null : dayjs().format("HH:mm"),
+  };
+  for (const key in dateDates) $("#date").attr(key, dateDates[key]);
+  for (const key in dateTimes) $("#time").attr(key, dateTimes[key]);
 };
+initializeDateAndTime();
 
-const { month, day, year } = fullDate;
+//Button between inputs to get current date/time
+$(".current-date").click(() => initializeDateAndTime());
+
 $(document).ready(() => {
-  $("#date").attr("min", `${year}-${month}-${day < 10 ? "0" + day : day}`);
-  $("#date").attr(
-    "max",
-    `${year + 3}-${month + 2}-${day + 22 < 10 ? "0" + day : String(day + 22)}`
-  );
-
   if ($(".task-wrapper")) {
     gsap.from(".task-wrapper", {
       y: 500,
