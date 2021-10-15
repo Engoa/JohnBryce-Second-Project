@@ -331,7 +331,7 @@ input[type="time"]:valid::before {
   cursor: pointer;
   background: none;
   border: none;
-  opacity: 0.87;
+  opacity: 0.95;
   border-radius: 50%;
   position: relative;
   isolation: isolate;
@@ -345,29 +345,24 @@ input[type="time"]:valid::before {
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0 auto;
-  width: 90px;
+  width: 70px;
   height: 70px;
   margin-top: 0.3rem;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
 }
 
-#theme-toggle:hover {
-  -webkit-transform: scale(1.025);
-          transform: scale(1.025);
-}
-
 #theme-toggle svg {
   fill: var(--header);
   width: 60px;
-  height: 30px;
+  height: 35px;
 }
 
 #theme-toggle::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(128, 128, 128, 0.2);
+  background: rgba(128, 128, 128, 0.336);
   border-radius: inherit;
   -webkit-transform: scale(0);
           transform: scale(0);
@@ -385,44 +380,11 @@ input[type="time"]:valid::before {
           animation: pulseToDark 700ms ease-out forwards;
 }
 
-#theme-toggle::after {
-  content: attr(aria-label);
-  position: absolute;
-  color: var(--modal);
-  background-color: var(--btn-bg2);
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  font-size: 0.7rem;
-  font-weight: bold;
-  bottom: -1.5rem;
-  left: 50%;
-  border-radius: 0.35em;
-  opacity: 0;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  -webkit-transform-origin: top;
-          transform-origin: top;
-  -webkit-transition: var(--transition-150);
-  transition: var(--transition-150);
-  padding: 0.4rem 0.5rem;
-  z-index: 1;
-}
-
 #theme-toggle:hover,
 #theme-toggle:focus {
   outline: 0;
   opacity: 1;
-  background: rgba(128, 128, 128, 0.15);
-}
-
-#theme-toggle:hover::after,
-#theme-toggle:focus-visible::after {
-  opacity: 0.85;
-  -webkit-transition: opacity 70ms linear, -webkit-transform 70ms linear;
-  transition: opacity 70ms linear, -webkit-transform 70ms linear;
-  transition: transform 70ms linear, opacity 70ms linear;
-  transition: transform 70ms linear, opacity 70ms linear, -webkit-transform 70ms linear;
+  background: rgba(128, 128, 128, 0.336);
 }
 
 .toggle-circle {

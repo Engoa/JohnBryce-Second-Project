@@ -2,7 +2,7 @@
   cursor: pointer;
   background: none;
   border: none;
-  opacity: 0.87;
+  opacity: 0.95;
   border-radius: 50%;
   position: relative;
   isolation: isolate;
@@ -10,26 +10,22 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  width: 90px;
+  width: 70px;
   height: 70px;
   margin-top: 0.3rem;
   transition: var(--transition-250);
-
-  &:hover {
-    transform: scale(1.025);
-  }
 }
 
 #theme-toggle svg {
   fill: var(--header);
   width: 60px;
-  height: 30px;
+  height: 35px;
 }
 #theme-toggle::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(128, 128, 128, 0.2);
+  background: rgba(128, 128, 128, 0.336);
   border-radius: inherit;
   transform: scale(0);
   opacity: 0;
@@ -43,37 +39,37 @@
   animation: pulseToDark 700ms ease-out forwards;
 }
 
-#theme-toggle::after {
-  content: attr(aria-label);
-  position: absolute;
-  color: var(--modal);
-  background-color: var(--btn-bg2);
-  width: max-content;
-  font-size: 0.7rem;
-  font-weight: bold;
-  bottom: -1.5rem;
-  left: 50%;
-  border-radius: 0.35em;
-  opacity: 0;
-  transform: translateX(-50%);
-  transform-origin: top;
-  transition: var(--transition-150);
-  padding: 0.4rem 0.5rem;
-  z-index: 1;
-}
+// #theme-toggle::after {
+//   content: attr(aria-label);
+//   position: absolute;
+//   color: var(--modal);
+//   background-color: var(--btn-bg2);
+//   width: max-content;
+//   font-size: 0.7rem;
+//   font-weight: bold;
+//   bottom: -1.5rem;
+//   left: 50%;
+//   border-radius: 0.35em;
+//   opacity: 0;
+//   transform: translateX(-50%);
+//   transform-origin: top;
+//   transition: var(--transition-150);
+//   padding: 0.4rem 0.5rem;
+//   z-index: 1;
+// }
 
 #theme-toggle:hover,
 #theme-toggle:focus {
   outline: 0;
   opacity: 1;
-  background: rgba(128, 128, 128, 0.15);
+  background: rgba(128, 128, 128, 0.336);
 }
 
-#theme-toggle:hover::after,
-#theme-toggle:focus-visible::after {
-  opacity: 0.85;
-  transition: transform 70ms linear, opacity 70ms linear;
-}
+// #theme-toggle:hover::after,
+// #theme-toggle:focus-visible::after {
+//   opacity: 0.85;
+//   transition: transform 70ms linear, opacity 70ms linear;
+// }
 
 .toggle-circle {
   transition: transform 500ms ease-out;
