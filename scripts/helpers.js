@@ -1,7 +1,6 @@
 const getLS = (key) => JSON.parse(localStorage.getItem(key));
 const setLS = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 const isMobile = window.matchMedia("(max-width: 960px)").matches;
-const isDesktop = window.matchMedia("(min-width: 961px)").matches;
 
 function setEndOfContenteditable(contentEditableElement) {
   var range, selection;
@@ -45,17 +44,21 @@ const confettiLight = () => {
     },
   });
 };
+let isAnimatingConfetti = false;
 const confettiStrong = () => {
-  const duration = 1.5 * 1000;
+  if (isAnimatingConfetti) return;
+  const duration = 2000;
   const end = Date.now() + duration;
 
   (function frame() {
+    isAnimatingConfetti = true;
     // launch a few confetti from the left edge
     confetti({
       particleCount: 6,
       angle: 60,
+      ticks: 40,
       spread: 70,
-      origin: { x: 0 },
+      origin: { x: 0, y: 1 },
       drift: (Math.random() - 0.5) * 2,
     });
     // and launch a few from the right edge
@@ -63,13 +66,16 @@ const confettiStrong = () => {
       particleCount: 6,
       angle: 120,
       spread: 55,
-      origin: { x: 1 },
+      ticks: 40,
+      origin: { x: 1, y: 1 },
       drift: (Math.random() - 0.5) * 2,
     });
 
     // keep going until we are out of time
     if (Date.now() < end) {
       requestAnimationFrame(frame);
+    } else {
+      isAnimatingConfetti = false;
     }
   })();
 };

@@ -2,7 +2,7 @@ const FUSE_OPTIONS = {
   isCaseSensitive: false,
   includeMatches: true,
   threshold: 0.2,
-  keys: ["text", "completed", "date"],
+  keys: ["text", "completed", "date", "time"],
 };
 
 const ToDo = {
@@ -22,7 +22,7 @@ const ToDo = {
   addTask(tasks) {
     this.tasks.unshift(tasks);
     const textBox = document.querySelector("#text");
-    if (isDesktop) {
+    if (!isMobile) {
       textBox.focus();
     } else {
       textBox.blur();
@@ -124,14 +124,7 @@ form.addEventListener("submit", (e) => {
     timeBox,
   };
 
-  const date = new Date(dateBox + "," + timeBox).toLocaleString([], {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    weekday: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  // const date = dayjs(dateBox + " " + timeBox).format("ddd, MM-DD-YYYY, HH:mm A");
 
   if (!formInputs.textBox.trim() || !formInputs.dateBox || !formInputs.timeBox) {
     $(".redo-form").hide();
@@ -142,7 +135,8 @@ form.addEventListener("submit", (e) => {
     ToDo.addTask({
       text: textBox,
       completed: false,
-      date: date,
+      date: dateBox,
+      time: timeBox,
     });
     $(".task-wrapper:first-of-type").hide();
     $(".task-wrapper:first-of-type").fadeIn(800);

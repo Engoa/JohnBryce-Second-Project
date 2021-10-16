@@ -700,7 +700,7 @@ form .inputs-wrapper .second-inputs .current-date {
   color: var(--tippy-bg);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-  opacity: 0.8;
+  opacity: 0.73;
 }
 
 form .inputs-wrapper .second-inputs .current-date:hover {

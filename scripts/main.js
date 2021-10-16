@@ -14,6 +14,7 @@ const renderTasks = (searchResults) => {
   tasks.forEach((task, index) => {
     const isCompletedClass = task.completed ? "completed" : "";
     const oddIndex = index % 2 !== 0 ? "task-reversed" : "";
+    const date = dayjs(task.date + " " + task.time).format("ddd, MM-DD-YYYY, HH:mm A");
     tasksHtml += `
 <div class="task-wrapper">
   <div class="task ${isCompletedClass} ${oddIndex}"  
@@ -27,7 +28,7 @@ const renderTasks = (searchResults) => {
   </div>
     <div class="content-right">
       <p class="text" spellcheck="false">${task.text}</p>
-        <span class="time">${task.date}</span>
+        <span class="time">${date}</span>
     </div>
   </div>
     <div class="task__status">
@@ -90,14 +91,14 @@ const renderTaskHeader = () => {
   $(".open-modal").click(() => openModal());
 
   // Tippies for Tooltips
-  tippy(".tippy", {
-    animation: "shift-toward",
-    inertia: true,
-    touch: true,
-    duration: [400, 400],
-    theme: "theme",
-    arrow: true,
-  });
+  if (!isMobile)
+    tippy(".tippy", {
+      animation: "shift-toward",
+      inertia: true,
+      duration: [400, 400],
+      theme: "theme",
+      arrow: true,
+    });
 };
 
 const renderCompleteButtons = () => {
@@ -181,17 +182,21 @@ textBox.on("input", () => {
   }
 });
 
+// Hide Search bar if array length is below 2
+const hideAndShowSearchBar = () => {
+  if (ToDo.tasks.length <= 1) {
+    $(".task-search").hide();
+  } else {
+    $(".task-search").show();
+  }
+};
 // Events to update UI
 document.addEventListener("tasks-updated", () => {
   renderTasks();
   renderTaskHeader();
   renderToAddFirstTask();
   renderCompleteButtons();
-  if (!ToDo.tasks.length) {
-    $(".task-search").hide();
-  } else {
-    $(".task-search").show();
-  }
+  hideAndShowSearchBar();
 });
 document.addEventListener("tasks-completed", () => {
   renderCompleteButtons();
@@ -204,11 +209,9 @@ const initializeDateAndTime = (reset = false) => {
     max: dayjs().add(1, "year").format("YYYY-MM-DD"),
     value: reset ? null : dayjs().format("YYYY-MM-DD"),
   };
-  const dateTimes = {
-    value: reset ? null : dayjs().format("HH:mm"),
-  };
   for (const key in dateDates) $("#date").attr(key, dateDates[key]);
-  for (const key in dateTimes) $("#time").attr(key, dateTimes[key]);
+  
+  $("#time").attr("value", reset ? null : dayjs().format("HH:mm"));
 };
 initializeDateAndTime();
 
