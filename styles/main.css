@@ -6,7 +6,6 @@
 }
 
 body {
-  background-color: var(--bg);
   padding: 0 1rem;
 }
 
@@ -149,6 +148,7 @@ input[type="time"]:valid::before {
 }
 
 .bgdark {
+  background-color: #2e3a4d;
   --dark: #0e1524;
   --darker: #1f2937;
   --darkest: #111827;
@@ -170,6 +170,7 @@ input[type="time"]:valid::before {
 }
 
 .bglight {
+  background-color: #eee;
   --dark: #0e1524;
   --darker: rgba(214, 214, 214, 0.884);
   --darkest: #e4e0e3c0;
@@ -387,8 +388,8 @@ input[type="time"]:valid::before {
 }
 
 .bgdark .toggle-circle {
-  -webkit-transform: translateX(-15%);
-          transform: translateX(-15%);
+  -webkit-transform: translateX(15%);
+          transform: translateX(15%);
 }
 
 .bglight .toggle-circle {
@@ -700,7 +701,7 @@ form .inputs-wrapper .second-inputs .current-date {
   color: var(--tippy-bg);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-  opacity: 0.73;
+  opacity: 0.8;
 }
 
 form .inputs-wrapper .second-inputs .current-date:hover {

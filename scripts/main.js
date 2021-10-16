@@ -67,7 +67,10 @@ const renderTasks = (searchResults) => {
   });
 
   const deleteAll = document.querySelector(".delete-all");
-  deleteAll.addEventListener("click", () => ToDo.deleteAllTasks());
+  deleteAll.addEventListener("click", () => {
+    ToDo.deleteAllTasks();
+    triggerSound("../assets/yeet.mp3");
+  });
 
   addToggleTaskListeners();
 };
@@ -210,7 +213,7 @@ const initializeDateAndTime = (reset = false) => {
     value: reset ? null : dayjs().format("YYYY-MM-DD"),
   };
   for (const key in dateDates) $("#date").attr(key, dateDates[key]);
-  
+
   $("#time").attr("value", reset ? null : dayjs().format("HH:mm"));
 };
 initializeDateAndTime();
@@ -228,4 +231,14 @@ $(document).ready(() => {
       duration: 1,
     });
   }
+
+  gsap
+    .from(document.querySelectorAll("nav, header, section, .task-list--header"), {
+      autoAlpha: 0,
+      y: 150,
+      ease: Power1.ease,
+      stagger: 0.25,
+      clearProps: "all",
+    })
+    .totalDuration(1);
 });

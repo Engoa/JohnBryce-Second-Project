@@ -28,9 +28,15 @@ const toggleSnackBar = (text) => {
   }, 2500);
   snackBarElement.innerHTML = text;
 };
-
+//"../assets/confetti.mp3"
+const triggerSound = (path) => {
+  audioObj = new Audio(path);
+  audioObj.volume = 0.3;
+  audioObj.play();
+};
 // Confetti options
 const confettiLight = () => {
+  triggerSound("../assets/confetti.mp3");
   confetti({
     particleCount: 200,
     startVelocity: 30,
@@ -50,6 +56,7 @@ const confettiStrong = () => {
   const duration = 2000;
   const end = Date.now() + duration;
 
+  triggerSound("../assets/confetti.mp3");
   (function frame() {
     isAnimatingConfetti = true;
     // launch a few confetti from the left edge
