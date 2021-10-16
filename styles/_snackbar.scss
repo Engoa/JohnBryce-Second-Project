@@ -10,7 +10,8 @@
   text-align: center;
   position: fixed;
   z-index: 1;
-  right: 4rem;
+  right: 50%;
+  transform: translateX(50%);
   bottom: 1rem;
   font-family: var(--ff-text);
   box-shadow: var(--box-shadow);

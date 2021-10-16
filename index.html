@@ -74,9 +74,7 @@
                 tabindex="1"
               />
             </div>
-            <div class="redo-form tippy" data-tippy-content="Reset Form" data-tippy-placement="right" tabindex="5">
-              <i class="fas fa-redo" onclick="ToDo.resetForm()"></i>
-            </div>
+
             <div class="second-inputs">
               <input type="date" class="input" id="date" aria-label="Task Date" tabindex="2" />
               <i
@@ -89,6 +87,9 @@
             </div>
           </div>
           <div class="submit-btn">
+            <div class="redo-form tippy" data-tippy-content="Reset Form" data-tippy-placement="left" tabindex="5">
+              <i class="fas fa-redo" onclick="ToDo.resetForm()"></i>
+            </div>
             <button
               tabindex="4"
               type="submit"
@@ -108,7 +109,7 @@
       </section>
       <main>
         <div class="task-list">
-          <div class="task-list--header"></div>
+          <div class="task-list--wrapper"></div>
           <div class="render-buttons"></div>
           <div class="task-search">
             <label for="search">

@@ -79,54 +79,39 @@ const renderTasks = (searchResults) => {
   });
 
   addToggleTaskListeners();
+  activateTippy();
 };
 
 // Render the header and modal btn
 const renderTaskHeader = () => {
   const modalClass = !ToDo.tasks.length ? "hide-element" : ``;
-  const drawTaskHeader = document.querySelector(".task-list--header");
-  const subHeaderClass = isMobile ? "Click on a task to complete ✔" : "Double click on a task to complete ✔";
-  drawTaskHeader.innerHTML = `
-  <h2 class="${modalClass}">Tasks</h2>
-  <h6 class="${modalClass}">${subHeaderClass}</h6>
-   <div>
-   <button class="open-modal ${modalClass} btn-cta" 
-    aria-label="Open Modal">Delete All</button>
-    </div>
-  `;
-
-  // Open Delete Modal
-  $(".open-modal").click(() => openModal());
-
-  // Tippies for Tooltips
-  if (!isMobile)
-    tippy(".tippy", {
-      animation: "shift-toward",
-      inertia: true,
-      duration: [400, 400],
-      theme: "theme",
-      arrow: true,
-    });
-};
-
-const renderCompleteButtons = () => {
-  const modalClass = !ToDo.tasks.length ? "hide-element" : ``;
   const hideIfAllCompleted = ToDo.tasks.every((item) => item.completed) ? "hide-element" : "";
   const hideIfSomeUnCompleted = ToDo.tasks.some((item) => !item.completed) ? "hide-element" : "";
-  const renderButtons = document.querySelector(".render-buttons");
-  renderButtons.innerHTML = `
-    <div class="buttons-wrapper">
-    <button class="complete-all ${modalClass} btn-cta ${hideIfAllCompleted}">Complete All</button>
-    <button class="uncomplete-all ${modalClass} btn-cta ${hideIfSomeUnCompleted}" >Uncomplete All</button>
-    </div>  
+  const subHeaderClass = isMobile ? "Click on a task to complete ✔" : "Double click on a task to complete ✔";
+  const drawTaskHeader = document.querySelector(".task-list--wrapper");
+  drawTaskHeader.innerHTML = `
+     <button class="open-modal ${modalClass} btn-cta task-header-buttons" 
+    aria-label="Open Modal">Delete All</button>
+  <div class="tasks-header">
+  <h2 class="${modalClass}">Tasks</h2>
+  <h6 class="${modalClass}">${subHeaderClass}</h6>
+  </div>
+    <button class="complete-all ${modalClass} btn-cta ${hideIfAllCompleted} task-header-buttons">Complete All</button>
+    <button class="uncomplete-all ${modalClass} btn-cta ${hideIfSomeUnCompleted} task-header-buttons" >Uncomplete All</button>
   `;
+  activateTippy();
 
   // Event to complete all tasks
   const completeAll = document.querySelector(".complete-all");
-  completeAll.addEventListener("click", () => ToDo.completeAllTasks());
-
+  completeAll.addEventListener("click", () => {
+    confettiStrong();
+    ToDo.completeAllTasks();
+  });
   const unCompleteAll = document.querySelector(".uncomplete-all");
   unCompleteAll.addEventListener("click", () => ToDo.unCompleteAllTasks());
+
+  // Open Delete Modal
+  $(".open-modal").click(() => openModal());
 };
 
 //Render if no tasks are available and check for it
@@ -143,6 +128,7 @@ const renderToAddFirstTask = () => {
 };
 
 renderToAddFirstTask();
+
 // Close/Open Delete all tasks modal
 let isOpen = false;
 const deleteModal = document.querySelector(".modal");
@@ -213,11 +199,11 @@ document.addEventListener("tasks-updated", () => {
   renderTasks();
   renderTaskHeader();
   renderToAddFirstTask();
-  renderCompleteButtons();
   hideAndShowSearchBar();
+  renderTaskHeader();
 });
 document.addEventListener("tasks-completed", () => {
-  renderCompleteButtons();
+  renderTaskHeader();
 });
 
 // Date conversion
@@ -262,4 +248,7 @@ $(document).ready(() => {
       clearProps: "all",
     })
     .totalDuration(1.3);
+
+  // Tippies for Tooltips
+  activateTippy();
 });

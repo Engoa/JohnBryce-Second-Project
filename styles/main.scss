@@ -22,22 +22,6 @@ header h1 {
 }
 
 form {
-  .redo-form {
-    position: absolute;
-    right: -3rem;
-    top: 36%;
-    cursor: pointer;
-    transition: var(--transition-250);
-    color: var(--btn-bg2);
-    &:hover {
-      transform: scale(1.04) rotate(40deg);
-      color: var(--accent);
-    }
-    .fa-redo {
-      font-size: 2.2rem;
-    }
-  }
-
   .inputs-wrapper {
     display: flex;
     flex-direction: column;
@@ -68,7 +52,7 @@ form {
         font-size: 1.65rem;
         color: var(--tippy-bg);
         transition: var(--transition-250);
-        opacity: 0.8;
+        opacity: 0.85;
 
         &:hover {
           opacity: 1;
@@ -81,10 +65,16 @@ form {
     width: 100%;
     text-align: right;
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: flex-end;
+
     .new-task-submit {
       font-size: 1.1rem;
       background: var(--darker);
       padding: 0.8rem 2rem;
+      cursor: pointer;
     }
 
     .new-task-submit:hover {
@@ -93,6 +83,18 @@ form {
     .new-task-submit:active {
       transform: scale(0.9);
       opacity: 0.8;
+    }
+
+    .fa-redo {
+      font-size: 2rem;
+      transition: var(--transition-250);
+      color: var(--btn-bg2);
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.04) rotate(90deg);
+        color: var(--tippy-bg);
+      }
     }
   }
 }
@@ -105,46 +107,31 @@ main {
 
   .task-list {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    &--header {
+    flex-direction: column;
+    &--wrapper {
       display: flex;
       align-items: center;
-      flex-direction: column;
+      justify-content: space-between;
       width: 100%;
-      padding: 0 1rem;
-      position: relative;
 
-      h2 {
-        font-size: 1.65rem;
-        color: var(--text);
-        opacity: 0.85;
-        transition: var(--transition-250);
+      .tasks-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        h2 {
+          font-size: 1.65rem;
+          color: var(--text);
+          opacity: 0.85;
+          transition: var(--transition-250);
+        }
+        h6 {
+          font-size: 0.7rem;
+          color: var(--text);
+          opacity: 0.7;
+        }
       }
-      h6 {
-        font-size: 0.7rem;
-        color: var(--text);
-        opacity: 0.7;
-      }
-      .open-modal {
-        position: absolute;
-        transition: var(--transition-250);
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-  }
-  .buttons-wrapper {
-    position: relative;
-    width: 900px;
-    .complete-all,
-    .uncomplete-all {
-      position: absolute;
-      transition: var(--transition-250);
-      right: 0;
-      top: 0;
-      transform: translateY(-50%);
     }
   }
   .tasks {
@@ -423,13 +410,17 @@ main {
 }
 @media (max-width: 550px) {
   .container-wrapper {
-    padding: 1rem;
+    padding: 0;
+    nav {
+      margin-bottom: 1rem;
+    }
     main {
-      .task-list--header {
-        margin-top: 3rem;
-        .open-modal {
-          padding: 0.4rem;
-          top: 1.3rem;
+      .task-list--wrapper {
+        margin-top: 1.5rem;
+        .tasks-header {
+          h6 {
+            font-size: 0.55rem;
+          }
         }
       }
       .task-wrapper {
@@ -448,16 +439,13 @@ main {
 
     form {
       .redo-form {
-        right: -1.8rem;
-        top: 50%;
-        transform: translateY(-50%);
-
         .fa-redo {
           font-size: 1.5rem;
         }
       }
       .submit-btn {
-        text-align: center;
+        justify-content: center;
+        margin-top: 1rem;
         .new-task-submit {
           padding: 0.5rem 1.5rem;
         }
@@ -474,12 +462,6 @@ main {
           flex-direction: column;
           width: 100%;
         }
-
-        #text {
-          &::placeholder {
-            font-size: 1rem;
-          }
-        }
       }
     }
   }
@@ -495,8 +477,6 @@ main {
 
   //Snackbar media query
   .snackbar {
-    right: 50%;
-    transform: translateX(50%);
     padding: 0.7rem;
     font-size: 0.8rem;
   }

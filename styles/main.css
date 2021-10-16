@@ -47,15 +47,24 @@ button {
       -ms-flex: 1 1 0%;
           flex: 1 1 0%;
   background-color: var(--darker);
-  padding: 1rem;
   border-radius: 0.5rem;
   color: var(--text);
-  font-size: 1rem;
+  font-size: 16px;
   -webkit-transition: var(--transition-150);
   transition: var(--transition-150);
   border: 2px solid var(--border);
   outline: none;
   caret-color: var(--btn-bg2);
+  min-height: 55px;
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 1rem;
+}
+
+@media (max-width: 550px) {
+  .input {
+    min-height: 48px;
+  }
 }
 
 .input::-webkit-input-placeholder {
@@ -76,6 +85,21 @@ button {
 .input::placeholder {
   color: var(--grey);
   font-size: 1.1rem;
+}
+
+@media (max-width: 550px) {
+  .input::-webkit-input-placeholder {
+    font-size: 0.95rem;
+  }
+  .input:-ms-input-placeholder {
+    font-size: 0.95rem;
+  }
+  .input::-ms-input-placeholder {
+    font-size: 0.95rem;
+  }
+  .input::placeholder {
+    font-size: 0.95rem;
+  }
 }
 
 .input:focus-within {
@@ -130,6 +154,14 @@ input[type="time"]:valid::before {
 .btn-cta:hover {
   background: var(--btn-bg2) !important;
   color: var(--modal);
+}
+
+@media (max-width: 550px) {
+  .task-header-buttons {
+    padding: 0.5rem;
+    width: 80px;
+    font-size: 0.55rem;
+  }
 }
 
 .hide-element {
@@ -364,13 +396,13 @@ input[type="time"]:valid::before {
 }
 
 .bglight #theme-toggle::before {
-  -webkit-animation: pulseToLight 700ms ease-out forwards;
-          animation: pulseToLight 700ms ease-out forwards;
+  -webkit-animation: pulseToLight 800ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+          animation: pulseToLight 800ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
 .bgdark #theme-toggle::before {
-  -webkit-animation: pulseToDark 700ms ease-out forwards;
-          animation: pulseToDark 700ms ease-out forwards;
+  -webkit-animation: pulseToDark 800ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+          animation: pulseToDark 800ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
 #theme-toggle:hover,
@@ -539,7 +571,9 @@ input[type="time"]:valid::before {
   text-align: center;
   position: fixed;
   z-index: 1;
-  right: 4rem;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
   bottom: 1rem;
   font-family: var(--ff-text);
   -webkit-box-shadow: var(--box-shadow);
@@ -625,26 +659,6 @@ header h1 {
   font-family: var(--ff-header);
 }
 
-form .redo-form {
-  position: absolute;
-  right: -3rem;
-  top: 36%;
-  cursor: pointer;
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
-  color: var(--btn-bg2);
-}
-
-form .redo-form:hover {
-  -webkit-transform: scale(1.04) rotate(40deg);
-          transform: scale(1.04) rotate(40deg);
-  color: var(--accent);
-}
-
-form .redo-form .fa-redo {
-  font-size: 2.2rem;
-}
-
 form .inputs-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -701,7 +715,7 @@ form .inputs-wrapper .second-inputs .current-date {
   color: var(--tippy-bg);
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 form .inputs-wrapper .second-inputs .current-date:hover {
@@ -712,12 +726,23 @@ form .submit-btn {
   width: 100%;
   text-align: right;
   margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 form .submit-btn .new-task-submit {
   font-size: 1.1rem;
   background: var(--darker);
   padding: 0.8rem 2rem;
+  cursor: pointer;
 }
 
 form .submit-btn .new-task-submit:hover {
@@ -731,6 +756,20 @@ form .submit-btn .new-task-submit:active {
   opacity: 0.8;
 }
 
+form .submit-btn .fa-redo {
+  font-size: 2rem;
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
+  color: var(--btn-bg2);
+  cursor: pointer;
+}
+
+form .submit-btn .fa-redo:hover {
+  -webkit-transform: scale(1.04) rotate(90deg);
+          transform: scale(1.04) rotate(90deg);
+  color: var(--tippy-bg);
+}
+
 main {
   max-width: 900px;
   width: 100%;
@@ -742,32 +781,43 @@ main .task-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
-main .task-list--header {
+main .task-list--wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+main .task-list--wrapper .tasks-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 100%;
-  padding: 0 1rem;
-  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
 }
 
-main .task-list--header h2 {
+main .task-list--wrapper .tasks-header h2 {
   font-size: 1.65rem;
   color: var(--text);
   opacity: 0.85;
@@ -775,36 +825,10 @@ main .task-list--header h2 {
   transition: var(--transition-250);
 }
 
-main .task-list--header h6 {
+main .task-list--wrapper .tasks-header h6 {
   font-size: 0.7rem;
   color: var(--text);
   opacity: 0.7;
-}
-
-main .task-list--header .open-modal {
-  position: absolute;
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
-  left: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-
-main .buttons-wrapper {
-  position: relative;
-  width: 900px;
-}
-
-main .buttons-wrapper .complete-all,
-main .buttons-wrapper .uncomplete-all {
-  position: absolute;
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
-  right: 0;
-  top: 0;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
 }
 
 main .tasks {
@@ -1152,14 +1176,16 @@ main .task-wrapper .task-reversed::before {
 
 @media (max-width: 550px) {
   .container-wrapper {
-    padding: 1rem;
+    padding: 0;
   }
-  .container-wrapper main .task-list--header {
-    margin-top: 3rem;
+  .container-wrapper nav {
+    margin-bottom: 1rem;
   }
-  .container-wrapper main .task-list--header .open-modal {
-    padding: 0.4rem;
-    top: 1.3rem;
+  .container-wrapper main .task-list--wrapper {
+    margin-top: 1.5rem;
+  }
+  .container-wrapper main .task-list--wrapper .tasks-header h6 {
+    font-size: 0.55rem;
   }
   .container-wrapper main .task-wrapper .task .text {
     max-width: 200px;
@@ -1169,17 +1195,14 @@ main .task-wrapper .task-reversed::before {
     visibility: visible;
     opacity: 1;
   }
-  .container-wrapper form .redo-form {
-    right: -1.8rem;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-  }
   .container-wrapper form .redo-form .fa-redo {
     font-size: 1.5rem;
   }
   .container-wrapper form .submit-btn {
-    text-align: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-top: 1rem;
   }
   .container-wrapper form .submit-btn .new-task-submit {
     padding: 0.5rem 1.5rem;
@@ -1202,18 +1225,6 @@ main .task-wrapper .task-reversed::before {
             flex-direction: column;
     width: 100%;
   }
-  .container-wrapper form .inputs-wrapper #text::-webkit-input-placeholder {
-    font-size: 1rem;
-  }
-  .container-wrapper form .inputs-wrapper #text:-ms-input-placeholder {
-    font-size: 1rem;
-  }
-  .container-wrapper form .inputs-wrapper #text::-ms-input-placeholder {
-    font-size: 1rem;
-  }
-  .container-wrapper form .inputs-wrapper #text::placeholder {
-    font-size: 1rem;
-  }
   .modal {
     max-width: 343px;
     height: 160px;
@@ -1222,9 +1233,6 @@ main .task-wrapper .task-reversed::before {
     font-size: 0.75rem;
   }
   .snackbar {
-    right: 50%;
-    -webkit-transform: translateX(50%);
-            transform: translateX(50%);
     padding: 0.7rem;
     font-size: 0.8rem;
   }

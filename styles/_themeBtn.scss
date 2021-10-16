@@ -32,11 +32,11 @@
   z-index: -2;
 }
 .bglight #theme-toggle::before {
-  animation: pulseToLight 700ms ease-out forwards;
+  animation: pulseToLight 800ms $ease-out forwards;
 }
 
 .bgdark #theme-toggle::before {
-  animation: pulseToDark 700ms ease-out forwards;
+  animation: pulseToDark 800ms $ease-out forwards;
 }
 
 // #theme-toggle::after {

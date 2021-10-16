@@ -1,7 +1,9 @@
+// Global Variables
 const getLS = (key) => JSON.parse(localStorage.getItem(key));
 const setLS = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 const isMobile = window.matchMedia("(max-width: 960px)").matches;
 
+// Set caret on contentEditable to start on the right always!
 function setEndOfContenteditable(contentEditableElement) {
   var range, selection;
   if (document.createRange) {
@@ -19,7 +21,7 @@ function setEndOfContenteditable(contentEditableElement) {
     range.select(); //Select the range (make it the visible selection
   }
 }
-
+// Snackbar
 const toggleSnackBar = (text) => {
   let snackBarElement = document.querySelector(".snackbar");
   snackBarElement.classList.add("show");
@@ -29,12 +31,30 @@ const toggleSnackBar = (text) => {
   snackBarElement.innerHTML = text;
 };
 
+//Tippy
+const activateTippy = () => {
+  if (!isMobile)
+    tippy(".tippy", {
+      animation: "shift-toward",
+      inertia: true,
+      duration: [400, 400],
+      theme: "theme",
+      arrow: true,
+    });
+};
+
+// Audio stuff
 const $audio = new Audio("");
 $audio.volume = 0.2;
 const triggerSound = (path) => {
   $audio.src = path;
   $audio.load();
   $audio.play();
+  if (path === "../assets/confettiBig.mp3") {
+    $audio.currentTime = 1;
+  } else {
+    $audio.currentTime = 0.085;
+  }
 };
 
 // Confetti options
@@ -59,12 +79,12 @@ const confettiStrong = () => {
   const duration = 2000;
   const end = Date.now() + duration;
 
-  triggerSound("../assets/confetti.mp3");
+  triggerSound("../assets/confettiBig.mp3");
   (function frame() {
     isAnimatingConfetti = true;
     // launch a few confetti from the left edge
     confetti({
-      particleCount: 7,
+      particleCount: isMobile ? 5.5 : 7,
       angle: 60,
       ticks: 50,
       spread: 80,
@@ -73,7 +93,7 @@ const confettiStrong = () => {
     });
     // and launch a few from the right edge
     confetti({
-      particleCount: 7,
+      particleCount: isMobile ? 5.5 : 7,
       angle: 120,
       spread: 80,
       ticks: 50,

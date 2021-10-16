@@ -83,7 +83,6 @@ const ToDo = {
       completed: true,
     }));
     toggleSnackBar("All tasks are now completed ✔");
-    confettiStrong();
     this.syncLSandUI();
   },
 

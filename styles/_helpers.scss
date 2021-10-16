@@ -37,18 +37,27 @@ button {
 .input {
   flex: 1 1 0%;
   background-color: var(--darker);
-  padding: 1rem;
   border-radius: 0.5rem;
   color: var(--text);
-  font-size: 1rem;
+  font-size: 16px;
   transition: var(--transition-150);
   border: 2px solid var(--border);
   outline: none;
   caret-color: var(--btn-bg2);
+  min-height: 55px;
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  @media (max-width: 550px) {
+    min-height: 48px;
+  }
 
   &::placeholder {
     color: var(--grey);
     font-size: 1.1rem;
+    @media (max-width: 550px) {
+      font-size: 0.95rem;
+    }
   }
   &:focus-within {
     transform: scale(1.01);
@@ -92,11 +101,18 @@ input[type="time"]:valid::before {
   border: 2px solid var(--border);
   transition: var(--transition-250);
   padding: 0.7rem;
-
   &:hover {
     // Override
     background: var(--btn-bg2) !important;
     color: var(--modal);
+  }
+}
+
+.task-header-buttons {
+  @media (max-width: 550px) {
+    padding: 0.5rem;
+    width: 80px;
+    font-size: 0.55rem;
   }
 }
 // Hide elements if no tasks are available
