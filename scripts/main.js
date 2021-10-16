@@ -58,6 +58,7 @@ const renderTasks = (searchResults) => {
     });
   });
 
+  // Prevent going down a line when editing and pressing Enter
   $(document).keydown((e) => {
     if (e.keyCode === 13 && ToDo.isEdited) {
       e.preventDefault();
@@ -84,11 +85,10 @@ const renderTasks = (searchResults) => {
 const renderTaskHeader = () => {
   const modalClass = !ToDo.tasks.length ? "hide-element" : ``;
   const drawTaskHeader = document.querySelector(".task-list--header");
+  const subHeaderClass = isMobile ? "Click on a task to complete ✔" : "Double click on a task to complete ✔";
   drawTaskHeader.innerHTML = `
   <h2 class="${modalClass}">Tasks</h2>
-  <h6 class="${modalClass}">
-    Double click on a task to complete ✔
-   </h6>
+  <h6 class="${modalClass}">${subHeaderClass}</h6>
    <div>
    <button class="open-modal ${modalClass} btn-cta" 
     aria-label="Open Modal">Delete All</button>
@@ -169,12 +169,13 @@ $(document).keydown((e) => {
   }
 });
 
+// Get search results on input change, with mappedResults that fit the search values
 const searchInput = $(".search-task");
 searchInput.on("input", () => {
   const mappedResults = ToDo.$fuse.search(searchInput.val()).map(({ item }) => item);
   renderTasks(mappedResults);
 
-  if (searchInput.val().length >= 7) {
+  if (searchInput.val().length > 8) {
     toggleSnackBar("Search field is too long - Showing all tasks");
   }
 });
@@ -187,6 +188,15 @@ textBox.on("input", () => {
     $(".redo-form").show();
   } else {
     $(".redo-form").hide();
+  }
+});
+
+// Redo Form click and Enter event
+$(".redo-form").on("click", () => ToDo.resetForm());
+$(".redo-form").on("keydown", (e) => {
+  if (e.code === "Enter" || e.code === "Space") {
+    e.preventDefault();
+    ToDo.resetForm();
   }
 });
 
@@ -223,7 +233,7 @@ const initializeDateAndTime = (reset = false) => {
 };
 initializeDateAndTime();
 
-//Button between inputs to get current date/time
+//Events for button between inputs to get current date/time
 $(".current-date").click(() => initializeDateAndTime());
 $(".current-date").on("keydown", (e) => {
   if (e.code === "Enter" || e.code === "Space") {
@@ -235,21 +245,21 @@ $(".current-date").on("keydown", (e) => {
 $(document).ready(() => {
   if ($(".task-wrapper")) {
     gsap.from(".task-wrapper", {
-      y: 500,
+      y: 250,
       opacity: 0,
       filter: "blur(15px)",
-      stagger: 0.15,
-      duration: 1,
+      stagger: 0.25,
+      duration: 1.2,
     });
   }
 
   gsap
-    .from(document.querySelectorAll("nav, header, section, .task-list--header"), {
+    .from(document.querySelectorAll("header, section, main"), {
       autoAlpha: 0,
-      y: 150,
+      y: 200,
       ease: Power1.ease,
-      stagger: 0.1,
+      stagger: 0.22,
       clearProps: "all",
     })
-    .totalDuration(1.1);
+    .totalDuration(1.3);
 });

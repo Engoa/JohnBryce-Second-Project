@@ -64,19 +64,19 @@ const confettiStrong = () => {
     isAnimatingConfetti = true;
     // launch a few confetti from the left edge
     confetti({
-      particleCount: 6,
+      particleCount: 7,
       angle: 60,
-      ticks: 40,
-      spread: 70,
+      ticks: 50,
+      spread: 80,
       origin: { x: 0, y: 1 },
       drift: (Math.random() - 0.5) * 2,
     });
     // and launch a few from the right edge
     confetti({
-      particleCount: 6,
+      particleCount: 7,
       angle: 120,
-      spread: 55,
-      ticks: 40,
+      spread: 80,
+      ticks: 50,
       origin: { x: 1, y: 1 },
       drift: (Math.random() - 0.5) * 2,
     });
