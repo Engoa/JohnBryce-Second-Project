@@ -71,23 +71,26 @@
                 spellcheck="false"
                 autocomplete="off"
                 aria-label="Task Description"
+                tabindex="1"
               />
             </div>
-            <div class="redo-form tippy" data-tippy-content="Reset Form" data-tippy-placement="right">
+            <div class="redo-form tippy" data-tippy-content="Reset Form" data-tippy-placement="right" tabindex="5">
               <i class="fas fa-redo" onclick="ToDo.resetForm()"></i>
             </div>
             <div class="second-inputs">
-              <input type="date" class="input" id="date" aria-label="Task Date" />
+              <input type="date" class="input" id="date" aria-label="Task Date" tabindex="2" />
               <i
                 class="fas fa-calendar-day tippy current-date"
                 data-tippy-content="Auto-fill"
                 data-tippy-placement="bottom"
+                tabindex="3"
               ></i>
-              <input type="time" class="input" id="time" aria-label="Task Time" />
+              <input type="time" class="input" id="time" aria-label="Task Time" tabindex="4" />
             </div>
           </div>
           <div class="submit-btn">
             <button
+              tabindex="4"
               type="submit"
               class="new-task-submit btn-cta tippy"
               click="ToDo.addTask()"

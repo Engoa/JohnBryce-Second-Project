@@ -6,6 +6,12 @@ const addToggleTaskListeners = () => {
       ToDo.toggleTask(btn.dataset.id);
     });
   });
+  document.addEventListener("keydown", (e) => {
+    const targetId = document.activeElement?.dataset.id;
+    if (targetId && (e.code === "Enter" || e.code === "Space")) {
+      ToDo.toggleTask(targetId);
+    }
+  });
 };
 // Run on the tasks array, and render them
 const renderTasks = (searchResults) => {
@@ -16,7 +22,7 @@ const renderTasks = (searchResults) => {
     const oddIndex = index % 2 !== 0 ? "task-reversed" : "";
     const date = dayjs(task.date + " " + task.time).format("ddd, MM-DD-YYYY, HH:mm A");
     tasksHtml += `
-<div class="task-wrapper">
+<div class="task-wrapper" tabindex="${10 + index}"  data-id="${index}">
   <div class="task ${isCompletedClass} ${oddIndex}"  
     data-id="${index}">
     <div class="content"> 
@@ -69,7 +75,6 @@ const renderTasks = (searchResults) => {
   const deleteAll = document.querySelector(".delete-all");
   deleteAll.addEventListener("click", () => {
     ToDo.deleteAllTasks();
-    triggerSound("../assets/yeet.mp3");
   });
 
   addToggleTaskListeners();
@@ -237,8 +242,8 @@ $(document).ready(() => {
       autoAlpha: 0,
       y: 150,
       ease: Power1.ease,
-      stagger: 0.25,
+      stagger: 0.1,
       clearProps: "all",
     })
-    .totalDuration(1);
+    .totalDuration(1.1);
 });

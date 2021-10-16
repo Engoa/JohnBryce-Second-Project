@@ -42,6 +42,7 @@ const ToDo = {
     this.tasks = [];
     closeModal();
     toggleSnackBar("All tasks have been deleted ❌");
+    triggerSound("../assets/yeet.mp3");
     this.syncLSandUI();
   },
 
@@ -123,8 +124,6 @@ form.addEventListener("submit", (e) => {
     dateBox,
     timeBox,
   };
-
-  // const date = dayjs(dateBox + " " + timeBox).format("ddd, MM-DD-YYYY, HH:mm A");
 
   if (!formInputs.textBox.trim() || !formInputs.dateBox || !formInputs.timeBox) {
     $(".redo-form").hide();
