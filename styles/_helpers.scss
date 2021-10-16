@@ -91,6 +91,49 @@ input[type="time"]:focus::before,
 input[type="time"]:valid::before {
   content: "" !important;
 }
+.task .content .text:not(:read-only) {
+  border: none;
+}
+
+main {
+  .task-wrapper {
+    .task-reversed {
+      &::before {
+        right: 0;
+        left: unset;
+      }
+    }
+  }
+}
+
+.add-first-task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  .fa-tasks {
+    transition: var(--transition-250);
+    font-size: 12rem;
+    font-size: clamp(8.5rem, 10vw, 12rem);
+    color: var(--text);
+  }
+
+  p {
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-size: clamp(1.1rem, 3vw, 1.7rem);
+    opacity: 0.85;
+    transition: var(--transition-250);
+    text-transform: uppercase;
+  }
+  span {
+    font-size: 5rem;
+    font-size: clamp(4rem, 3vw, 5rem);
+  }
+}
 
 .btn-cta {
   cursor: pointer;
@@ -112,7 +155,7 @@ input[type="time"]:valid::before {
   @media (max-width: 550px) {
     padding: 0.5rem;
     width: 80px;
-    font-size: 0.55rem;
+    font-size: 0.45rem;
   }
 }
 // Hide elements if no tasks are available
@@ -135,5 +178,8 @@ input[type="time"]:valid::before {
 .button-wrapper {
   button {
     min-width: 140px;
+    @media (max-width: 550px) {
+      min-width: 60px;
+    }
   }
 }

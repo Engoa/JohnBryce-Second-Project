@@ -139,6 +139,61 @@ input[type="time"]:valid::before {
   content: "" !important;
 }
 
+.task .content .text:not(:-moz-read-only) {
+  border: none;
+}
+
+.task .content .text:not(:read-only) {
+  border: none;
+}
+
+main .task-wrapper .task-reversed::before {
+  right: 0;
+  left: unset;
+}
+
+.add-first-task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.add-first-task .fa-tasks {
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
+  font-size: 12rem;
+  font-size: clamp(8.5rem, 10vw, 12rem);
+  color: var(--text);
+}
+
+.add-first-task p {
+  color: var(--text);
+  font-weight: bold;
+  font-size: 1.7rem;
+  font-size: clamp(1.1rem, 3vw, 1.7rem);
+  opacity: 0.85;
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
+  text-transform: uppercase;
+}
+
+.add-first-task span {
+  font-size: 5rem;
+  font-size: clamp(4rem, 3vw, 5rem);
+}
+
 .btn-cta {
   cursor: pointer;
   color: var(--text);
@@ -160,7 +215,7 @@ input[type="time"]:valid::before {
   .task-header-buttons {
     padding: 0.5rem;
     width: 80px;
-    font-size: 0.55rem;
+    font-size: 0.45rem;
   }
 }
 
@@ -181,6 +236,12 @@ input[type="time"]:valid::before {
 
 .button-wrapper button {
   min-width: 140px;
+}
+
+@media (max-width: 550px) {
+  .button-wrapper button {
+    min-width: 60px;
+  }
 }
 
 .bgdark {
@@ -1115,67 +1176,6 @@ main .task-wrapper .edited .content-left .savebtn {
 
 main .task-wrapper .edited .content-left .editbtn {
   display: none;
-}
-
-.task .content .text:not(:-moz-read-only) {
-  border: none;
-}
-
-.task .content .text:not(:read-only) {
-  border: none;
-}
-
-main .task-wrapper .task-reversed::before {
-  right: 0;
-  left: unset;
-}
-
-.add-first-task {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 0.6rem;
-  margin-top: 2rem;
-}
-
-.add-first-task .fa-tasks {
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
-  font-size: 12rem;
-  font-size: clamp(8.5rem, 10vw, 12rem);
-  color: var(--text);
-}
-
-.add-first-task p {
-  color: var(--text);
-  font-weight: bold;
-  font-size: 1.7rem;
-  font-size: clamp(1.1rem, 3vw, 1.7rem);
-  opacity: 0.85;
-  -webkit-transition: var(--transition-250);
-  transition: var(--transition-250);
-  text-transform: uppercase;
-}
-
-.add-first-task span {
-  font-size: 5rem;
-  font-size: clamp(4rem, 3vw, 5rem);
-}
-
-@media (max-width: 1040px) {
-  .buttons-wrapper {
-    display: none;
-  }
 }
 
 @media (max-width: 550px) {
