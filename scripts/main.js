@@ -90,14 +90,19 @@ const renderTaskHeader = () => {
   const subHeaderClass = isMobile ? "Click on a task to complete ✔" : "Double click on a task to complete ✔";
   const drawTaskHeader = document.querySelector(".task-list--wrapper");
   drawTaskHeader.innerHTML = `
+  <div class="button-wrapper">
      <button class="open-modal ${modalClass} btn-cta task-header-buttons" 
     aria-label="Open Modal">Delete All</button>
+    </div>
   <div class="tasks-header">
   <h2 class="${modalClass}">Tasks</h2>
   <h6 class="${modalClass}">${subHeaderClass}</h6>
   </div>
+  <div class="button-wrapper">
     <button class="complete-all ${modalClass} btn-cta ${hideIfAllCompleted} task-header-buttons">Complete All</button>
     <button class="uncomplete-all ${modalClass} btn-cta ${hideIfSomeUnCompleted} task-header-buttons" >Uncomplete All</button>
+</div>
+
   `;
   activateTippy();
 
@@ -117,7 +122,7 @@ const renderTaskHeader = () => {
 //Render if no tasks are available and check for it
 const renderToAddFirstTask = () => {
   const drawAddFirstTask = $(".render-if-no-tasks");
-  const hideIfTasksAvailable = ToDo.tasks.length > 0 ? "hide-element" : ``;
+  const hideIfTasksAvailable = ToDo.tasks.length ? "hide-element" : "";
   drawAddFirstTask.html(`
       <div class="add-first-task ${hideIfTasksAvailable}">
       <i class="fas fa-tasks"></i>

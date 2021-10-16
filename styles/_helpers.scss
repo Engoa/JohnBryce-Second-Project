@@ -131,3 +131,9 @@ input[type="time"]:valid::before {
 .tippy-arrow {
   color: var(--tippy-bg);
 }
+
+.button-wrapper {
+  button {
+    min-width: 140px;
+  }
+}

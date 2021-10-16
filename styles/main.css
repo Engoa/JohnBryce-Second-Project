@@ -179,6 +179,10 @@ input[type="time"]:valid::before {
   color: var(--tippy-bg);
 }
 
+.button-wrapper button {
+  min-width: 140px;
+}
+
 .bgdark {
   background-color: #2e3a4d;
   --dark: #0e1524;
@@ -1179,7 +1183,7 @@ main .task-wrapper .task-reversed::before {
     padding: 0;
   }
   .container-wrapper nav {
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
   }
   .container-wrapper main .task-list--wrapper {
     margin-top: 1.5rem;
