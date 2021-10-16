@@ -42,7 +42,6 @@ const ToDo = {
     this.tasks = [];
     closeModal();
     toggleSnackBar("All tasks have been deleted ❌");
-    triggerSound("../assets/yeet.mp3");
     this.syncLSandUI();
   },
 
