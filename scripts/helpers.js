@@ -28,11 +28,15 @@ const toggleSnackBar = (text) => {
   }, 2500);
   snackBarElement.innerHTML = text;
 };
+
+const $audio = new Audio("");
+$audio.volume = 0.2;
 const triggerSound = (path) => {
-  const audioObj = new Audio(path);
-  audioObj.volume = 0.2;
-  audioObj.play();
+  $audio.src = path;
+  $audio.load();
+  $audio.play();
 };
+
 // Confetti options
 const confettiLight = () => {
   triggerSound("../assets/confetti.mp3");

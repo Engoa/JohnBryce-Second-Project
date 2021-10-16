@@ -225,6 +225,12 @@ initializeDateAndTime();
 
 //Button between inputs to get current date/time
 $(".current-date").click(() => initializeDateAndTime());
+$(".current-date").on("keydown", (e) => {
+  if (e.code === "Enter" || e.code === "Space") {
+    e.preventDefault();
+    initializeDateAndTime();
+  }
+});
 
 $(document).ready(() => {
   if ($(".task-wrapper")) {
