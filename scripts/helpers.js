@@ -2,10 +2,11 @@
 const getLS = (key) => JSON.parse(localStorage.getItem(key));
 const setLS = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 const isMobile = window.matchMedia("(max-width: 960px)").matches;
+const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
 
 // Set caret on contentEditable to start on the right always!
 function setEndOfContenteditable(contentEditableElement) {
-  var range, selection;
+  let range, selection;
   if (document.createRange) {
     range = document.createRange();
     range.selectNodeContents(contentEditableElement); //Select the entire contents of the element with the range

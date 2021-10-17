@@ -191,6 +191,7 @@ $(".redo-form").on("keydown", (e) => {
 });
 
 // Hide Search bar if array length is below 2
+$(".task-search").hide();
 const hideAndShowSearchBar = () => {
   if (ToDo.tasks.length <= 1) {
     $(".task-search").hide();
@@ -203,8 +204,8 @@ document.addEventListener("tasks-updated", () => {
   renderTasks();
   renderTaskHeader();
   renderToAddFirstTask();
-  hideAndShowSearchBar();
   renderTaskHeader();
+  hideAndShowSearchBar();
 });
 document.addEventListener("tasks-completed", () => {
   renderTaskHeader();
@@ -255,4 +256,6 @@ $(document).ready(() => {
 
   // Tippies for Tooltips
   activateTippy();
+  //Load Audio on page load
+  $audio.load();
 });

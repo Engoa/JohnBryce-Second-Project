@@ -1938,7 +1938,6 @@ input[type="time"]:valid::before {
   --accent: #d4acaa;
   --sidebar: rgba(61, 109, 199, 0.753);
   --completed: rgba(61, 109, 199, 0.753);
-  --header-linear-gradient: linear-gradient(to bottom, #3c1053, #ad5389);
 }
 
 .bglight {
@@ -1961,7 +1960,6 @@ input[type="time"]:valid::before {
   --accent: #d4acaa;
   --sidebar: #d4acaa;
   --completed: #d4acaa;
-  --header-linear-gradient: linear-gradient(to top, #ffaf7b, #d76d77, #3a1c71);
 }
 
 :root {
@@ -2573,12 +2571,7 @@ main .task-list--wrapper .tasks-header h2 {
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
   font-family: var(--ff-header);
-  background: var(--text);
-  /* fallback for old browsers */
-  background: var(--header-linear-gradient);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  color: var(--text);
   max-height: 75px;
 }
 

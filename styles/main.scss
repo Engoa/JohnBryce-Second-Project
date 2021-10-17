@@ -128,11 +128,7 @@ main {
           opacity: 0.9;
           transition: var(--transition-250);
           font-family: var(--ff-header);
-          background: var(--text); /* fallback for old browsers */
-          background: var(--header-linear-gradient);
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
+          color: var(--text);
           max-height: 75px;
         }
         h6 {
