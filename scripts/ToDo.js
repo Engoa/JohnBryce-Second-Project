@@ -2,7 +2,7 @@ const FUSE_OPTIONS = {
   isCaseSensitive: false,
   includeMatches: true,
   threshold: 0.2,
-  keys: ["text", "completed", "date", "time"],
+  keys: ["text", "completed", "date", "time", "day"],
 };
 
 const ToDo = {
@@ -35,6 +35,7 @@ const ToDo = {
   deleteTask(index) {
     this.tasks.splice(index, 1);
     toggleSnackBar("A task has been deleted ❌");
+    triggerSound("../assets/pop.mp3");
     this.syncLSandUI();
   },
 
@@ -83,6 +84,7 @@ const ToDo = {
       completed: true,
     }));
     toggleSnackBar("All tasks are now completed ✔");
+    confettiStrong();
     this.syncLSandUI();
   },
 
@@ -123,16 +125,22 @@ form.addEventListener("submit", (e) => {
     timeBox,
   };
 
-  if (!formInputs.textBox.trim() || !formInputs.dateBox || !formInputs.timeBox) {
+  if (
+    !formInputs.textBox.trim() ||
+    !formInputs.dateBox ||
+    !formInputs.timeBox ||
+    formInputs.textBox.trim().length <= 3
+  ) {
     $(".redo-form").hide();
-    toggleSnackBar("All fields must have a value! 😟");
+    toggleSnackBar("All fields must have a value, or a description of minimum 3 letters 😟");
     return;
   } else {
     $(".redo-form").show();
     ToDo.addTask({
       text: textBox,
       completed: false,
-      date: dateBox,
+      date: dayjs(dateBox).format("MMMM-DD-YYYY"),
+      day: dayjs(dateBox).format("dddd"),
       time: timeBox,
     });
     $(".task-wrapper:first-of-type").hide();

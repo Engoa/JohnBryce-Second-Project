@@ -13,7 +13,7 @@
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   padding: 1rem;
   top: 13rem;
   right: 50%;
@@ -53,9 +53,9 @@
     color: var(--task-text);
 
     p {
-      font-size: 0.715rem;
-      opacity: 0.8;
-      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
     }
   }
 

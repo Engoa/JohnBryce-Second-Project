@@ -20,14 +20,14 @@ const renderTasks = (searchResults) => {
   tasks.forEach((task, index) => {
     const isCompletedClass = task.completed ? "completed" : "";
     const oddIndex = index % 2 !== 0 ? "task-reversed" : "";
-    const date = dayjs(task.date + " " + task.time).format("ddd, MM-DD-YYYY, HH:mm A");
+    const date = dayjs(task.date + " " + task.time).format("dddd, MM-DD-YYYY, HH:mm A");
     tasksHtml += `
 <div class="task-wrapper" tabindex="${10 + index}"  data-id="${index}">
   <div class="task ${isCompletedClass} ${oddIndex}"  
     data-id="${index}">
     <div class="content"> 
   <div class="content-left">
-    <button class="edit btn tippy" data-id="${index}" data-tippy-content="Save/Edit">
+    <button class="edit btn tippy" data-id="${index}" data-tippy-content="Save/Edit" data-tippy-placement="top-end">
       <i class="fas fa-pencil-alt editbtn"></i>
       <i class="fas fa-save savebtn"></i>
     </button>
@@ -38,10 +38,10 @@ const renderTasks = (searchResults) => {
     </div>
   </div>
     <div class="task__status">
-    <button class="delete btn tippy" data-id="${index}" data-tippy-content="Delete">
-    <i class="fas fa-times"></i>
+    <button class="delete btn" data-id="${index}" >
+    <i class="fas fa-times tippy" data-tippy-content="Delete" data-tippy-placement="top-end"></i>
     </button>
-    <i class="fas fa-check tippy" data-tippy-content="Task Completed"></i>
+    <i class="fas fa-check tippy" data-tippy-content="Task Completed" data-tippy-placement="top-start"></i>
     </div>
   </div>
 </div>
@@ -92,15 +92,15 @@ const renderTaskHeader = () => {
   drawTaskHeader.innerHTML = `
   <div class="button-wrapper">
      <button class="open-modal ${modalClass} btn-cta task-header-buttons" 
-    aria-label="Open Modal">Delete All</button>
+    aria-label="Open Modal">Remove All</button>
     </div>
   <div class="tasks-header">
   <h2 class="${modalClass}">Tasks</h2>
   <h6 class="${modalClass}">${subHeaderClass}</h6>
-  </div>
-  <div class="button-wrapper">
-    <button class="complete-all ${modalClass} btn-cta ${hideIfAllCompleted} task-header-buttons">Complete All</button>
-    <button class="uncomplete-all ${modalClass} btn-cta ${hideIfSomeUnCompleted} task-header-buttons" >Uncomplete All</button>
+</div>
+<div class="button-wrapper">
+  <button class="complete-all ${modalClass} btn-cta ${hideIfAllCompleted} task-header-buttons">Complete All</button>
+  <button class="uncomplete-all ${modalClass} btn-cta ${hideIfSomeUnCompleted} task-header-buttons" >Uncomplete All</button>
 </div>
 
   `;
@@ -108,10 +108,7 @@ const renderTaskHeader = () => {
 
   // Event to complete all tasks
   const completeAll = document.querySelector(".complete-all");
-  completeAll.addEventListener("click", () => {
-    confettiStrong();
-    ToDo.completeAllTasks();
-  });
+  completeAll.addEventListener("click", () => ToDo.completeAllTasks());
   const unCompleteAll = document.querySelector(".uncomplete-all");
   unCompleteAll.addEventListener("click", () => ToDo.unCompleteAllTasks());
 
@@ -166,8 +163,10 @@ searchInput.on("input", () => {
   const mappedResults = ToDo.$fuse.search(searchInput.val()).map(({ item }) => item);
   renderTasks(mappedResults);
 
-  if (searchInput.val().length > 8) {
-    toggleSnackBar("Search field is too long - Showing all tasks");
+  if (searchInput.val().trim().length >= 9) {
+    setTimeout(() => {
+      toggleSnackBar("Search field is too long - Showing all tasks");
+    }, 600);
   }
 });
 

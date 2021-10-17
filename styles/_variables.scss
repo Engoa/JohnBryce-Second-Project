@@ -25,6 +25,7 @@
   --accent: #d4acaa;
   --sidebar: rgba(61, 109, 199, 0.753);
   --completed: rgba(61, 109, 199, 0.753);
+  --header-linear-gradient: linear-gradient(to bottom, #3c1053, #ad5389);
 }
 
 .bglight {
@@ -48,6 +49,7 @@
   --accent: #d4acaa;
   --sidebar: #d4acaa;
   --completed: #d4acaa;
+  --header-linear-gradient: linear-gradient(to top, #ffaf7b, #d76d77, #3a1c71);
 }
 
 :root {

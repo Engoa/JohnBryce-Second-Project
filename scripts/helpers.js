@@ -45,16 +45,16 @@ const activateTippy = () => {
 
 // Audio stuff
 const $audio = new Audio("");
-$audio.volume = 0.2;
-const triggerSound = (path) => {
+const triggerSound = async (path) => {
   $audio.src = path;
   $audio.load();
-  $audio.play();
-  if (path === "../assets/confettiBig.mp3") {
+  $audio.volume = 0.05;
+  if (path === "../assets/confettiBig.mp3" || path === "../assets/pop.mp3") {
     $audio.currentTime = 1;
   } else {
     $audio.currentTime = 0.085;
   }
+  await $audio.play();
 };
 
 // Confetti options

@@ -16,6 +16,9 @@
   font-family: var(--ff-text);
   box-shadow: var(--box-shadow);
 
+  @media (max-width: 550px) {
+    min-width: 310px;
+  }
   &::before,
   &::after {
     content: "";

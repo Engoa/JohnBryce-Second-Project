@@ -95,17 +95,6 @@ input[type="time"]:valid::before {
   border: none;
 }
 
-main {
-  .task-wrapper {
-    .task-reversed {
-      &::before {
-        right: 0;
-        left: unset;
-      }
-    }
-  }
-}
-
 .add-first-task {
   display: flex;
   flex-direction: column;
@@ -152,10 +141,13 @@ main {
 }
 
 .task-header-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media (max-width: 550px) {
     padding: 0.5rem;
     width: 80px;
-    font-size: 0.45rem;
+    font-size: 0.65rem;
   }
 }
 // Hide elements if no tasks are available
@@ -176,10 +168,21 @@ main {
 }
 
 .button-wrapper {
-  button {
-    min-width: 140px;
-    @media (max-width: 550px) {
-      min-width: 60px;
+  min-width: 150px;
+  display: flex;
+  .task-header-buttons {
+    min-width: 120px;
+  }
+  &:last-of-type .task-header-buttons {
+    margin-left: auto;
+  }
+  @media (max-width: 550px) {
+    min-width: unset;
+    .task-header-buttons {
+      min-width: 70px;
+    }
+    &:last-of-type .task-header-buttons {
+      margin: auto;
     }
   }
 }
