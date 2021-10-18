@@ -13,7 +13,7 @@ const addToggleTaskListeners = () => {
     }
   });
 };
-// Run on the tasks array, and render them
+// Run on each task object, of the tasks array, and render them.
 const renderTasks = (searchResults) => {
   const tasks = searchResults?.length ? searchResults : ToDo.tasks;
   let tasksHtml = "";
@@ -49,6 +49,13 @@ const renderTasks = (searchResults) => {
   });
   $(".tasks").html(tasksHtml);
 
+  // Prevent going down a line when editing and pressing Enter
+  $(document).keydown((e) => {
+    if (e.keyCode === 13 && ToDo.isEdited) {
+      e.preventDefault();
+    }
+  });
+
   // Event listeners for action buttons
   const editBtn = document.querySelectorAll(".edit");
   editBtn.forEach((btn) => {
@@ -56,13 +63,6 @@ const renderTasks = (searchResults) => {
       e.stopPropagation();
       ToDo.editTask(btn.dataset.id);
     });
-  });
-
-  // Prevent going down a line when editing and pressing Enter
-  $(document).keydown((e) => {
-    if (e.keyCode === 13 && ToDo.isEdited) {
-      e.preventDefault();
-    }
   });
 
   const deleteBtn = document.querySelectorAll(".delete");
@@ -211,36 +211,50 @@ document.addEventListener("tasks-completed", () => {
   renderTaskHeader();
 });
 
-// Date conversion
+// Date conversion, min/max/value for inputs on top
+let dateFormat = dayjs().format("YYYY-MM-DD");
+let timeFormat = dayjs().format("HH:mm");
 const initializeDateAndTime = (reset = false) => {
   const dateDates = {
     min: dayjs().add(-1, "day").format("YYYY-MM-DD"),
     max: dayjs().add(1, "year").format("YYYY-MM-DD"),
-    value: reset ? null : dayjs().format("YYYY-MM-DD"),
+    value: reset ? null : dateFormat,
   };
-  for (const key in dateDates) $("#date").attr(key, dateDates[key]);
-
-  $("#time").attr("value", reset ? null : dayjs().format("HH:mm"));
+  for (const key in dateDates) {
+    $("#date").attr(key, dateDates[key]);
+  }
+  $("#time").attr("value", reset ? null : timeFormat);
 };
 initializeDateAndTime();
 
-//Events for button between inputs to get current date/time
-$(".current-date").click(() => initializeDateAndTime());
+const drawCurrentDateOnClicks = () => {
+  // If date and time box value is different from current day values, pressing Enter on the Icon will inject current date again.
+  if ($("#date").val() !== dateFormat || $("#time").val() !== timeFormat) {
+    $("#date").val(dateFormat);
+    $("#time").val(timeFormat);
+  }
+};
+
+$(".current-date").click(() => {
+  drawCurrentDateOnClicks();
+});
+
 $(".current-date").on("keydown", (e) => {
   if (e.code === "Enter" || e.code === "Space") {
     e.preventDefault();
-    initializeDateAndTime();
+    drawCurrentDateOnClicks();
   }
 });
 
+//Events for button between inputs to get current date/time
 $(document).ready(() => {
   if ($(".task-wrapper")) {
     gsap.from(".task-wrapper", {
       y: 250,
       opacity: 0,
-      filter: "blur(15px)",
-      stagger: 0.25,
-      duration: 1.2,
+      filter: "blur(20px)",
+      stagger: 0.27,
+      duration: 1,
     });
   }
 
@@ -248,11 +262,12 @@ $(document).ready(() => {
     .from(document.querySelectorAll("header, section, main"), {
       autoAlpha: 0,
       y: 200,
+      filter: "blur(10px)",
       ease: Power1.ease,
-      stagger: 0.22,
+      stagger: 0.2,
       clearProps: "all",
     })
-    .totalDuration(1.3);
+    .totalDuration(1);
 
   // Tippies for Tooltips
   activateTippy();

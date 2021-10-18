@@ -27,7 +27,9 @@ const ToDo = {
     } else {
       textBox.blur();
     }
+    this.isEdited = false;
     initializeDateAndTime(true);
+    $(".search-task").val("");
     form.reset();
     this.syncLSandUI();
   },
@@ -134,6 +136,8 @@ const ToDo = {
     setLS("tasks", this.tasks);
   },
 };
+
+
 const form = document.querySelector("#new-task-form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -150,7 +154,7 @@ form.addEventListener("submit", (e) => {
     !formInputs.textBox.trim() ||
     !formInputs.dateBox ||
     !formInputs.timeBox ||
-    formInputs.textBox.trim().length <= 3
+    formInputs.textBox.trim().length < 3
   ) {
     $(".redo-form").hide();
     toggleSnackBar("All fields must have a value, or a description of minimum 3 letters 😟");
@@ -160,7 +164,7 @@ form.addEventListener("submit", (e) => {
     ToDo.addTask({
       text: textBox,
       completed: false,
-      date: dayjs(dateBox).format("MMMM-DD-YYYY"),
+      date: isFirefox ? dayjs(dateBox).format("MMMM - DD - YYYY") : dayjs(dateBox).format("MMMM-DD-YYYY"),
       day: dayjs(dateBox).format("dddd"),
       time: timeBox,
     });
