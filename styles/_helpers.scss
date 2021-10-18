@@ -186,3 +186,29 @@ input[type="time"]:valid::before {
     }
   }
 }
+
+.shakeError {
+  // Override for task error
+  animation: kf_shake 0.55s 1 linear;
+  background: var(--task-error) !important;
+}
+@keyframes kf_shake {
+  0% {
+    transform: translate(5px, 2.5px) scale(1.02);
+  }
+  20% {
+    transform: translate(-5px, -5px);
+  }
+  40% {
+    transform: translate(2.5px, 1px);
+  }
+  60% {
+    transform: translate(-2.5px, -1px);
+  }
+  80% {
+    transform: translate(1.5px, 0.5px);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1.02);
+  }
+}

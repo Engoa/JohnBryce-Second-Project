@@ -47,14 +47,33 @@ const ToDo = {
   },
 
   editTask(index) {
+    let currentlyEditedTask = this.tasks[index];
     let textDiv = document.querySelectorAll(`.text`)[index];
     const divTask = document.querySelectorAll(`.task`)[index];
+
     if (this.isEdited) {
-      textDiv.removeAttribute("contenteditable");
-      this.tasks[index] = this.update(index, "text", textDiv.textContent);
-      divTask.classList.remove("edited");
-      toggleSnackBar("Task successfully edited");
-      setLS("tasks", this.tasks);
+      // Check to see if new task text hasn't changed
+      if (!textDiv.textContent.length) {
+        toggleSnackBar("Task description cannot be empty!");
+        $(".edited").addClass("shakeError");
+        $(".shakeError").css("backgroundColor", "var(--task-error);");
+        setTimeout(() => {
+          // Remove class after anim is finished
+          $(".edited").removeClass("shakeError");
+        }, 550);
+        this.isEdited = false;
+      } else {
+        // Check to see if new text is valid, *save and update new value*
+        textDiv.removeAttribute("contenteditable");
+        this.tasks[index] = this.update(index, "text", textDiv.textContent);
+        divTask.classList.remove("edited");
+        setLS("tasks", this.tasks);
+
+        // Check to see if new task text is empty
+        if (currentlyEditedTask.text.trim() !== textDiv.textContent.trim()) {
+          toggleSnackBar("Task successfully edited");
+        }
+      }
     } else {
       textDiv.setAttribute("contenteditable", true);
       textDiv.focus();
@@ -65,17 +84,19 @@ const ToDo = {
   },
 
   toggleTask(index) {
-    const divTask = document.querySelectorAll(`.task`)[index];
-    const { completed } = this.tasks[index];
-    if (!completed) {
-      divTask.classList.add("completed");
-      toggleSnackBar("Task is now completed ✔");
-      confettiLight();
-    } else {
-      divTask.classList.remove("completed");
+    if (!this.isEdited) {
+      const divTask = document.querySelectorAll(`.task`)[index];
+      const { completed } = this.tasks[index];
+      if (!completed) {
+        divTask.classList.add("completed");
+        toggleSnackBar("Task is now completed ✔");
+        confettiLight();
+      } else {
+        divTask.classList.remove("completed");
+      }
+      this.tasks[index] = this.update(index, "completed", !completed);
+      this.updateUICompleted();
     }
-    this.tasks[index] = this.update(index, "completed", !completed);
-    this.updateUICompleted();
   },
 
   completeAllTasks() {

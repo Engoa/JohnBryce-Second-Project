@@ -1,13 +1,12 @@
 .snackbar {
   visibility: hidden;
-  min-width: max-content;
+  min-width: 300px;
+  padding: 0.85rem 0.7rem;
   background-color: var(--btn-bg2);
   color: var(--modal);
   font-weight: bold;
   border-radius: 0.5rem;
-  padding: 0.75rem;
   font-size: 0.9rem;
-  text-align: center;
   position: fixed;
   z-index: 1;
   right: 50%;
@@ -15,6 +14,7 @@
   bottom: 1rem;
   font-family: var(--ff-text);
   box-shadow: var(--box-shadow);
+  @include flexCenter;
 
   @media (max-width: 550px) {
     min-width: 310px;

@@ -26,7 +26,7 @@ function setEndOfContenteditable(contentEditableElement) {
 const toggleSnackBar = (text) => {
   let snackBarElement = document.querySelector(".snackbar");
   snackBarElement.classList.add("show");
-  setTimeout(function () {
+  setTimeout(() => {
     snackBarElement.classList.remove("show");
   }, 2500);
   snackBarElement.innerHTML = text;
@@ -46,16 +46,16 @@ const activateTippy = () => {
 
 // Audio stuff
 const $audio = new Audio("");
-const triggerSound = async (path) => {
+const triggerSound = (path) => {
   $audio.src = path;
-  $audio.load();
+  $audio.load(path);
   $audio.volume = 0.05;
   if (path === "../assets/confettiBig.mp3" || path === "../assets/pop.mp3") {
     $audio.currentTime = 1;
   } else {
     $audio.currentTime = 0.085;
   }
-  await $audio.play();
+  $audio.play();
 };
 
 // Confetti options
@@ -91,15 +91,19 @@ const confettiStrong = () => {
       spread: 80,
       origin: { x: 0, y: 1 },
       drift: (Math.random() - 0.5) * 2,
+      scalar: 1.1,
+      startVelocity: 55,
     });
     // and launch a few from the right edge
     confetti({
       particleCount: isMobile ? 5.5 : 7,
       angle: 120,
-      spread: 80,
       ticks: 50,
+      spread: 80,
       origin: { x: 1, y: 1 },
       drift: (Math.random() - 0.5) * 2,
+      scalar: 1.1,
+      startVelocity: 55,
     });
 
     // keep going until we are out of time
