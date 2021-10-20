@@ -2,7 +2,7 @@ const FUSE_OPTIONS = {
   isCaseSensitive: false,
   includeMatches: true,
   threshold: 0.2,
-  keys: ["text", "completed", "date", "time", "day"],
+  keys: ["text", "completed", "fullDate", "time", "day"],
 };
 
 const ToDo = {
@@ -29,13 +29,12 @@ const ToDo = {
     }
     this.isEdited = false;
     initializeDateAndTime(true);
-    $(".search-task").val("");
-    form.reset();
     this.syncLSandUI();
   },
 
   deleteTask(index) {
     this.tasks.splice(index, 1);
+    this.isEdited = false;
     toggleSnackBar("A task has been deleted ❌");
     triggerSound("../assets/pop.mp3");
     this.syncLSandUI();
@@ -73,7 +72,7 @@ const ToDo = {
 
         // Check to see if new task text is empty
         if (currentlyEditedTask.text.trim() !== textDiv.textContent.trim()) {
-          toggleSnackBar("Task successfully edited");
+          toggleSnackBar("Task successfully edited ✔");
         }
       }
     } else {
@@ -92,7 +91,6 @@ const ToDo = {
       if (!completed) {
         divTask.classList.add("completed");
         toggleSnackBar("Task is now completed ✔");
-        confettiLight();
       } else {
         divTask.classList.remove("completed");
       }
@@ -137,7 +135,6 @@ const ToDo = {
   },
 };
 
-
 const form = document.querySelector("#new-task-form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -164,15 +161,16 @@ form.addEventListener("submit", (e) => {
     ToDo.addTask({
       text: textBox,
       completed: false,
-      date: isFirefox ? dayjs(dateBox).format("MMMM - DD - YYYY") : dayjs(dateBox).format("MMMM-DD-YYYY"),
+      fullDate: isFirefox ? dayjs(dateBox).format("MMMM - DD - YYYY") : dayjs(dateBox).format("MMMM-DD-YYYY"),
       day: dayjs(dateBox).format("dddd"),
       time: timeBox,
     });
     $(".task-wrapper:first-of-type").hide();
     $(".task-wrapper:first-of-type").fadeIn(800);
-    form.reset();
     $(".redo-form").hide();
+    $(".search-task").val("");
     toggleSnackBar("A task has been added 👍");
+    form.reset();
   }
 });
 

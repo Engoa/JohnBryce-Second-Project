@@ -1,13 +1,23 @@
 .task-search {
   width: 100%;
   margin-top: 1.5rem;
-  text-align: center;
 
-  input {
+  &--wrapper {
+    max-width: 863px;
+  }
+
+  &--input {
     width: 100%;
-    padding: 0.9rem 1rem;
-    &:focus-within {
-      border-color: var(--pink);
+    border: none;
+    background-color: transparent;
+    &:focus {
+      border: unset;
+    }
+
+    &::placeholder {
+      color: var(--btn-bg2);
+      opacity: 0.7;
+      font-size: 0.95rem;
     }
   }
 }

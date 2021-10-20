@@ -112,16 +112,17 @@
         <div class="task-list">
           <div class="task-list--wrapper"></div>
           <div class="task-search">
-            <label for="search">
+            <fieldset class="task-search--wrapper fieldset">
+              <legend for="search" class="legend">SEARCH BAR</legend>
               <input
                 type="text"
                 name="search"
-                placeholder="Search for task description, status, date and time"
+                placeholder="Search for task description, status, date and time..."
                 autocomplete="off"
                 spellcheck="false"
-                class="input search-task"
+                class="input search-task task-search--input"
               />
-            </label>
+            </fieldset>
           </div>
           <div class="tasks"></div>
         </div>

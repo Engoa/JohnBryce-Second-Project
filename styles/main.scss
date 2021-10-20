@@ -1,10 +1,10 @@
-@import "./helpers";
-@import "./SPOILER_Spacing";
 @import "./variables";
+@import "./helpers";
 @import "./deleteModal";
 @import "./themeBtn";
 @import "./taskSearch";
 @import "./snackbar";
+@import "./SPOILER_Spacing";
 
 header {
   max-width: 900px;
@@ -54,6 +54,9 @@ form {
         font-size: 1.65rem;
         color: var(--tippy-bg);
         transition: var(--transition-150);
+        &:hover {
+          transform: scale(1.1);
+        }
 
         &:active {
           opacity: 0.7;
@@ -111,6 +114,7 @@ main {
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding: 0 0.5rem;
     &--wrapper {
       display: flex;
       align-items: center;
@@ -121,15 +125,19 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
+        justify-content: center;
         h2 {
+          display: flex;
+          align-items: flex-end;
           font-size: 1.7rem;
-          font-size: clamp(1.7rem, 3vw, 2.2rem);
+          font-size: clamp(1.1rem, 3vw, 2.2rem);
           opacity: 0.9;
           transition: var(--transition-250);
-          font-family: var(--ff-header);
           color: var(--text);
-          max-height: 75px;
+          text-transform: uppercase;
+          white-space: pre;
+          min-height: 50px;
+          letter-spacing: -1px;
         }
         h6 {
           font-size: 0.73rem;
@@ -301,6 +309,8 @@ main {
     .completed {
       transition: var(--transition-250);
       border: 2px solid var(border);
+      transform: scale(0.98);
+      opacity: 0.85;
 
       &::before {
         background: var(--sidebar);

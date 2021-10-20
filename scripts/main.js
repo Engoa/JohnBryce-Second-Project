@@ -1,3 +1,18 @@
+//Render if no tasks are available and check for it
+const renderToAddFirstTask = () => {
+  const drawAddFirstTask = $(".render-if-no-tasks");
+  const hideIfTasksAvailable = ToDo.tasks.length ? "hide-element" : "";
+  drawAddFirstTask.html(`
+      <div class="add-first-task ${hideIfTasksAvailable}">
+      <i class="fas fa-tasks"></i>
+      <p>Add your first task!</p>
+      <span>😊</span>
+      </div>
+`);
+};
+
+renderToAddFirstTask();
+
 // If width is mobile, change event to click instead of dblclick
 const addToggleTaskListeners = () => {
   const task = document.querySelectorAll(".task");
@@ -20,31 +35,31 @@ const renderTasks = (searchResults) => {
   tasks.forEach((task, index) => {
     const isCompletedClass = task.completed ? "completed" : "";
     const oddIndex = index % 2 !== 0 ? "task-reversed" : "";
-    const date = dayjs(task.date + " " + task.time).format("dddd, MM-DD-YYYY, HH:mm A");
+    const date = dayjs(task.fullDate + " " + task.time).format("dddd, MM-DD-YYYY, HH:mm A");
     tasksHtml += `
-<div class="task-wrapper" tabindex="${10 + index}"  data-id="${index}">
-  <div class="task ${isCompletedClass} ${oddIndex}"  
-    data-id="${index}">
-    <div class="content"> 
-  <div class="content-left">
-    <button class="edit btn tippy" data-id="${index}" data-tippy-content="Save/Edit" data-tippy-placement="top-end">
-      <i class="fas fa-pencil-alt editbtn"></i>
-      <i class="fas fa-save savebtn"></i>
-    </button>
-  </div>
-    <div class="content-right">
-      <p class="text" spellcheck="false">${task.text}</p>
-        <span class="time">${date}</span>
-    </div>
-  </div>
-    <div class="task__status">
-    <button class="delete btn" data-id="${index}" >
-    <i class="fas fa-times tippy" data-tippy-content="Delete" data-tippy-placement="top-end"></i>
-    </button>
-    <i class="fas fa-check tippy" data-tippy-content="Task Completed" data-tippy-placement="top-start"></i>
-    </div>
-  </div>
-</div>
+        <div class="task-wrapper" tabindex="${10 + index}"  data-id="${index}">
+          <div class="task ${isCompletedClass} ${oddIndex}"  
+            data-id="${index}">
+            <div class="content"> 
+          <div class="content-left">
+            <button class="edit btn tippy" data-id="${index}" data-tippy-content="Save/Edit" data-tippy-placement="top-end">
+              <i class="fas fa-pencil-alt editbtn"></i>
+              <i class="fas fa-save savebtn"></i>
+            </button>
+          </div>
+            <div class="content-right">
+              <p class="text" spellcheck="false">${task.text}</p>
+                <span class="time">${date}</span>
+            </div>
+          </div>
+            <div class="task__status">
+            <button class="delete btn" data-id="${index}" >
+            <i class="fas fa-times tippy" data-tippy-content="Delete" data-tippy-placement="top-end"></i>
+            </button>
+            <i class="fas fa-check tippy" data-tippy-content="Task Completed" data-tippy-placement="top-start"></i>
+            </div>
+          </div>
+        </div>
         `;
   });
   $(".tasks").html(tasksHtml);
@@ -84,10 +99,17 @@ const renderTasks = (searchResults) => {
 
 // Render the header and modal btn
 const renderTaskHeader = () => {
+  const unCompletedTasks = ToDo.tasks.filter(({ completed }) => completed === false);
   const modalClass = !ToDo.tasks.length ? "hide-element" : ``;
   const hideIfAllCompleted = ToDo.tasks.every((item) => item.completed) ? "hide-element" : "";
   const hideIfSomeUnCompleted = ToDo.tasks.some((item) => !item.completed) ? "hide-element" : "";
-  const subHeaderClass = isMobile ? "Click on a task to complete ✔" : "Double click on a task to complete ✔";
+  const taskAmount = ToDo.tasks.every((item) => item.completed) ? "" : unCompletedTasks.length;
+  const subHeaderClass1 = ToDo.tasks.every((item) => item.completed)
+    ? "No Tasks Left 👏"
+    : unCompletedTasks.length === 1
+    ? "Task"
+    : "Tasks";
+  const subHeaderClass2 = isMobile ? "Click on a task to update ✔" : "Double click on a task to update ✔";
   const drawTaskHeader = document.querySelector(".task-list--wrapper");
   drawTaskHeader.innerHTML = `
   <div class="button-wrapper">
@@ -95,8 +117,8 @@ const renderTaskHeader = () => {
     aria-label="Open Modal">Remove All</button>
     </div>
   <div class="tasks-header">
-  <h2 class="${modalClass}">Tasks</h2>
-  <h6 class="${modalClass}">${subHeaderClass}</h6>
+  <h2 class="${modalClass}">${taskAmount} ${subHeaderClass1}</h2>
+  <h6 class="${modalClass}">${subHeaderClass2}</h6>
 </div>
 <div class="button-wrapper">
   <button class="complete-all ${modalClass} btn-cta ${hideIfAllCompleted} task-header-buttons">Complete All</button>
@@ -115,21 +137,6 @@ const renderTaskHeader = () => {
   // Open Delete Modal
   $(".open-modal").click(() => openModal());
 };
-
-//Render if no tasks are available and check for it
-const renderToAddFirstTask = () => {
-  const drawAddFirstTask = $(".render-if-no-tasks");
-  const hideIfTasksAvailable = ToDo.tasks.length ? "hide-element" : "";
-  drawAddFirstTask.html(`
-      <div class="add-first-task ${hideIfTasksAvailable}">
-      <i class="fas fa-tasks"></i>
-      <p>Add your first task!</p>
-      <span>😊</span>
-      </div>
-`);
-};
-
-renderToAddFirstTask();
 
 // Close/Open Delete all tasks modal
 let isOpen = false;
@@ -254,21 +261,25 @@ $(document).ready(() => {
       opacity: 0,
       filter: "blur(20px)",
       stagger: 0.27,
-      duration: 1,
+      duration: 0.9,
     });
   }
 
   gsap
     .from(document.querySelectorAll("header, section, main"), {
       autoAlpha: 0,
-      y: 200,
+      y: 220,
       filter: "blur(10px)",
+      opacity: 0,
       ease: Power1.ease,
       stagger: 0.2,
       clearProps: "all",
     })
-    .totalDuration(1);
+    .totalDuration(1.05);
 
+  setTimeout(() => {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }, 200);
   // Tippies for Tooltips
   activateTippy();
   //Load Audio on page load

@@ -59,21 +59,23 @@ const triggerSound = (path) => {
 };
 
 // Confetti options
-const confettiLight = () => {
-  triggerSound("../assets/confetti.mp3");
-  confetti({
-    particleCount: 200,
-    startVelocity: 30,
-    spread: 360,
-    gravity: 0.8,
-    scalar: 1.1,
-    drift: (Math.random() - 0.5) * 2,
-    origin: {
-      x: Math.random(),
-      y: Math.random() - 0.2,
-    },
-  });
-};
+
+// const confettiLight = () => {
+//   triggerSound("../assets/confetti.mp3");
+//   confetti({
+//     particleCount: 200,
+//     startVelocity: 30,
+//     spread: 360,
+//     gravity: 0.8,
+//     scalar: 1.1,
+//     drift: (Math.random() - 0.5) * 2,
+//     origin: {
+//       x: Math.random(),
+//       y: Math.random() - 0.2,
+//     },
+//   });
+// };
+
 let isAnimatingConfetti = false;
 const confettiStrong = () => {
   if (isAnimatingConfetti) return;
