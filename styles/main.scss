@@ -136,8 +136,15 @@ main {
           color: var(--text);
           text-transform: uppercase;
           white-space: pre;
-          min-height: 50px;
           letter-spacing: -1px;
+          .emoji {
+            font-size: 1.7rem;
+            font-size: clamp(1.1rem, 3vw, 2rem);
+          }
+          .task-left-amount {
+            animation: PopUp 400ms $ease-out;
+            min-width: 5px;
+          }
         }
         h6 {
           font-size: 0.73rem;

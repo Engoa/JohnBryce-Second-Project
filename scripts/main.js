@@ -103,12 +103,11 @@ const renderTaskHeader = () => {
   const modalClass = !ToDo.tasks.length ? "hide-element" : ``;
   const hideIfAllCompleted = ToDo.tasks.every((item) => item.completed) ? "hide-element" : "";
   const hideIfSomeUnCompleted = ToDo.tasks.some((item) => !item.completed) ? "hide-element" : "";
-  const taskAmount = ToDo.tasks.every((item) => item.completed) ? "" : unCompletedTasks.length;
   const subHeaderClass1 = ToDo.tasks.every((item) => item.completed)
-    ? "No Tasks Left 👏"
+    ? "No Tasks Left <span class='emoji'>👏</span>"
     : unCompletedTasks.length === 1
-    ? "Task"
-    : "Tasks";
+    ? `<span class="task-left-amount">${unCompletedTasks.length}</span> Task Left`
+    : `<span class="task-left-amount">${unCompletedTasks.length}</span> Tasks Left`;
   const subHeaderClass2 = isMobile ? "Click on a task to update ✔" : "Double click on a task to update ✔";
   const drawTaskHeader = document.querySelector(".task-list--wrapper");
   drawTaskHeader.innerHTML = `
@@ -117,7 +116,7 @@ const renderTaskHeader = () => {
     aria-label="Open Modal">Remove All</button>
     </div>
   <div class="tasks-header">
-  <h2 class="${modalClass}">${taskAmount} ${subHeaderClass1}</h2>
+  <h2 class="${modalClass}">${subHeaderClass1}</h2>
   <h6 class="${modalClass}">${subHeaderClass2}</h6>
 </div>
 <div class="button-wrapper">
@@ -283,5 +282,4 @@ $(document).ready(() => {
   // Tippies for Tooltips
   activateTippy();
   //Load Audio on page load
-  $audio.load();
 });

@@ -43,12 +43,11 @@ const activateTippy = () => {
       arrow: true,
     });
 };
-
 // Audio stuff
 const $audio = new Audio("");
 const triggerSound = (path) => {
-  $audio.src = path;
   $audio.load(path);
+  $audio.src = path;
   $audio.volume = 0.05;
   if (path === "../assets/confettiBig.mp3" || path === "../assets/pop.mp3") {
     $audio.currentTime = 1;
@@ -59,22 +58,21 @@ const triggerSound = (path) => {
 };
 
 // Confetti options
-
-// const confettiLight = () => {
-//   triggerSound("../assets/confetti.mp3");
-//   confetti({
-//     particleCount: 200,
-//     startVelocity: 30,
-//     spread: 360,
-//     gravity: 0.8,
-//     scalar: 1.1,
-//     drift: (Math.random() - 0.5) * 2,
-//     origin: {
-//       x: Math.random(),
-//       y: Math.random() - 0.2,
-//     },
-//   });
-// };
+const confettiLight = () => {
+  triggerSound("../assets/confetti.mp3");
+  confetti({
+    particleCount: 200,
+    startVelocity: 30,
+    spread: 360,
+    gravity: 0.8,
+    scalar: 1.1,
+    drift: (Math.random() - 0.5) * 2,
+    origin: {
+      x: Math.random(),
+      y: Math.random() - 0.2,
+    },
+  });
+};
 
 let isAnimatingConfetti = false;
 const confettiStrong = () => {

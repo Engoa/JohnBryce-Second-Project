@@ -10,15 +10,19 @@
     width: 100%;
     border: none;
     background-color: transparent;
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.089);
     &:focus {
       border: unset;
     }
-
     &::placeholder {
       color: var(--btn-bg2);
       opacity: 0.7;
       font-size: 0.95rem;
     }
+  }
+
+  .fieldset:focus-within {
+    border-color: var(--btn-bg2);
   }
 }
 @media (max-width: 550px) {

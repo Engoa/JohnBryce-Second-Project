@@ -91,6 +91,7 @@ const ToDo = {
       if (!completed) {
         divTask.classList.add("completed");
         toggleSnackBar("Task is now completed ✔");
+        confettiLight();
       } else {
         divTask.classList.remove("completed");
       }
