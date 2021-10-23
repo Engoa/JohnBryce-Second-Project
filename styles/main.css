@@ -805,6 +805,7 @@ input[type="time"]:valid::before {
   font-size: clamp(0.8rem, 3vw, 1.1rem);
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  min-height: 22px;
 }
 
 @media (max-width: 550px) {
@@ -2791,9 +2792,8 @@ main .task-list--wrapper .tasks-header h6 {
 
 main .tasks {
   min-width: 100%;
-  padding-bottom: 5rem;
-  margin-top: 1rem;
   padding: 0 0.5rem;
+  padding-bottom: 5rem;
 }
 
 main .task-wrapper {

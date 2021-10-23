@@ -34,6 +34,7 @@
   font-size: clamp(0.8rem, 3vw, 1.1rem);
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  min-height: 22px;
 }
 @media (max-width: 550px) {
   .search-task {
