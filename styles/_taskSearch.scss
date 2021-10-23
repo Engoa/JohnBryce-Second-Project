@@ -1,6 +1,7 @@
 .task-search {
   width: 100%;
   margin-top: 1.5rem;
+  max-width: 860px;
 
   &--wrapper {
     max-width: 863px;
@@ -24,6 +25,15 @@
   .fieldset:focus-within {
     border-color: var(--btn-bg2);
   }
+}
+#search-result-amount {
+  margin-top: 0.5rem;
+  color: var(--task-text);
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-size: clamp(0.8rem, 3vw, 1.1rem);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 @media (max-width: 550px) {
   .search-task {

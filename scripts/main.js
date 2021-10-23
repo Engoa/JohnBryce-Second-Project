@@ -167,12 +167,17 @@ $(document).keydown((e) => {
 const searchInput = $(".search-task");
 searchInput.on("input", () => {
   const mappedResults = ToDo.$fuse.search(searchInput.val()).map(({ item }) => item);
+  if (!mappedResults.length) {
+    $("#search-result-amount").html(`No Results - Showing all tasks`);
+  } else {
+    $("#search-result-amount").html(
+      `${mappedResults.length === 1 ? mappedResults.length + " Result" : mappedResults.length + " Results"}`
+    );
+  }
   renderTasks(mappedResults);
-
-  if (searchInput.val().trim().length >= 9) {
-    setTimeout(() => {
-      toggleSnackBar("Search field is too long - Showing all tasks");
-    }, 600);
+  if (!searchInput.val()) {
+    $("#search-result-amount").html(``);
+    renderTasks();
   }
 });
 

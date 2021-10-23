@@ -55,13 +55,7 @@ const ToDo = {
     if (this.isEdited) {
       // Check to see if new task text hasn't changed
       if (!textDiv.textContent.length) {
-        toggleSnackBar("Task description cannot be empty!");
-        $(".edited").addClass("shakeError");
-        $(".shakeError").css("backgroundColor", "var(--task-error);");
-        setTimeout(() => {
-          // Remove class after anim is finished
-          $(".edited").removeClass("shakeError");
-        }, 550);
+        errorShake(".edited");
         this.isEdited = false;
       } else {
         // Check to see if new text is valid, *save and update new value*
@@ -92,6 +86,12 @@ const ToDo = {
         divTask.classList.add("completed");
         toggleSnackBar("Task is now completed ✔");
         confettiLight();
+        // Wait and check if all tasks are completed on toggle, if true, do the following:
+        setTimeout(() => {
+          if (this.tasks.every((task) => task.completed)) {
+            confettiStrong();
+          }
+        }, 1100);
       } else {
         divTask.classList.remove("completed");
       }
@@ -155,6 +155,7 @@ form.addEventListener("submit", (e) => {
     formInputs.textBox.trim().length < 3
   ) {
     $(".redo-form").hide();
+    errorShake(".new-task-submit");
     toggleSnackBar("All fields must have a value, or a description of minimum 3 letters 😟");
     return;
   } else {

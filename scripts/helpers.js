@@ -22,6 +22,16 @@ function setEndOfContenteditable(contentEditableElement) {
     range.select(); //Select the range (make it the visible selection
   }
 }
+
+// Error Shake function
+
+const errorShake = (element) => {
+  $(element).addClass("shakeError");
+  setTimeout(() => {
+    // Remove class after anim is finished
+    $(element).removeClass("shakeError");
+  }, 550);
+};
 // Snackbar
 const toggleSnackBar = (text) => {
   let snackBarElement = document.querySelector(".snackbar");
@@ -53,6 +63,9 @@ const triggerSound = (path) => {
     $audio.currentTime = 1;
   } else {
     $audio.currentTime = 0.085;
+  }
+  if (path === "../assets/pop.mp3") {
+    $audio.volume = 0.2;
   }
   $audio.play();
 };

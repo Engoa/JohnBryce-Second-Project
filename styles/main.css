@@ -289,7 +289,7 @@ input[type="time"]:valid::before {
 }
 
 .btn-cta:hover {
-  background: var(--btn-bg2) !important;
+  background: var(--btn-bg2);
   color: var(--modal);
 }
 
@@ -360,6 +360,11 @@ input[type="time"]:valid::before {
   -webkit-animation: kf_shake 0.55s 1 linear;
           animation: kf_shake 0.55s 1 linear;
   background: var(--task-error) !important;
+  z-index: 99;
+}
+
+.shakeError:hover .new-task-submit {
+  background: unset;
 }
 
 @-webkit-keyframes kf_shake {
@@ -745,6 +750,7 @@ input[type="time"]:valid::before {
 .task-search {
   width: 100%;
   margin-top: 1.5rem;
+  max-width: 860px;
 }
 
 .task-search--wrapper {
@@ -789,6 +795,16 @@ input[type="time"]:valid::before {
 
 .task-search .fieldset:focus-within {
   border-color: var(--btn-bg2);
+}
+
+#search-result-amount {
+  margin-top: 0.5rem;
+  color: var(--task-text);
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-size: clamp(0.8rem, 3vw, 1.1rem);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 @media (max-width: 550px) {
@@ -2666,6 +2682,7 @@ form .submit-btn .new-task-submit {
 form .submit-btn .new-task-submit:hover {
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
+  background: var(--btn-bg2);
 }
 
 form .submit-btn .new-task-submit:active {
@@ -2706,7 +2723,6 @@ main .task-list {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 0 0.5rem;
 }
 
 main .task-list--wrapper {
@@ -2777,6 +2793,7 @@ main .tasks {
   min-width: 100%;
   padding-bottom: 5rem;
   margin-top: 1rem;
+  padding: 0 0.5rem;
 }
 
 main .task-wrapper {
@@ -2980,7 +2997,6 @@ main .task-wrapper .completed {
   border: 2px solid var(border);
   -webkit-transform: scale(0.98);
           transform: scale(0.98);
-  opacity: 0.85;
 }
 
 main .task-wrapper .completed::before {
@@ -2993,6 +3009,7 @@ main .task-wrapper .completed::before {
 
 main .task-wrapper .completed .content-left .edit {
   font-size: 0;
+  visibility: hidden;
 }
 
 main .task-wrapper .completed .content-right .text,
