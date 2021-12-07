@@ -11,7 +11,7 @@ class Component {
   containerEl = null;
   watch = [];
 
-  constructor(props, watch) {
+  constructor(props = {}, watch = []) {
     this.watch = watch;
     this.props = props;
     this.created();

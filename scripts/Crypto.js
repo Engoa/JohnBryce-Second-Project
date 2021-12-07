@@ -54,15 +54,15 @@ const CryptoManager = {
   },
 
   async getMoreInfo(id) {
-    this.openedCoin = this.coins.find((coin) => id === coin.id);
+    // this.openedCoin = this.coins.find((coin) => id === coin.id);
     await this.fetchCoinByID(this.openedCoin.symbol);
-    document.dispatchEvent(new CustomEvent("coin-selected"));
+    // document.dispatchEvent(new CustomEvent("coin-selected"));
   },
   async fetchCoins() {
     try {
       this.loading = true;
       const response = await $.ajax("../assets/JSON/coins.json");
-      this.coins = response.slice(0, 100);
+      this.coins = response.slice(0, 50);
       this.syncLSandUI();
       console.log(this.coins);
     } catch (error) {
@@ -71,17 +71,8 @@ const CryptoManager = {
       this.loading = false;
     }
   },
-  async fetchCoinByID(coinID) {
-    try {
-      this.loading = true;
-      const response = await $.ajax(`https://api.coingecko.com/api/v3/coins/${coinID}`);
-      this.openedCoin = response;
-      console.log(this.openedCoin);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.loading = false;
-    }
+  fetchCoinByID(coinID) {
+    return $.ajax(`https://api.coingecko.com/api/v3/coins/${coinID}`);
   },
 
   syncLSandUI() {

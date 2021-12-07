@@ -22,7 +22,7 @@ class CardComponent extends Component {
               <span>${symbol}</span>
             </div>
             <div class="coins__btn">
-              <button slot="more-info" class="btn">More Info</button>
+              <a class="coins__btn btn btn-primary modal--link" href="#coin?id=${id}">More Info</a>
             </div>
            <div class="coins__toggle">
            <div class="form-check form-switch"></div>

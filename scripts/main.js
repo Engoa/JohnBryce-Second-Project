@@ -1,31 +1,5 @@
 // Run on each task object, of the coins array, and render them.
 
-function createElementFromHTML(htmlString) {
-  var div = document.createElement("div");
-  div.innerHTML = htmlString.trim();
-
-  return div.firstChild;
-}
-
-const renderCoins = (searchResults) => {
-  $(".coins").html(null);
-
-  CryptoManager.coins.map((coin) => {
-    const Card = new CardComponent({ data: coin });
-    $(".coins").append(Card.render());
-  });
-
-  // const moreInfoBtn = document.querySelectorAll(".coin");
-  // moreInfoBtn.forEach((btn) => {
-  //   btn.addEventListener("click", (e) => {
-  //     e.stopPropagation();
-  //     CryptoManager.getMoreInfo(btn.dataset.id);
-  //   });
-  // });
-};
-
-renderCoins();
-
 const openCoinModal = () => {
   let modalHtml = "";
   modalHtml += `
@@ -49,12 +23,3 @@ const openCoinModal = () => {
 //     renderCoins();
 //   }
 // });
-
-// Events to update UI
-document.addEventListener("update-coins", () => {
-  renderCoins();
-});
-
-document.addEventListener("coin-selected", () => {
-  openCoinModal();
-});

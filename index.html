@@ -44,10 +44,15 @@
 
     <meta name="color-scheme" id="meta-theme" />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
+    <script src="/scripts/router.js" defer></script>
   </head>
   <body class="bgdark">
     <div class="container-wrapper">
-      <nav>
+      <nav class="nav">
+        <div class="nav__links">
+          <a href="#">Home</a>
+          <a href="#about">About</a>
+        </div>
         <button id="theme-toggle" class="tippy">
           <svg xmlns="http://www.w3.org/2000/svg" width="472.39" height="472.39" viewBox="0 0 472.39 472.39">
             <g class="toggle-sun">
@@ -62,7 +67,7 @@
         </button>
       </nav>
       <main>
-        <section class="coins"></section>
+        <div id="app"></div>
         <section class="modal">
           <div class="modal__info"></div>
         </section>
@@ -70,6 +75,7 @@
     </div>
 
     <div class="snackbar"></div>
+    <div id="modal"></div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -77,9 +83,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="./scripts/helpers.js"></script>
-    <script src="./scripts/components/Component.js"></script>
-    <script src="./scripts/components/Switch.js"></script>
-    <script src="./scripts/components/Card.js"></script>
+    <script src="./components/Component.js"></script>
+    <script src="./components/Switch.js"></script>
+    <script src="./components/Card.js"></script>
     <script src="./scripts/themeBtn.js"></script>
     <script src="./scripts/Crypto.js"></script>
     <script src="./scripts/main.js"></script>
