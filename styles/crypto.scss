@@ -1,0 +1,35 @@
+@import "./variables";
+@import "./helpers";
+@import "./deleteModal";
+@import "./themeBtn";
+@import "./snackbar";
+
+.coins {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  gap: 3rem;
+
+  &__item {
+    flex: 0 0 calc(25% - 3rem);
+    background-color: rgba(128, 128, 128, 0.507);
+    border: 9px solid transparent;
+    &--active {
+      border-color: salmon;
+    }
+  }
+
+  &__details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}

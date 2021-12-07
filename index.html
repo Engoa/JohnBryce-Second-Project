@@ -5,14 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <title>Task List</title>
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/crypto.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bungee&family=Tourney:wght@200;400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Tourney:wght@200;400;600&display=swap" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
@@ -32,20 +29,26 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/classnames/2.3.1/index.min.js"
+      integrity="sha512-6Wf/IjsSjLaFTYco3pXM+49kC5M7jtbHzxMcdmYvwDskjv7cMcBPmJX2053aoQ+LRi8Po4ZsCtkNMf+NhXhNyQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://unpkg.com/tippy.js@6/animations/shift-toward.css"
-      href="https://unpkg.com/tippy.js@6/dist/svg-arrow.css';"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
     />
-    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+
     <meta name="color-scheme" id="meta-theme" />
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
   </head>
   <body class="bgdark">
     <div class="container-wrapper">
       <nav>
-        <button id="theme-toggle" data-tippy-content="Toggle theme" data-tippy-placement="left" class="tippy">
+        <button id="theme-toggle" class="tippy">
           <svg xmlns="http://www.w3.org/2000/svg" width="472.39" height="472.39" viewBox="0 0 472.39 472.39">
             <g class="toggle-sun">
               <path
@@ -58,106 +61,28 @@
           </svg>
         </button>
       </nav>
-      <header>
-        <h1>Task List Project</h1>
-        <form id="new-task-form" submit="ToDo.addTask()">
-          <div class="inputs-wrapper">
-            <div class="first-input">
-              <input
-                type="text"
-                name="new-task-input"
-                class="new-task-input input"
-                id="text"
-                placeholder="What do you have planned?"
-                spellcheck="false"
-                autocomplete="off"
-                aria-label="Task Description"
-                tabindex="1"
-              />
-            </div>
-
-            <div class="second-inputs">
-              <input type="date" class="input" id="date" aria-label="Task Date" tabindex="2" />
-              <i
-                class="fas fa-calendar-day tippy current-date"
-                data-tippy-content="Auto-fill current Date"
-                data-tippy-placement="bottom"
-                tabindex="3"
-              ></i>
-              <input type="time" class="input" id="time" aria-label="Task Time" tabindex="4" />
-            </div>
-          </div>
-          <div class="submit-btn">
-            <div class="redo-form tippy" data-tippy-content="Reset Form" data-tippy-placement="left" tabindex="5">
-              <i class="fas fa-redo" onclick="ToDo.resetForm()"></i>
-            </div>
-            <button
-              tabindex="4"
-              type="submit"
-              class="new-task-submit btn-cta tippy"
-              click="ToDo.addTask()"
-              aria-label="Submit Task"
-              data-tippy-content="Submit Task"
-              data-tippy-placement="right"
-            >
-              SUBMIT
-            </button>
-          </div>
-        </form>
-      </header>
-      <section>
-        <div class="render-if-no-tasks"></div>
-      </section>
       <main>
-        <div class="task-list">
-          <div class="task-list--wrapper"></div>
-          <div class="task-search">
-            <fieldset class="task-search--wrapper fieldset">
-              <legend for="search" class="legend">SEARCH BAR</legend>
-              <input
-                type="text"
-                name="search"
-                placeholder="Search for task description, status, date and time..."
-                autocomplete="off"
-                spellcheck="false"
-                class="input search-task task-search--input"
-              />
-            </fieldset>
-            <div id="search-result-amount">
-              <span></span>
-            </div>
-          </div>
-          <div class="tasks"></div>
-        </div>
+        <section class="coins"></section>
+        <section class="modal">
+          <div class="modal__info"></div>
+        </section>
       </main>
-    </div>
-
-    <div class="modal__overlay" onclick="closeModal()"></div>
-    <div class="modal" id="modal--active">
-      <div class="modal-contents">
-        <div class="container">
-          <div class="modal__header">
-            <h3>Are you sure you want to remove all tasks?</h3>
-            <p>This action cannot be undone!</p>
-          </div>
-          <div class="modal__actions">
-            <button class="close-modal btn-cta" onclick="closeModal()" aria-label="Close Modal">Close</button>
-            <button class="delete-all btn-cta" onclick="ToDo.deleteAllTasks()" aria-label="Delete All Tasks">
-              I'm sure
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="snackbar"></div>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script src="./scripts/helpers.js"></script>
+    <script src="./scripts/components/Component.js"></script>
+    <script src="./scripts/components/Switch.js"></script>
+    <script src="./scripts/components/Card.js"></script>
     <script src="./scripts/themeBtn.js"></script>
-    <script src="./scripts/ToDo.js"></script>
+    <script src="./scripts/Crypto.js"></script>
     <script src="./scripts/main.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
   </body>
 </html>
