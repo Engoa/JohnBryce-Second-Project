@@ -5,7 +5,6 @@
 
     constructor(props) {
       super(props);
-
       this.fetchData();
     }
 
@@ -26,7 +25,7 @@
     }
 
     renderError(e) {
-      $(".coin-page").html(`<p>Error occoured, ${e.responseJSON.error}</p>`);
+      $(".coin-page").html(`<p class="error">Error occoured, ${e.responseJSON.error} from the API</p>`);
     }
   }
 

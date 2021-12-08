@@ -1,13 +1,3 @@
-// Run on each task object, of the coins array, and render them.
-
-const openCoinModal = () => {
-  let modalHtml = "";
-  modalHtml += `
-        <p>${CryptoManager.openedCoin.symbol}</p>
-       `;
-  $(".modal__info").html(modalHtml);
-};
-
 // Get search results on input change, with mappedResults that fit the search values
 // const searchInput = $(".search-task");
 // searchInput.on("input", () => {
@@ -22,4 +12,12 @@ const openCoinModal = () => {
 //     $("#search-result-amount").html(``);
 //     renderCoins();
 //   }
+// });
+// $(document).ready(() => {
+//   $(".strip-top").each(function () {
+//     var items = ["blue", "red", "yellow"];
+//     var colour = items[Math.floor(Math.random() * items.length)];
+//     $(this).css("color", colour);
+//     console.log("fasfqaf");
+//   });
 // });

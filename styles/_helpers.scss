@@ -2,12 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--ff-text);
 }
 
+body,
+html {
+  background: var(--bg) !important;
+  font-family: var(--ff-text);
+}
 .container-wrapper {
-  max-width: 1440px;
-  margin: auto;
+  padding: 0 2rem;
 }
 
 input,
@@ -16,4 +19,15 @@ button {
   border: none;
   border: none;
   background: none;
+}
+
+.error {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  height: 100vh;
 }

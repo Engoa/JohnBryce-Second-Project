@@ -36,18 +36,17 @@ const CryptoManager = {
   },
 
   //METHODS
-  addCoin(id) {
+  async addCoin(id) {
     const exist = this.findSelectedCrypto(id);
     if (exist) return;
-
     const toggledCoin = this.findCoin(id);
-    this.toggledCoins.push(toggledCoin);
+    const res = await this.fetchCoinByID(toggledCoin.id);
+    this.toggledCoins.push(res);
     this.coinToggled();
   },
   removeCoin(id) {
     const exist = this.findSelectedCrypto(id);
     if (!exist) return;
-
     const toggledCoin = this.findCoin(id);
     this.toggledCoins = this.toggledCoins.filter((coin) => coin.id !== toggledCoin.id);
     this.coinToggled();
@@ -62,7 +61,7 @@ const CryptoManager = {
     try {
       this.loading = true;
       const response = await $.ajax("../assets/JSON/coins.json");
-      this.coins = response.slice(0, 50);
+      this.coins = response.slice(0, 100);
       this.syncLSandUI();
       console.log(this.coins);
     } catch (error) {
