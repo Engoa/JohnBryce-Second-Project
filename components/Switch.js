@@ -10,7 +10,7 @@ class SwitchComponent extends Component {
     const checkedProp = CryptoManager.findSelectedCrypto(this.props.id);
     const disabledProp = !checkedProp && CryptoManager.reachedMax;
 
-    const containerEl = createElementFromHTML(`
+    const containerEl = elementFromHTML(`
         <input class="form-check-input" type="checkbox" role="switch" id="${this.props.htmlFor}">
       `);
 
@@ -34,12 +34,14 @@ class SwitchComponent extends Component {
   onClick($el) {
     if (!$el.checked) {
       CryptoManager.removeCoin(this.props.id);
+      toggleSnackBar(`Card successfully removed from Portfolio ${CryptoManager.toggledCoins.length}/5 `);
     } else {
       CryptoManager.addCoin(this.props.id);
+      toggleSnackBar(`Card successfully added to Portfolio ${CryptoManager.toggledCoins.length}/5 `);
     }
   }
 
   assignEvents(el) {
-    el.addEventListener("change", this.onClick.bind(this, el));
+    el.addEventListener("click", this.onClick.bind(this, el));
   }
 }

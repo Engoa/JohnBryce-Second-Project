@@ -6,19 +6,16 @@
 
 body,
 html {
-  background: var(--bg) !important;
+  background: #1d1d1d !important;
+  // background: var(--bg) !important;
   font-family: var(--ff-text);
+}
+
+body {
+  counter-reset: results;
 }
 .container-wrapper {
   padding: 0 2rem;
-}
-
-input,
-button {
-  appearance: none;
-  border: none;
-  border: none;
-  background: none;
 }
 
 .error {
@@ -29,5 +26,5 @@ button {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  height: 100vh;
+  margin-top: 3rem;
 }

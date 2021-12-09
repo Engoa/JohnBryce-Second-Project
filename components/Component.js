@@ -1,4 +1,4 @@
-function createElementFromHTML(htmlString) {
+function elementFromHTML(htmlString) {
   var div = document.createElement("div");
   div.innerHTML = htmlString.trim();
 

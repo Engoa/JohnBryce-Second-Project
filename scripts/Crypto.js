@@ -1,16 +1,8 @@
-const FUSE_OPTIONS = {
-  isCaseSensitive: false,
-  includeMatches: true,
-  threshold: 0.2,
-  keys: ["text", "completed", "fullDate", "time", "day"],
-};
-
 const CryptoManager = {
   //DATA MEMBERS
   coins: [],
   toggledCoins: [],
   openedCoin: null,
-  loading: null,
   MAXtoggled: 5,
   $fuse: null,
 
@@ -27,6 +19,10 @@ const CryptoManager = {
     return this.coins.findIndex((coin) => id === coin.id);
   },
 
+  findBySymbol(symbol) {
+    return this.toggledCoins.find((coin) => symbol === coin.symbol);
+  },
+
   findSelectedCrypto(id) {
     return this.toggledCoins.find((coin) => id === coin.id);
   },
@@ -36,13 +32,16 @@ const CryptoManager = {
   },
 
   //METHODS
+
   async addCoin(id) {
     const exist = this.findSelectedCrypto(id);
     if (exist) return;
     const toggledCoin = this.findCoin(id);
+    this.toggledCoins.push(toggledCoin);
+    document.dispatchEvent(new CustomEvent("coin-toggled"));
     const res = await this.fetchCoinByID(toggledCoin.id);
-    this.toggledCoins.push(res);
-    this.coinToggled();
+    this.toggledCoins[this.toggledCoins.length - 1] = res;
+    setLS("toggled-coins", this.toggledCoins);
   },
   removeCoin(id) {
     const exist = this.findSelectedCrypto(id);
@@ -53,25 +52,29 @@ const CryptoManager = {
   },
 
   async getMoreInfo(id) {
-    // this.openedCoin = this.coins.find((coin) => id === coin.id);
-    await this.fetchCoinByID(this.openedCoin.symbol);
-    // document.dispatchEvent(new CustomEvent("coin-selected"));
+    await this.fetchCoinByID(id);
   },
   async fetchCoins() {
     try {
-      this.loading = true;
+      AppGlobals.toggleLoader();
       const response = await $.ajax("../assets/JSON/coins.json");
-      this.coins = response.slice(0, 100);
+      this.coins = response.slice(4500, 5000);
       this.syncLSandUI();
       console.log(this.coins);
     } catch (error) {
       console.log(error);
     } finally {
-      this.loading = false;
+      AppGlobals.toggleLoader();
     }
   },
+
   fetchCoinByID(coinID) {
     return $.ajax(`https://api.coingecko.com/api/v3/coins/${coinID}`);
+  },
+
+  fetchPrices(coins) {
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURI(coins)}&vs_currencies=usd`;
+    return $.ajax(url);
   },
 
   syncLSandUI() {

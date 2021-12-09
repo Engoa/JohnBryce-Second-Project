@@ -28,19 +28,17 @@ const toggleSnackBar = (text) => {
   snackBarElement.innerHTML = text;
 };
 
-// Audio stuff
-// const $audio = new Audio("");
-// const triggerSound = (path) => {
-//   $audio.load(path);
-//   $audio.src = path;
-//   $audio.volume = 0.05;
-//   if (path === "../assets/confettiBig.mp3" || path === "../assets/pop.mp3") {
-//     $audio.currentTime = 1;
-//   } else {
-//     $audio.currentTime = 0.085;
-//   }
-//   if (path === "../assets/pop.mp3") {
-//     $audio.volume = 0.2;
-//   }
-//   $audio.play();
-// };
+// Nav Stuff
+const menuBtn = document.getElementById("menubtn");
+const xButton = document.querySelector("#menu--close");
+const navbarMobile = document.querySelector(".navbar--mobile");
+
+function menuToggle() {
+  navbarMobile.classList.toggle("active");
+  xButton.classList.toggle("menu--open");
+  menuBtn.classList.toggle("hide");
+}
+
+function closeNav() {
+  navbarMobile.classList.remove("active");
+}

@@ -12,6 +12,9 @@
         const Card = new CardComponent({ data: coin }).render();
         $(".coins").append(Card);
       });
+
+      const searchBar = new SearchBarComponent().render();
+      $(".search-bar").replaceWith(searchBar);
     }
 
     watchListeners() {

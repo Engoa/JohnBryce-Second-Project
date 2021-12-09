@@ -10,22 +10,21 @@
 
     async fetchData() {
       try {
-        const res = await CryptoManager.fetchCoinByID(this.coinRaw.symbol);
+        const res = await CryptoManager.fetchCoinByID(this.coinRaw.id);
         this.coin = res;
         this.render();
-        $(".loader").fadeOut();
       } catch (e) {
         this.renderError(e);
       }
     }
 
     render() {
-      $(".coin-page__name").html(this.coin?.id);
-      $(".coin-page__price").html(this.coin?.name);
+      $(".coin-page__name span").html(this.coin?.id);
+      $(".coin-page__price span").html(this.coin?.name);
     }
 
     renderError(e) {
-      $(".coin-page").html(`<p class="error">Error occoured, ${e.responseJSON.error} from the API</p>`);
+      $(".coin-page").html(`<p class="error">Error occoured, ${e.responseJSON?.error} from the API</p>`);
     }
   }
 

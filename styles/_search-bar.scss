@@ -1,0 +1,75 @@
+.header {
+  position: relative;
+  z-index: 5;
+}
+.search {
+  &__wrapper {
+    margin: 2rem auto;
+    position: relative;
+    z-index: 0;
+    .input-group {
+      z-index: 2;
+    }
+  }
+
+  &__results {
+    position: absolute;
+    top: 100%;
+    height: 300px;
+    max-height: 300px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 0 0 0.5rem 0.5rem;
+    width: 100%;
+    z-index: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-150);
+    opacity: 1;
+    pointer-events: all;
+    &.hidden {
+      transform: translateY(-20px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    a {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      @include media("<md") {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &__card {
+    flex: 1;
+    min-height: 67px;
+    max-height: 67px;
+    @include media("<md") {
+      min-height: 40px;
+      max-height: 40px;
+    }
+    padding: 0.5rem;
+    transition: var(--transition-150);
+    &:hover {
+      cursor: pointer;
+      background-color: darken(#fff, 5%);
+    }
+
+    &--body {
+      padding: 0.5rem;
+    }
+
+    &--text {
+      &::before {
+        counter-increment: results;
+        content: counter(results) ". ";
+      }
+    }
+  }
+}

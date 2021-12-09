@@ -2,10 +2,10 @@
   visibility: hidden;
   min-width: 300px;
   padding: 0.85rem 0.7rem;
-  background-color: var(--btn-bg2);
-  color: var(--modal);
+  background-color: black;
+  color: white;
   font-weight: bold;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   font-size: 0.9rem;
   position: fixed;
   z-index: 1;
@@ -15,6 +15,7 @@
   font-family: var(--ff-text);
   box-shadow: var(--box-shadow);
   @include flexCenter;
+  justify-content: flex-start;
 
   @media (max-width: 550px) {
     min-width: 310px;
@@ -27,7 +28,7 @@
     bottom: -1.7rem;
     transform: translateX(-50%) rotate(-180deg);
     border: 20px solid transparent;
-    border-bottom-color: var(--btn-bg2);
+    border-bottom-color: (--bg);
     z-index: -1;
   }
 }

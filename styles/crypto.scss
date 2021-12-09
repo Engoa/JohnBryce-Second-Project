@@ -1,43 +1,23 @@
 @import "./variables";
+@import "breakpoints";
 @import "./helpers";
-@import "./deleteModal";
+@import "./search-bar";
 @import "./snackbar";
-
-.nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.5rem 0;
-
-  &__links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    a {
-      text-transform: uppercase;
-      transition: var(--transition-250);
-      letter-spacing: 0.1rem;
-      color: white;
-      font-size: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  }
-}
+@import "./loader";
+@import "./nav";
 
 .title {
   margin: 3rem 0;
   text-align: center;
-  color: white;
-  font-family: var(--ff-header) !important;
+  color: var(--primary);
 }
+
 .coins {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  gap: 1rem;
+  gap: 2rem;
   padding-bottom: 2rem;
 
   &__item {
@@ -46,42 +26,81 @@
     transition: var(--transition-250);
     height: 240px;
     width: 350px;
+    @include media("<md") {
+      width: 300px;
+      height: 150px;
+    }
+
     &--active {
       transition: var(--transition-250);
+      transform: scale(1.08);
+
       .front {
-        background: grey !important;
+        transition: var(--transition-250);
+        background: rgb(160, 16, 47) !important;
+      }
+
+      .card__button {
+        a {
+          &:hover {
+            color: white;
+          }
+        }
       }
     }
   }
   .form-switch {
-    visibility: hidden;
+    z-index: 1;
+    margin-left: auto;
+    .form-check-input:checked {
+      background-color: black;
+      border-color: black;
+    }
   }
 }
 
 .card {
-  width: 350px;
-  height: 240px;
+  width: inherit;
+  height: inherit;
   background-color: transparent !important;
+  transition: var(--transition-250);
   cursor: pointer;
 
   &-name {
-    margin: 2rem 25px;
+    left: 25px;
+    top: 5px;
     z-index: 2;
     position: relative;
     font-weight: bold;
+    max-width: 300px;
   }
   &__button {
     margin: 2rem 25px;
-    z-index: 2;
+    z-index: 5;
+    width: fit-content;
+    @include media("<md") {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.7rem;
+      margin: 0;
+    }
 
+    &:hover {
+      a {
+        color: rgb(209, 23, 85);
+      }
+    }
     a {
       transition: var(--transition-150);
       text-decoration: none;
-      color: white;
+      color: black;
       font-size: 1rem;
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
+      background: rgba(255, 255, 255, 0.514);
+      border-radius: 0.2rem;
+      padding: 0.25rem 1rem;
     }
   }
 }
@@ -91,22 +110,21 @@
   transition: 0.7s;
   transform-style: preserve-3d;
   -webkit-animation: flip 2.5s ease;
-  animation: flip 2.5s ease;
-  background-color: transparent;
 }
 .front,
 .back {
   position: absolute;
   width: inherit;
   height: inherit;
-  border-radius: 15px;
-  color: #fff;
+  border-radius: 10px;
+  color: var(--primary);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.3);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background-image: linear-gradient(to right, #111, #555);
   overflow: hidden;
+  transition: var(--transition-250) !important;
 }
 .front {
   transform: translateZ(0);
@@ -134,7 +152,7 @@
 }
 .investor {
   position: relative;
-  top: 30px;
+  top: 15px;
   left: 25px;
   text-transform: uppercase;
   font-weight: bold;
@@ -143,7 +161,7 @@
 }
 .chip {
   position: relative;
-  top: 60px;
+  top: 30px;
   left: 25px;
   display: flex;
   align-items: center;
@@ -185,18 +203,10 @@
 }
 .wave {
   position: relative;
-  top: 20px;
-  left: 100px;
+  top: -10px;
+  left: 90px;
 }
-.card-number {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 40px 25px 10px;
-  font-size: 23px;
-  font-family: "cc font", monospace;
-}
+
 .end {
   margin-left: 25px;
   text-transform: uppercase;
@@ -204,31 +214,23 @@
 }
 .end .end-text {
   font-size: 9px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--primary);
 }
-.card-holder {
-  margin: 10px 25px;
-  text-transform: uppercase;
-  font-family: "cc font", monospace;
+
+.coin-page {
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
-.master {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  display: flex;
-}
-.master .circle {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-}
-.master .master-red {
-  background-color: #eb001b;
-}
-.master .master-yellow {
-  margin-left: -10px;
-  background-color: rgba(255, 209, 0, 0.7);
-}
-.card {
-  perspective: 1000;
+
+.chart__chart {
+  margin: auto;
+  @include media(">md") {
+    max-height: 80%;
+    max-width: 80%;
+  }
+  canvas {
+    border-radius: 5px;
+    background: black;
+  }
 }
