@@ -11,7 +11,7 @@ class SwitchComponent extends Component {
     const disabledProp = !checkedProp && CryptoManager.reachedMax;
 
     const containerEl = elementFromHTML(`
-        <input class="form-check-input" type="checkbox" role="switch" id="${this.props.htmlFor}">
+    <input class="form-check-input" type="checkbox" id="${this.props.htmlFor}">
       `);
 
     if (checkedProp) containerEl.checked = true;
@@ -24,11 +24,8 @@ class SwitchComponent extends Component {
   }
 
   watchListeners() {
-    const checkedProp = CryptoManager.findSelectedCrypto(this.props.id);
-    const disabledProp = !checkedProp && CryptoManager.reachedMax;
-
-    if (disabledProp) this.containerEl.disabled = true;
-    else this.containerEl.disabled = null;
+    this.containerEl.checked = CryptoManager.findSelectedCrypto(this.props.id);
+    this.containerEl.disabled = !this.containerEl.checked && CryptoManager.reachedMax;
   }
 
   onClick($el) {

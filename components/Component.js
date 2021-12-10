@@ -20,8 +20,8 @@ class Component {
   created() {
     if (this.watch.length) {
       for (const ev of this.watch) {
-        document.addEventListener(ev, () => {
-          this.watchListeners();
+        document.addEventListener(ev, (e) => {
+          this.watchListeners(ev, e);
         });
       }
     }

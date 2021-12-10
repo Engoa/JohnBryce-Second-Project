@@ -56,7 +56,7 @@ const CryptoManager = {
   },
   async fetchCoins() {
     try {
-      AppGlobals.toggleLoader();
+      AppGlobals.toggleLoader(true);
       const response = await $.ajax("../assets/JSON/coins.json");
       this.coins = response.slice(4500, 5000);
       this.syncLSandUI();
@@ -64,11 +64,12 @@ const CryptoManager = {
     } catch (error) {
       console.log(error);
     } finally {
-      AppGlobals.toggleLoader();
+      AppGlobals.toggleLoader(false);
     }
   },
 
   fetchCoinByID(coinID) {
+    if (this.findSelectedCrypto(coinID)?.last_updated) return;
     return $.ajax(`https://api.coingecko.com/api/v3/coins/${coinID}`);
   },
 
@@ -87,10 +88,6 @@ const CryptoManager = {
   },
 };
 
-// $(document).on("update-coins", () => {
-//   CryptoManager.$fuse = new Fuse(CryptoManager.coins, FUSE_OPTIONS);
-// });
-
 $(document).ready(() => {
   CryptoManager.fetchCoins();
   if (getLS("coins")) {
@@ -99,4 +96,6 @@ $(document).ready(() => {
   if (getLS("toggled-coins")) {
     CryptoManager.toggledCoins = getLS("toggled-coins");
   }
+
+  new ModalComponent().render();
 });

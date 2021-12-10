@@ -7,7 +7,6 @@
     }
 
     render() {
-      // $(".charts__title").html(`${CryptoManager.toggledCoins.length} selected coins`);
       const Chart = new ChartComponent().render();
     }
   }

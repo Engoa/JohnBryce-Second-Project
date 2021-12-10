@@ -1,3 +1,6 @@
+let navLogo = new Rellax(".nav-logo");
+let bgImage = new Rellax(".bg");
+
 // Global Variables
 const getLS = (key) => JSON.parse(localStorage.getItem(key));
 const setLS = (key, value) => localStorage.setItem(key, JSON.stringify(value));
@@ -5,7 +8,7 @@ const isMobile = window.matchMedia("(max-width: 960px)").matches;
 const genUID = (length = 7) => Math.random().toString(36).substring(length);
 const getRandomColor = (el) =>
   $(el).each(function () {
-    var items = [
+    let items = [
       "var(--card-stripe1)",
       "var(--card-stripe2)",
       "var(--card-stripe3)",
@@ -14,7 +17,7 @@ const getRandomColor = (el) =>
       "var(--card-stripe6)",
       "var(--card-stripe7)",
     ];
-    var colour = items[Math.floor(Math.random() * items.length)];
+    let colour = items[Math.floor(Math.random() * items.length)];
     $(this).css("background", colour);
   });
 

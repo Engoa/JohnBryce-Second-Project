@@ -5,13 +5,17 @@
 @import "./snackbar";
 @import "./loader";
 @import "./nav";
+@import "./modal";
 
-.title {
-  margin: 3rem 0;
-  text-align: center;
-  color: var(--primary);
+.head {
+  font-weight: bolder !important;
+  @include media("<md") {
+    font-size: 2.5rem !important;
+  }
 }
-
+.coins__page {
+  margin-top: 35%;
+}
 .coins {
   display: flex;
   flex-wrap: wrap;
@@ -19,7 +23,9 @@
   width: 100%;
   gap: 2rem;
   padding-bottom: 2rem;
-
+  @include media("<md") {
+    gap: 1rem;
+  }
   &__item {
     flex: 0 0 0;
     background-color: transparent;
@@ -34,6 +40,9 @@
     &--active {
       transition: var(--transition-250);
       transform: scale(1.08);
+      @include media("<md") {
+        transform: scale(1.03);
+      }
 
       .front {
         transition: var(--transition-250);
@@ -47,14 +56,6 @@
           }
         }
       }
-    }
-  }
-  .form-switch {
-    z-index: 1;
-    margin-left: auto;
-    .form-check-input:checked {
-      background-color: black;
-      border-color: black;
     }
   }
 }
@@ -224,13 +225,14 @@
 }
 
 .chart__chart {
-  margin: auto;
+  margin: 2rem auto;
   @include media(">md") {
     max-height: 80%;
     max-width: 80%;
+    margin: auto;
   }
   canvas {
     border-radius: 5px;
-    background: black;
+    background: rgba(255, 255, 255, 0.651);
   }
 }

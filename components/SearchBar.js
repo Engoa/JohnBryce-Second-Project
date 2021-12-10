@@ -67,7 +67,7 @@ class SearchBarComponent extends Component {
 
   render() {
     const containerEl = elementFromHTML(`
-        <div class="search__wrapper ${!isMobile ? "w-50" : ""}">
+        <div class="search__wrapper ${!isMobile ? "w-75" : ""}">
           <div class="input-group"></div>
           <div class="search__results"></div>
         </div>
@@ -87,6 +87,7 @@ class SearchBarComponent extends Component {
     el.addEventListener("blur", this.onInputBlur.bind(this));
     el.addEventListener("focus", this.onInputFocus.bind(this));
     el.addEventListener("input", this.onInput.bind(this));
+    el.addEventListener("input", this.onNoValue.bind(this));
   }
 
   assignDataLisEvents(el) {
@@ -113,6 +114,11 @@ class SearchBarComponent extends Component {
   onInputFocus(e) {
     if (e.target.value?.length) {
       this.openDropdown();
+    }
+  }
+  onNoValue(e) {
+    if (!e.target.value.length) {
+      this.closeDropdown();
     }
   }
   onInputBlur() {

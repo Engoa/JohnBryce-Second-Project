@@ -30,7 +30,6 @@ nav {
     align-items: center;
     justify-content: center;
     padding: 1rem 0 0.5rem;
-
     @include media("<md") {
       justify-content: flex-end;
       margin-top: 0;
@@ -69,12 +68,11 @@ nav {
     .hamburger-menu {
       font-size: 1.25rem;
       color: var(--primary);
-
       cursor: pointer;
       display: flex;
       align-items: center;
       z-index: 3;
-      margin-top: 0.5rem;
+      min-height: 24px;
     }
 
     .menu--close {
@@ -114,11 +112,10 @@ nav {
   transition: var(--transition-350);
   left: 50%;
   transform: translateX(-50%);
-  background: black;
+  background: rgba(0, 0, 0, 0.623);
   color: white;
 
   a {
-    color: var(--color-textdark);
     text-decoration: none;
     font-size: 11px;
     font-weight: bold;

@@ -10,6 +10,10 @@ class CardComponent extends Component {
     return !!CryptoManager.findSelectedCrypto(this.props.data.id);
   }
 
+  openModal() {
+    document.querySelector(".modal__overlay").classList.add("active");
+  }
+
   render() {
     const { id, symbol, name } = this.props.data;
     const classList = classNames(["coins__item", { "coins__item--active": this.isActive }]);
@@ -52,8 +56,6 @@ class CardComponent extends Component {
             </div>
             <div class="form-check form-switch"></div>
           </label>
-
-
     `);
 
     const Switch = new SwitchComponent({ id, htmlFor: `coin__${id}` });
@@ -76,10 +78,9 @@ class CardComponent extends Component {
     else this.containerEl.classList.remove("coins__item--active");
   }
 
-  onClick($el) {
+  onClick() {
     if (!this.isActive && CryptoManager.reachedMax) {
-      alert("You have added this crypto");
-      // show modal
+      dispatchToggleModal();
     }
   }
 

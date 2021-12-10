@@ -32,10 +32,16 @@ class ChartComponent extends Component {
         plugins: {
           title: {
             display: true,
-            text: `${CryptoManager.toggledCoins.length} selected coins`,
+            text: `${CryptoManager.toggledCoins.length} Selected Coins`,
+            color: "rgb(0, 0, 0)",
           },
+          subtitle: {
+            color: "rgb(0, 0, 0)",
+          },
+
           legend: {
             align: "start",
+            color: "rgb(0, 0, 0)",
           },
         },
         scales: {
