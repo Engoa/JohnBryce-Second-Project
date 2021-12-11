@@ -17,6 +17,7 @@ a {
 
 body {
   counter-reset: results;
+  overflow-y: scroll;
 }
 .container-wrapper {
   padding: 0 2rem;
@@ -56,6 +57,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
 
   &-wrapper {
     position: absolute;

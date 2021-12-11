@@ -50,7 +50,7 @@ class CardComponent extends Component {
                   <span>${name}</span>
                   </div>
                   <div class="card__button">
-                  <a class="coins__btn modal--link" href="#coin?id=${id}">More Info</a>
+                  <a class="coins__btn" href="#coin?id=${id}">More Info</a>
                 </div>
               </div>
             </div>

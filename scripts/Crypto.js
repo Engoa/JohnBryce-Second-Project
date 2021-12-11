@@ -57,10 +57,9 @@ const CryptoManager = {
   async fetchCoins() {
     try {
       AppGlobals.toggleLoader(true);
-      const response = await $.ajax("../assets/JSON/coins.json");
-      this.coins = response.slice(4500, 5000);
+      const response = await $.ajax("https://api.coingecko.com/api/v3/coins/list");
+      this.coins = response;
       this.syncLSandUI();
-      console.log(this.coins);
     } catch (error) {
       console.log(error);
     } finally {
@@ -90,6 +89,7 @@ const CryptoManager = {
 
 $(document).ready(() => {
   CryptoManager.fetchCoins();
+
   if (getLS("coins")) {
     CryptoManager.coins = getLS("coins");
   }

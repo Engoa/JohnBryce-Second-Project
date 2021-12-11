@@ -6,7 +6,7 @@ class ModalComponent extends Component {
   isActive = false;
 
   constructor(props) {
-    const watch = ["modal-toggle"];
+    const watch = ["modal-toggle", "route-update"];
     super(props, watch);
 
     if (!alreadyCreated) {
@@ -67,9 +67,10 @@ class ModalComponent extends Component {
     this.renderList();
   }
 
-  watchListeners() {
+  watchListeners(eventName) {
     if (!this.isActive) this.openModal();
     else this.closeModal();
+    if (eventName === "route-update") this.closeModal();
     this.renderList();
     this.closeModalOnEsc();
     this.closeModalonButton();

@@ -6,15 +6,14 @@
 @import "./loader";
 @import "./nav";
 @import "./modal";
+@import "./coinpage";
 
-.head {
-  font-weight: bolder !important;
-  @include media("<md") {
-    font-size: 2.5rem !important;
-  }
-}
 .coins__page {
   margin-top: 35%;
+  min-height: 100%;
+  @include media("<md") {
+    margin-top: 1rem;
+  }
 }
 .coins {
   display: flex;
@@ -31,10 +30,12 @@
     background-color: transparent;
     transition: var(--transition-250);
     height: 240px;
+    min-height: 240px;
     width: 350px;
     @include media("<md") {
       width: 300px;
       height: 150px;
+      min-height: 150px;
     }
 
     &--active {
@@ -63,6 +64,7 @@
 .card {
   width: inherit;
   height: inherit;
+  min-height: inherit;
   background-color: transparent !important;
   transition: var(--transition-250);
   cursor: pointer;
@@ -99,7 +101,7 @@
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
-      background: rgba(255, 255, 255, 0.514);
+      background: rgb(0, 0, 0);
       border-radius: 0.2rem;
       padding: 0.25rem 1rem;
     }
@@ -110,7 +112,6 @@
   height: inherit;
   transition: 0.7s;
   transform-style: preserve-3d;
-  -webkit-animation: flip 2.5s ease;
 }
 .front,
 .back {
@@ -218,21 +219,19 @@
   color: var(--primary);
 }
 
-.coin-page {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-
 .chart__chart {
   margin: 2rem auto;
+  min-width: 100%;
+  min-height: 100%;
   @include media(">md") {
-    max-height: 80%;
-    max-width: 80%;
+    height: 80%;
+    width: 80%;
+    min-height: 80%;
+    min-width: 80%;
     margin: auto;
   }
   canvas {
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.651);
+    background: rgba(000, 000, 000, 0.5);
   }
 }

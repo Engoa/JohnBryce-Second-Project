@@ -1,18 +1,47 @@
 (() => {
   class HomePageComponent extends Component {
     containerEl = null;
+    drawnCoins = 0;
+    observer = null;
 
     constructor(props) {
       const watch = ["update-coins", "coin-selected"];
       super(props, watch);
     }
 
-    render() {
-      CryptoManager.coins.map((coin) => {
-        const Card = new CardComponent({ data: coin }).render();
-        $(".coins").append(Card);
-      });
+    drawCoins(count) {
+      const newLength = this.drawnCoins + count;
+      const slicedCoins = CryptoManager.coins.slice(this.drawnCoins, newLength);
+      slicedCoins.map((coin) => $(".coins").append(new CardComponent({ data: coin }).render()));
+      this.drawnCoins = newLength;
+    }
 
+    observeForLoadMore() {
+      const loader = $("#coins-loader");
+      this.observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.drawCoins(10);
+
+              if (this.drawnCoins >= CryptoManager.coins?.length) {
+                loader.addClass("d-none");
+                this.observer.disconnect();
+              }
+            }
+          }),
+        {
+          rootMargin: "100px",
+          threshold: 1.0,
+        }
+      );
+
+      this.observer.observe(loader[0]);
+    }
+
+    render() {
+      this.drawCoins(30);
+      this.observeForLoadMore();
       const searchBar = new SearchBarComponent().render();
       $(".search-bar").replaceWith(searchBar);
     }

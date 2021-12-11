@@ -1,0 +1,163 @@
+.coin-page {
+  width: 100%;
+  margin-top: 7rem;
+  color: var(--primary);
+  @include media("<md") {
+    margin-top: 2rem;
+  }
+  &__top {
+    min-height: 105px;
+    width: 100%;
+  }
+  &__details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(000, 000, 000, 0.5);
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 750px;
+    height: 550px;
+    min-height: 550px;
+    margin: auto;
+    padding: 1rem;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    overflow: hidden;
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    margin-top: 2rem;
+
+    .coin__tag {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.781);
+      color: black;
+      border-radius: 0.5rem;
+      top: -2.3rem;
+      left: 0;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.5rem;
+      width: fit-content;
+      font-weight: bold;
+    }
+
+    &__rank {
+      @include media("<md") {
+        left: -0.5rem !important ;
+      }
+    }
+
+    &__score {
+      left: 5.75rem !important;
+      @include media("<md") {
+        left: 5.4rem !important;
+      }
+    }
+    &__votes {
+      left: 11.9rem !important;
+      @include media("<md") {
+        left: 11.6rem !important;
+      }
+    }
+    span {
+      font-size: 1.1rem;
+      text-transform: capitalize;
+    }
+
+    img {
+      border-radius: 50%;
+    }
+  }
+  &__price {
+    font-size: 2rem;
+    letter-spacing: 0.07em;
+    margin-top: 0.3rem;
+  }
+
+  &__address {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    @include media("<md") {
+      font-size: 0.75rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-54%);
+      width: 100%;
+      height: 2px;
+      background: black;
+      background: linear-gradient(to right, transparent 10%, rgb(206, 206, 206) 20%, rgb(209, 209, 209) 90%, transparent 98%, transparent 100%);
+    }
+  }
+  &__bottom {
+    text-transform: capitalize;
+    width: 100%;
+    margin-top: 2rem;
+    &__rates {
+      display: flex;
+      justify-content: space-evenly;
+      opacity: 0.8;
+      font-weight: normal;
+    }
+
+    .data {
+      text-align: right;
+      width: 100%;
+      font-size: 1.15rem;
+    }
+
+    &__description {
+      font-weight: bold;
+      display: flex;
+      text-transform: none;
+      margin-bottom: 0.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      @include media("<md") {
+        font-size: 0.8rem;
+      }
+    }
+    &__supply {
+      .supply {
+        letter-spacing: 0.08em;
+        font-size: 1.05rem;
+      }
+    }
+
+    .right__data {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .bottom--heads {
+      font-weight: bold;
+      font-size: 0.9rem;
+      width: 100%;
+      text-transform: uppercase;
+      opacity: 1;
+      display: flex;
+      margin-top: 1rem;
+      @include media(">md") {
+        .category {
+          width: 200px;
+        }
+      }
+    }
+  }
+}

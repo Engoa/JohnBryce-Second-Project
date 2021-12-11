@@ -1,5 +1,20 @@
 [
   {
+    "id": "etherium",
+    "symbol": "eth",
+    "name": "etherium"
+  },
+  {
+    "id": "bitcoin",
+    "symbol": "btc",
+    "name": "bitcoin"
+  },
+  {
+    "id": "dogecoin",
+    "symbol": "doge",
+    "name": "dogecoin"
+  },
+  {
     "id": "01coin",
     "symbol": "zoc",
     "name": "01coin"

@@ -2,13 +2,19 @@
   position: relative;
   z-index: 5;
   margin-top: 5rem;
-
-  h1 {
+  @include media("<md") {
+    margin-top: 2rem;
+  }
+  .head {
+    text-transform: uppercase !important;
+    font-weight: bolder !important;
     background: -webkit-linear-gradient(#cc7b35, #f1c746);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: 0.06em;
-    box-shadow: var(--box-shadow);
+    letter-spacing: 0.07em;
+    @include media("<md") {
+      font-size: 2.4rem !important;
+    }
   }
 }
 .search {
@@ -16,48 +22,57 @@
     margin: 5rem auto 0 auto;
     position: relative;
     z-index: 0;
+    @include media("<md") {
+      margin: 2rem auto;
+    }
 
     .input-group {
       z-index: 2;
       input {
-        background-color: rgba(255, 255, 255, 0.671) !important;
-        color: black !important;
+        background: rgba(000, 000, 000, 0.5) !important;
+        color: white !important;
         font-size: 16px;
         font-weight: bold;
         font-family: var(--ff-text);
-        box-shadow: var(--box-shadow);
+        border-color: black !important;
       }
     }
   }
 
-  &__results {
+  &__results-wrap {
     position: absolute;
     top: 100%;
     height: 400px;
     max-height: 400px;
-    background-color: rgba(255, 255, 255, 0.534);
+    background: rgba(000, 000, 000, 0.5);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     border-radius: 0 0 0.5rem 0.5rem;
     width: 100%;
     z-index: 1;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
+
     transition: var(--transition-150);
     opacity: 1;
     pointer-events: all;
-    @include media("<md") {
-      height: 150px;
-      max-height: 150px;
-    }
+
     &.hidden {
       transform: translateY(-25px);
       opacity: 0;
       pointer-events: none;
     }
+  }
+
+  &__results {
+    display: flex;
+    flex-direction: column;
+
+    @include media("<md") {
+      height: 150px;
+      max-height: 150px;
+    }
 
     a {
-      color: black !important;
+      color: white !important;
       text-decoration: none !important;
       font-weight: bold;
       text-transform: uppercase;
@@ -80,7 +95,7 @@
     transition: var(--transition-150);
     &:hover {
       cursor: pointer;
-      background-color: darken(#fff, 5%);
+      background-color: rgba(0, 0, 0, 0.856);
     }
 
     &--body {

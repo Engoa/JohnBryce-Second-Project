@@ -33,15 +33,15 @@ class ChartComponent extends Component {
           title: {
             display: true,
             text: `${CryptoManager.toggledCoins.length} Selected Coins`,
-            color: "rgb(0, 0, 0)",
+            color: "rgb(255, 255, 255)",
           },
           subtitle: {
-            color: "rgb(0, 0, 0)",
+            color: "rgb(255, 255, 255)",
           },
 
           legend: {
             align: "start",
-            color: "rgb(0, 0, 0)",
+            color: "rgb(255, 255, 255)",
           },
         },
         scales: {
