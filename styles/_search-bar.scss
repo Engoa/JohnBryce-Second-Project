@@ -44,7 +44,7 @@
     top: 100%;
     height: 400px;
     max-height: 400px;
-    background: rgba(000, 000, 000, 0.5);
+    background: rgba(0, 0, 0, 0.856);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     border-radius: 0 0 0.5rem 0.5rem;
     width: 100%;
@@ -95,7 +95,8 @@
     transition: var(--transition-150);
     &:hover {
       cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.856);
+      background-color: rgba(255, 255, 255, 0.856);
+      color: black !important;
     }
 
     &--body {

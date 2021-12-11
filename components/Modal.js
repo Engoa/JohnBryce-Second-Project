@@ -50,7 +50,7 @@ class ModalComponent extends Component {
     CryptoManager.toggledCoins.forEach(({ name, id, symbol }) => {
       const el = elementFromHTML(`
         <label class="toggles__modal__coin" for="toggled__${id}">
-            <a class="coins__btn modal--link" href="#coin?id=${id}">${name} - (${symbol})</a>
+            <a class="coins__btn modal--link" href="#coin?id=${id}">${name} (${symbol})</a>
             <div class="form-check form-switch"></div>    
         </label>
       `);

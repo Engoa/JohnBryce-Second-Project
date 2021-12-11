@@ -76,6 +76,13 @@
     position: relative;
     font-weight: bold;
     max-width: 300px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    @include media("<md") {
+      max-width: 200px;
+    }
   }
   &__button {
     margin: 2rem 25px;
@@ -160,6 +167,13 @@
   font-weight: bold;
   font-size: 1rem;
   max-width: 200px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  @include media("<md") {
+    max-width: 140px;
+  }
 }
 .chip {
   position: relative;

@@ -65,10 +65,7 @@ class SearchBarComponent extends Component {
     this.observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
-          console.log(entry);
-          console.log(entry.isIntersecting);
           if (entry.isIntersecting) {
-            console.log(this.searchResults);
             this.lazyDrawDataItems($(container).find(".search__results")[0], this.searchResults, 10);
 
             if (this.drawnItems >= this.searchResults?.length && this.searchResults >= 11) {

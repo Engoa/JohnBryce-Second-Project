@@ -1,7 +1,7 @@
 :root {
   --primary: white !important;
   --bg: #b6b5b5;
-  --bg: linear-gradient(to bottom, #fdbf28, #e23787, #496fd8, #30dbb0, #a9a9ac, #d46134);
+  --bg: linear-gradient(to bottom, #fdbf28, #d46134);
   --card-stripe1: linear-gradient(to bottom, #1d1d1d, #496fd8);
   --card-stripe2: linear-gradient(to bottom, #ff6767, #e2cc4e);
   --card-stripe3: linear-gradient(to bottom, #b13271, #4732a3);
@@ -82,6 +82,7 @@ body {
           align-items: center;
   text-transform: uppercase;
   margin-top: 3rem;
+  text-align: center;
 }
 
 .bg {
@@ -169,7 +170,7 @@ body {
   top: 100%;
   height: 400px;
   max-height: 400px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.856);
   -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
           box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   border-radius: 0 0 0.5rem 0.5rem;
@@ -240,7 +241,8 @@ body {
 
 .search__card:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.856);
+  background-color: rgba(255, 255, 255, 0.856);
+  color: black !important;
 }
 
 .search__card--body {
@@ -726,12 +728,14 @@ nav .desktop a {
   content: "";
   position: absolute;
   bottom: -1.3rem;
-  left: -1rem;
   width: 100%;
-  height: 1px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 2px;
   background: black;
-  background: -webkit-gradient(linear, left top, right top, color-stop(10%, transparent), color-stop(20%, gray), color-stop(90%, gray), color-stop(98%, transparent), to(transparent));
-  background: linear-gradient(to right, transparent 10%, gray 20%, gray 90%, transparent 98%, transparent 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(2%, transparent), color-stop(20%, gray), color-stop(90%, gray), color-stop(98%, transparent), to(transparent));
+  background: linear-gradient(to right, transparent 2%, gray 20%, gray 90%, transparent 98%, transparent 100%);
 }
 
 .toggles__modal__coins {
@@ -758,6 +762,7 @@ nav .desktop a {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+  gap: 0.5rem;
 }
 
 .toggles__modal__coin a {
@@ -827,7 +832,7 @@ nav .desktop a {
 }
 
 .coin-page__top {
-  min-height: 105px;
+  min-height: 130px;
   width: 100%;
 }
 
@@ -838,9 +843,9 @@ nav .desktop a {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -855,11 +860,66 @@ nav .desktop a {
   padding: 1rem;
   -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
           box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  overflow: hidden;
+  overflow-y: auto;
+}
+
+.coin-page__tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (max-width: 1049px) {
+  .coin-page__tags {
+    gap: 0.3rem;
+  }
+}
+
+.coin-page__tags .coin__tag {
+  background: rgba(255, 255, 255, 0.781);
+  color: black;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: bold;
+  white-space: pre;
+}
+
+.coin-page__tags .form-switch {
+  cursor: pointer !important;
+}
+
+.coin-page__tags .form-check-input {
+  border-color: black !important;
+  width: 50px !important;
+  border-radius: 0.5rem !important;
+  height: 20px !important;
+}
+
+.coin-page__tags .form-check-input:checked {
+  background-color: #c2243e !important;
+}
+
+@media (max-width: 1049px) {
+  .coin-page__tags .form-check-input {
+    width: 40px !important;
+  }
 }
 
 .coin-page__name {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
@@ -867,22 +927,17 @@ nav .desktop a {
           align-items: center;
   gap: 0.5rem;
   position: relative;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.coin-page__name .coin__tag {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.781);
-  color: black;
-  border-radius: 0.5rem;
-  top: -2.3rem;
-  left: 0;
-  font-size: 0.8rem;
-  padding: 0.2rem 0.5rem;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  font-weight: bold;
+@media (max-width: 1049px) {
+  .coin-page__name {
+    -webkit-line-clamp: 1;
+  }
 }
 
 @media (max-width: 1049px) {
@@ -918,6 +973,13 @@ nav .desktop a {
 
 .coin-page__name img {
   border-radius: 50%;
+  min-width: 25px;
+  min-height: 25px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  margin-bottom: 0.3rem;
 }
 
 .coin-page__price {
@@ -938,24 +1000,9 @@ nav .desktop a {
   }
 }
 
-.coin-page__address::before {
-  content: "";
-  position: absolute;
-  bottom: -1rem;
-  left: 50%;
-  -webkit-transform: translateX(-54%);
-          transform: translateX(-54%);
-  width: 100%;
-  height: 2px;
-  background: black;
-  background: -webkit-gradient(linear, left top, right top, color-stop(10%, transparent), color-stop(20%, #cecece), color-stop(90%, #d1d1d1), color-stop(98%, transparent), to(transparent));
-  background: linear-gradient(to right, transparent 10%, #cecece 20%, #d1d1d1 90%, transparent 98%, transparent 100%);
-}
-
 .coin-page__bottom {
   text-transform: capitalize;
   width: 100%;
-  margin-top: 2rem;
 }
 
 .coin-page__bottom__rates {
@@ -965,8 +1012,18 @@ nav .desktop a {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  opacity: 0.8;
   font-weight: normal;
+  margin-top: 1rem;
+}
+
+.coin-page__bottom__rates .rates--wrapper {
+  font-size: 1.15rem;
+}
+
+@media (max-width: 1049px) {
+  .coin-page__bottom__rates .rates--wrapper {
+    font-size: 0.9rem;
+  }
 }
 
 .coin-page__bottom .data {
@@ -975,20 +1032,28 @@ nav .desktop a {
   font-size: 1.15rem;
 }
 
+@media (max-width: 1049px) {
+  .coin-page__bottom .data {
+    font-size: 0.9rem;
+  }
+}
+
 .coin-page__bottom__description {
   font-weight: bold;
   display: -ms-flexbox;
   display: flex;
   text-transform: none;
-  margin-bottom: 0.5rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin: 0 !important;
+  margin-top: 0.5rem !important;
 }
 
 @media (max-width: 1049px) {
   .coin-page__bottom__description {
+    -webkit-line-clamp: 2;
     font-size: 0.8rem;
   }
 }
@@ -1015,20 +1080,28 @@ nav .desktop a {
   width: 100%;
 }
 
-.coin-page__bottom .bottom--heads {
+.coin-page .bottom--heads {
   font-weight: bold;
-  font-size: 0.9rem;
   width: 100%;
   text-transform: uppercase;
-  opacity: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: 1rem;
 }
 
+.coin-page .bottom--heads span {
+  font-size: 1.15rem;
+}
+
+@media (max-width: 1049px) {
+  .coin-page .bottom--heads span {
+    font-size: 0.9rem;
+  }
+}
+
 @media (min-width: 1051px) {
-  .coin-page__bottom .bottom--heads .category {
+  .coin-page .bottom--heads .category {
     width: 200px;
   }
 }
@@ -1125,6 +1198,16 @@ nav .desktop a {
   position: relative;
   font-weight: bold;
   max-width: 300px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 1049px) {
+  .card-name {
+    max-width: 200px;
+  }
 }
 
 .card__button {
@@ -1231,6 +1314,16 @@ nav .desktop a {
   font-weight: bold;
   font-size: 1rem;
   max-width: 200px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 1049px) {
+  .investor {
+    max-width: 140px;
+  }
 }
 
 .chip {
