@@ -28,9 +28,11 @@
 
 body,
 html {
+  min-height: 100vh;
   background: var(--bg) !important;
   color: var(--primary) !important;
   font-family: var(--ff-text);
+  counter-reset: results;
 }
 
 a {
@@ -38,15 +40,16 @@ a {
   text-decoration: none;
 }
 
-body {
-  counter-reset: results;
-  overflow-y: scroll;
-}
-
 .container-wrapper {
-  padding: 0 2rem;
+  padding: 0 1rem;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 1049px) {
+  .container-wrapper {
+    padding: 0 0.5rem;
+  }
 }
 
 .container-wrapper .nav-logo {
@@ -57,7 +60,7 @@ body {
 }
 
 .container-wrapper .nav-logo img {
-  max-width: 100px;
+  max-width: 90px;
   width: 100%;
 }
 
@@ -128,7 +131,8 @@ body {
 .header .head {
   text-transform: uppercase !important;
   font-weight: bolder !important;
-  background: -webkit-linear-gradient(#cc7b35, #f1c746);
+  background: -webkit-gradient(linear, left top, left bottom, from(#fc4a1f), to(#ac0d57));
+  background: linear-gradient(#fc4a1f, #ac0d57);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 0.07em;
@@ -163,6 +167,16 @@ body {
   font-weight: bold;
   font-family: var(--ff-text);
   border-color: black !important;
+}
+
+@media (max-width: 631px) {
+  .search__wrapper .input-group input {
+    width: 300px;
+    -webkit-box-flex: unset !important;
+        -ms-flex: unset !important;
+            flex: unset !important;
+    margin: auto;
+  }
 }
 
 .search__results-wrap {
@@ -256,7 +270,7 @@ body {
 
 .snackbar {
   visibility: hidden;
-  min-width: 300px;
+  min-width: 350px;
   padding: 0.85rem 0.7rem;
   background-color: black;
   color: white;
@@ -281,14 +295,14 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 1050px) {
   .snackbar {
-    min-width: 310px;
+    min-width: unset;
+    width: 100%;
+    bottom: 0;
+    border-radius: 0;
   }
 }
 
@@ -308,6 +322,13 @@ body {
   visibility: visible;
   -webkit-animation: fadein 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.55), fadeout 0.5s 2s cubic-bezier(0.215, 0.61, 0.355, 1);
           animation: fadein 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.55), fadeout 0.5s 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@media (max-width: 1050px) {
+  .snackbar.show {
+    -webkit-animation: fadeinMobile 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.55), fadeoutMobile 0.5s 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation: fadeinMobile 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.55), fadeoutMobile 0.5s 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
 }
 
 @-webkit-keyframes fadein {
@@ -346,6 +367,50 @@ body {
 @keyframes fadeout {
   from {
     bottom: 1rem;
+    opacity: 1;
+  }
+  to {
+    bottom: -3rem;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeinMobile {
+  from {
+    bottom: -3rem;
+    opacity: 0;
+  }
+  to {
+    bottom: 0rem;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeinMobile {
+  from {
+    bottom: -3rem;
+    opacity: 0;
+  }
+  to {
+    bottom: 0rem;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeoutMobile {
+  from {
+    bottom: 0rem;
+    opacity: 1;
+  }
+  to {
+    bottom: -3rem;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeoutMobile {
+  from {
+    bottom: 0rem;
     opacity: 1;
   }
   to {
@@ -681,7 +746,7 @@ nav .desktop a {
 
 .toggles__modal {
   padding: 1rem;
-  top: 3.5rem;
+  top: 4rem;
   left: 50%;
   -webkit-transform: translate(-50%);
           transform: translate(-50%);
@@ -821,7 +886,6 @@ nav .desktop a {
 
 .coin-page {
   width: 100%;
-  margin-top: 7rem;
   color: var(--primary);
 }
 
@@ -832,8 +896,18 @@ nav .desktop a {
 }
 
 .coin-page__top {
-  min-height: 130px;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.6rem;
 }
 
 .coin-page__details {
@@ -851,6 +925,8 @@ nav .desktop a {
       -ms-flex-direction: column;
           flex-direction: column;
   background: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border-radius: 0.5rem;
   width: 100%;
   max-width: 750px;
@@ -858,9 +934,8 @@ nav .desktop a {
   min-height: 550px;
   margin: auto;
   padding: 1rem;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-          box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   overflow-y: auto;
+  gap: 2rem;
 }
 
 .coin-page__tags {
@@ -907,6 +982,7 @@ nav .desktop a {
   width: 50px !important;
   border-radius: 0.5rem !important;
   height: 20px !important;
+  cursor: pointer !important;
 }
 
 .coin-page__tags .form-check-input:checked {
@@ -920,18 +996,13 @@ nav .desktop a {
 }
 
 .coin-page__name {
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   gap: 0.5rem;
-  position: relative;
-  margin-top: 0.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 @media (max-width: 1049px) {
@@ -973,19 +1044,17 @@ nav .desktop a {
 
 .coin-page__name img {
   border-radius: 50%;
-  min-width: 25px;
-  min-height: 25px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  min-width: 30px;
+  min-height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  margin-bottom: 0.3rem;
 }
 
 .coin-page__price {
   font-size: 2rem;
   letter-spacing: 0.07em;
-  margin-top: 0.3rem;
 }
 
 .coin-page__address {
@@ -998,6 +1067,20 @@ nav .desktop a {
   .coin-page__address {
     font-size: 0.75rem;
   }
+}
+
+.coin-page__address::before {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  -webkit-transform: translateX(-54%);
+          transform: translateX(-54%);
+  width: 100%;
+  height: 2px;
+  background: black;
+  background: -webkit-gradient(linear, left top, right top, color-stop(10%, transparent), color-stop(20%, #cecece), color-stop(90%, #d1d1d1), color-stop(98%, transparent), to(transparent));
+  background: linear-gradient(to right, transparent 10%, #cecece 20%, #d1d1d1 90%, transparent 98%, transparent 100%);
 }
 
 .coin-page__bottom {
@@ -1040,20 +1123,16 @@ nav .desktop a {
 
 .coin-page__bottom__description {
   font-weight: bold;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   text-transform: none;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
   margin: 0 !important;
-  margin-top: 0.5rem !important;
 }
 
 @media (max-width: 1049px) {
   .coin-page__bottom__description {
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 6;
     font-size: 0.8rem;
   }
 }
@@ -1102,8 +1181,123 @@ nav .desktop a {
 
 @media (min-width: 1051px) {
   .coin-page .bottom--heads .category {
-    width: 200px;
+    width: 300px;
   }
+}
+
+.about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 3rem;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.about__page {
+  height: 800px;
+  max-width: 890px;
+  margin: auto;
+}
+
+.about__top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: unset !important;
+      -ms-flex-pack: unset !important;
+          justify-content: unset !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+  min-height: 150px;
+  width: 150px;
+  height: 150px;
+}
+
+.about__top h5 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.about__top img {
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.about__project {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+
+.about__project p {
+  margin: 0 !important;
+}
+
+.about__project__sources {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2rem;
+}
+
+.about__project__sources--item {
+  font-size: 2rem;
+  -webkit-transition: var(--transition-150);
+  transition: var(--transition-150);
+  cursor: pointer;
+}
+
+.about__project__sources--item:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .coins__page {
@@ -1128,7 +1322,6 @@ nav .desktop a {
           justify-content: center;
   width: 100%;
   gap: 2rem;
-  padding-bottom: 2rem;
 }
 
 @media (max-width: 1049px) {
@@ -1164,10 +1357,10 @@ nav .desktop a {
           transform: scale(1.08);
 }
 
-@media (max-width: 1049px) {
+@media (max-width: 630px) {
   .coins__item--active {
-    -webkit-transform: scale(1.03);
-            transform: scale(1.03);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
   }
 }
 
@@ -1397,6 +1590,16 @@ nav .desktop a {
 .end .end-text {
   font-size: 9px;
   color: var(--primary);
+}
+
+.chart__page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: bold;
 }
 
 .chart__chart {

@@ -7,9 +7,9 @@
     }
 
     render() {
-      $(".about").html(`
-          <p>Ido BZ</p>
-      `);
+      // $(".about").html(`
+      //     <p>Ido BZ</p>
+      // `);
     }
   }
 

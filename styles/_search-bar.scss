@@ -8,7 +8,7 @@
   .head {
     text-transform: uppercase !important;
     font-weight: bolder !important;
-    background: -webkit-linear-gradient(#cc7b35, #f1c746);
+    background: linear-gradient(#fc4a1f, #ac0d57);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 0.07em;
@@ -35,6 +35,11 @@
         font-weight: bold;
         font-family: var(--ff-text);
         border-color: black !important;
+        @include media("<=ssmd") {
+          width: 300px;
+          flex: unset !important;
+          margin: auto;
+        }
       }
     }
   }

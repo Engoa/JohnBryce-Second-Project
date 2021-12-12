@@ -7,6 +7,7 @@
 @import "./nav";
 @import "./modal";
 @import "./coinpage";
+@import "./about";
 
 .coins__page {
   margin-top: 35%;
@@ -21,7 +22,6 @@
   justify-content: center;
   width: 100%;
   gap: 2rem;
-  padding-bottom: 2rem;
   @include media("<md") {
     gap: 1rem;
   }
@@ -41,8 +41,8 @@
     &--active {
       transition: var(--transition-250);
       transform: scale(1.08);
-      @include media("<md") {
-        transform: scale(1.03);
+      @include media("<ssmd") {
+        transform: scale(1.05);
       }
 
       .front {
@@ -233,6 +233,11 @@
   color: var(--primary);
 }
 
+.chart__page {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
 .chart__chart {
   margin: 2rem auto;
   min-width: 100%;

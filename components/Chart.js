@@ -87,7 +87,7 @@ class ChartComponent extends Component {
       const price = coin.market_data?.current_price.usd || 0;
       return {
         label: coin.symbol,
-        data: [price],
+        data: [0], // Starts at 0 and pushes PRICE to the data array after 2 seconds
         borderColor: CHART_COLORS()[index],
         backgroundColor: CHART_COLORS(0.5)[index],
       };

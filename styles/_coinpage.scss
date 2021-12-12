@@ -1,13 +1,15 @@
 .coin-page {
   width: 100%;
-  margin-top: 7rem;
   color: var(--primary);
   @include media("<md") {
     margin-top: 2rem;
   }
   &__top {
-    min-height: 130px;
     width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.6rem;
   }
   &__details {
     display: flex;
@@ -15,6 +17,7 @@
     justify-content: flex-start;
     flex-direction: column;
     background: rgba(000, 000, 000, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     border-radius: 0.5rem;
     width: 100%;
     max-width: 750px;
@@ -22,8 +25,8 @@
     min-height: 550px;
     margin: auto;
     padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     overflow-y: auto;
+    gap: 2rem;
   }
   &__tags {
     display: flex;
@@ -54,6 +57,7 @@
       width: 50px !important;
       border-radius: 0.5rem !important;
       height: 20px !important;
+      cursor: pointer !important;
 
       &:checked {
         background-color: rgb(194, 36, 62) !important;
@@ -66,14 +70,8 @@
 
   &__name {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
-    position: relative;
-    margin-top: 0.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     @include media("<md") {
       -webkit-line-clamp: 1;
     }
@@ -102,17 +100,15 @@
 
     img {
       border-radius: 50%;
-      min-width: 25px;
-      min-height: 25px;
-      object-fit: contain;
+      min-width: 30px;
+      min-height: 30px;
+      object-fit: cover;
       object-position: center;
-      margin-bottom: 0.3rem;
     }
   }
   &__price {
     font-size: 2rem;
     letter-spacing: 0.07em;
-    margin-top: 0.3rem;
   }
 
   &__address {
@@ -121,6 +117,18 @@
     position: relative;
     @include media("<md") {
       font-size: 0.75rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-54%);
+      width: 100%;
+      height: 2px;
+      background: black;
+      background: linear-gradient(to right, transparent 10%, rgb(206, 206, 206) 20%, rgb(209, 209, 209) 90%, transparent 98%, transparent 100%);
     }
   }
 
@@ -153,15 +161,10 @@
       font-weight: bold;
       display: flex;
       text-transform: none;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
       margin: 0 !important;
-      margin-top: 0.5rem !important;
 
       @include media("<md") {
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 6;
         font-size: 0.8rem;
       }
     }
@@ -195,7 +198,7 @@
 
     @include media(">md") {
       .category {
-        width: 200px;
+        width: 300px;
       }
     }
   }
