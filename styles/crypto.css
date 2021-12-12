@@ -54,8 +54,8 @@ a {
 
 .container-wrapper .nav-logo {
   width: 100%;
-  left: 3rem;
-  top: 1rem;
+  left: 0.5rem;
+  top: 0.5rem;
   position: fixed;
 }
 
@@ -1214,7 +1214,8 @@ nav .desktop a {
 }
 
 .about__page {
-  height: 800px;
+  height: 700px;
+  max-height: 700px;
   max-width: 890px;
   margin: auto;
 }
