@@ -9,7 +9,7 @@
       super(props, watch);
     }
     unToggleAll() {
-      $("#unToggleBtn").on("click", () => CryptoManager.unToggleAllCoins());
+      $("#togglebtn").on("click", () => CryptoManager.unToggleAllCoins());
     }
 
     drawCoins(count) {

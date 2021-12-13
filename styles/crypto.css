@@ -1371,6 +1371,7 @@ nav .desktop a {
   background: black !important;
   -webkit-transition: var(--transition-150);
   transition: var(--transition-150);
+  z-index: 2;
 }
 
 .coins__page__button .btn:hover {
