@@ -73,6 +73,8 @@ class CardComponent extends Component {
   }
 
   watchListeners() {
+    if (!CryptoManager.toggledCoins.length) $("#unToggleBtn").css("visibility", "hidden");
+    else $("#unToggleBtn").css("visibility", "visible");
     if (!this.containerEl) return;
     if (this.isActive) this.containerEl.classList.add("coins__item--active");
     else this.containerEl.classList.remove("coins__item--active");

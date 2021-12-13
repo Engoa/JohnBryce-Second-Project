@@ -1,19 +1,22 @@
 <section class="about__page">
   <div class="about">
     <div class="about__top">
-      <img src="../../assets/images/avatar.jpeg" alt="Avatar" />
+      <div class="about__top__image">
+        <img src="../../assets/images/avatar.jpeg" alt="Avatar" />
+      </div>
       <div>
         <h5>Ido Ben Zaken</h5>
       </div>
     </div>
     <div class="about__project">
-      <div class="about__project_p">
+      <h3><b>About Cryptonite</b></h3>
+      <div class="about__project_section">
         <p>
-          <b> About Cryptonite - </b>A <b>Single Page Application</b>, only the middle of the page re-renders (div with an id of app). The script
-          behind the site is Vanilla JS, In the past I've done a few projects in Vue.js and i loved the idea behind components and the abillity to
-          pass props as data, so I splitted my code into literal Class components that inherit and extend from other base components. It took some
-          googling to find the right way to do it in Vanilla JS but i finally managed to make it work. There's a base component, that all components
-          inherit from that handles the rendering of the component on the page and all the logic of the component.
+          A <b>Single Page Application</b>, only the middle of the page re-renders (div with an id of app). The script behind the site is Vanilla JS,
+          In the past I've done a few projects in Vue.js and i loved the idea behind components and the abillity to pass props as data, so I splitted
+          my code into literal Class components that inherit and extend from other base components. It took some googling to find the right way to do
+          it in Vanilla JS but i finally managed to make it work. There's a base component, that all components inherit from that handles the
+          rendering of the component on the page and all the logic of the component.
           <br />
           <br />
           The site is fully response to all sizes, using <b>Flexbox</b>, and <b>media queries</b>, uses <b>DayJS</b> for date-handling,
@@ -23,11 +26,11 @@
       </div>
       <div class="about__project_p">
         <p>
-          <b> Homepage -</b> The homepage is the first page that the user sees when he opens the site, On document ready it fetches all the data from
-          the API, all the <b>15000</b> objects. I implemented an <b>Intersection Observer</b> function that detects when the user scrolled down to
-          the bottom of the page to render more coins, That way I have all the data but I don't render it fully for optimization purposes. Same goes
-          with the search bar, It searches all the data from the API and it works flawlessly and fast due to the intersection observer. It won't
-          render things you don't see unless you scrolled down the list. <br /><br />
+          <span class="about__project__head"> Homepage -</span> The homepage is the first page that the user sees when he opens the site, On document
+          ready it fetches all the data from the API, all the <b>15000</b> objects. I implemented an <b>Intersection Observer</b> function that
+          detects when the user scrolled down to the bottom of the page to render more coins, That way I have all the data but I don't render it fully
+          for optimization purposes. Same goes with the search bar, It searches all the data from the API and it works flawlessly and fast due to the
+          intersection observer. It won't render things you don't see unless you scrolled down the list. <br /><br />
           The user is able to click on a coin card to toggle it on, so it'll show in the portfolio section. And can also click on the more info button
           to switch to another <b>dynamic route</b> that is equal to the coin ID. When a user has 5 toggled coins, and clicks on another card to
           toggle it on, A modal will open notifying the user that he can't toggle more coins since he reached the max of 5 coins.
@@ -35,9 +38,10 @@
       </div>
       <div class="about__project_p">
         <p>
-          <b> Portfolio -</b> The portfolio page shows a chart that was built using <b>Chart.js</b>, it's a simple chart that shows the prices of the
-          coins the user toggled on, max of 5 coins. The chart starts all the prices at 0 and is updated every 2 seconds, so the user can see the
-          price of the coins he toggled on. It also dynamically updates the chart when the user toggles a coin on or off.
+          <span class="about__project__head"> Portfolio -</span> The portfolio page shows a chart that was built using <b>Chart.js</b>, it's a simple
+          chart that shows the prices of the coins the user toggled on, max of 5 coins. The chart starts all the prices at 0 and is updated every 2
+          seconds, so the user can see the price of the coins he toggled on. It also dynamically updates the chart when the user toggles a coin on or
+          off.
         </p>
       </div>
       <div class="about__project__sources">

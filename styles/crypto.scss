@@ -15,12 +15,34 @@
   @include media("<md") {
     margin-top: 1rem;
   }
+
+  &__button {
+    margin: 2rem 0;
+    @include flexCenter;
+    visibility: hidden;
+
+    .btn {
+      font-weight: 600;
+      background: black !important;
+      transition: var(--transition-150);
+      &:hover {
+        color: white !important;
+        background: #212529 !important;
+        border-color: #212529;
+        transform: scale(1.03);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
 }
 .coins {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+
   gap: 2rem;
   @include media("<md") {
     gap: 1rem;

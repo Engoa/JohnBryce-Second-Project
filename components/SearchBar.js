@@ -103,7 +103,7 @@ class SearchBarComponent extends Component {
 
   render() {
     const containerEl = elementFromHTML(`
-        <div class="search__wrapper ${!isMobile ? "w-75" : ""}">
+        <div class="search__wrapper ${!isMobile ? "w-50" : ""}">
           <div class="input-group"></div>
           <div class="search__results-wrap hidden">
             <div class="search__results"></div>

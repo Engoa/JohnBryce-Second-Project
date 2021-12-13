@@ -29,7 +29,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem 0 0.5rem;
+    padding: 0.8rem;
     @include media("<md") {
       justify-content: flex-end;
       margin-top: 0;
@@ -94,14 +94,9 @@ nav {
   }
 }
 
-.active {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
 .navbar--mobile {
-  opacity: 0;
   position: absolute;
+  opacity: 0;
   visibility: hidden;
   display: flex;
   justify-content: space-evenly;
@@ -111,7 +106,7 @@ nav {
   width: 100%;
   transition: var(--transition-150);
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -35px);
   background: rgba(0, 0, 0, 0.623);
   color: white;
 
@@ -119,5 +114,10 @@ nav {
     text-decoration: none;
     font-size: 11px;
     font-weight: bold;
+  }
+  &.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(-50%, 0px) !important;
   }
 }

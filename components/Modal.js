@@ -36,12 +36,12 @@ class ModalComponent extends Component {
 
   closeModal() {
     this.isActive = false;
-    document.querySelector(".modal__overlay").classList.remove("active");
+    document.querySelector(".modal__overlay").classList.remove("modal__overlay--active");
   }
 
   openModal() {
     this.isActive = true;
-    document.querySelector(".modal__overlay").classList.add("active");
+    document.querySelector(".modal__overlay").classList.add("modal__overlay--active");
   }
 
   renderList() {

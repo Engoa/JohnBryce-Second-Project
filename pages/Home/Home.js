@@ -8,6 +8,9 @@
       const watch = ["update-coins", "coin-selected"];
       super(props, watch);
     }
+    unToggleAll() {
+      $("#unToggleBtn").on("click", () => CryptoManager.unToggleAllCoins());
+    }
 
     drawCoins(count) {
       const newLength = this.drawnCoins + count;
@@ -44,6 +47,7 @@
       this.observeForLoadMore();
       const searchBar = new SearchBarComponent().render();
       $(".search-bar").replaceWith(searchBar);
+      this.unToggleAll();
     }
 
     watchListeners() {
@@ -53,4 +57,8 @@
   }
 
   const hp = new HomePageComponent().render();
+  $(document).ready(() => {
+    if (!CryptoManager.toggledCoins.length) $("#unToggleBtn").css("visibility", "hidden");
+    else $("#unToggleBtn").css("visibility", "visible");
+  });
 })();

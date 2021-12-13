@@ -33,15 +33,12 @@ const toggleSnackBar = (text) => {
 
 // Nav Stuff
 const menuBtn = document.getElementById("menubtn");
-const xButton = document.querySelector("#menu--close");
 const navbarMobile = document.querySelector(".navbar--mobile");
 
-function menuToggle() {
+const menuToggle = () => {
   navbarMobile.classList.toggle("active");
-  xButton.classList.toggle("menu--open");
-  menuBtn.classList.toggle("hide");
-}
+};
 
-function closeNav() {
+const closeNav = () => {
   navbarMobile.classList.remove("active");
-}
+};

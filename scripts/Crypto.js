@@ -51,6 +51,10 @@ const CryptoManager = {
     this.toggledCoins = this.toggledCoins.filter((coin) => coin.id !== toggledCoin.id);
     this.coinToggled();
   },
+  unToggleAllCoins() {
+    this.toggledCoins.length = 0;
+    this.coinToggled();
+  },
 
   async getMoreInfo(id) {
     await this.fetchCoinByID(id);
