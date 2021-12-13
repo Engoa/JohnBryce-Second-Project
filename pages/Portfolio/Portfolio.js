@@ -7,8 +7,7 @@
     }
 
     render() {
-      if (CryptoManager.toggledCoins.length) new ChartComponent().render();
-      else $(".chart__page").html("No coins toggled, Please toggle coins to see the chart");
+      const Chart = new ChartComponent().render();
     }
   }
 

@@ -2,6 +2,7 @@ const CryptoManager = {
   //DATA MEMBERS
   coins: [],
   toggledCoins: [],
+  selectedCoin: {},
   openedCoin: null,
   MAXtoggled: 5,
   $fuse: null,
