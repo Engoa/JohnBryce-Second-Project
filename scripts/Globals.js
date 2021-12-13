@@ -61,15 +61,17 @@ document.addEventListener("route-update", (event) => {
         .totalDuration(1);
     }
   }
-  gsap
-    .from(document.querySelector(".nav-logo img"), {
-      autoAlpha: 0,
-      x: -300,
-      filter: "blur(5px)",
-      opacity: 0,
-      ease: Power1.ease,
-      stagger: 0.3,
-      clearProps: "all",
-    })
-    .totalDuration(1.5);
+  if (event.detail.to === "Home") {
+    gsap
+      .from(document.querySelector(".nav-logo img"), {
+        autoAlpha: 0,
+        x: -300,
+        filter: "blur(5px)",
+        opacity: 0,
+        ease: Power1.ease,
+        stagger: 0.3,
+        clearProps: "all",
+      })
+      .totalDuration(1.5);
+  }
 });

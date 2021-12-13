@@ -73,8 +73,8 @@ const CryptoManager = {
   },
 
   fetchCoinByID(coinID) {
-    if (this.findSelectedCrypto(coinID)?.last_updated) return;
-    return $.ajax(`https://api.coingecko.com/api/v3/coins/${coinID}`);
+    const url = `https://api.coingecko.com/api/v3/coins/${coinID}`;
+    return $.ajax(url);
   },
 
   fetchPrices(coins) {
