@@ -1,51 +1,20 @@
-.link {
-  position: relative;
-
-  &::before {
-    //Underline on nav links
-    content: "";
-    position: absolute;
-    height: 2.2px;
-    left: 0;
-    right: 0;
-    bottom: -0.2rem;
-    transition: var(--transition-150);
-    transform: scaleX(0);
-    background-color: var(--primary);
-  }
-  &:hover::before {
-    transform: scale(1);
-  }
-}
-
-// Nav button animations
-
-nav {
+.nav-desktop {
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
+  padding: 1rem 0 2rem 0;
 
-  .nav--container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8rem;
-    @include media("<md") {
-      justify-content: flex-end;
-      margin-top: 0;
-    }
-  }
-
-  .hamburger-menu {
-    display: none;
+  @include media("<md") {
+    padding: unset;
+    padding-top: 1rem;
   }
 
   .desktop {
-    visibility: visible;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style: none;
-    width: 40%;
+    margin: 0 auto;
+    padding: 0 !important;
 
     a {
       text-decoration: none;
@@ -55,65 +24,21 @@ nav {
     }
   }
 }
-@include media("<md") {
-  nav {
-    .desktop {
-      display: none;
-    }
+.link {
+  position: relative;
 
-    .hamburger-menu {
-      font-size: 1.25rem;
-      color: var(--primary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      z-index: 3;
-      min-height: 24px;
-    }
-
-    .menu--close {
-      font-size: 1.5rem;
-      display: none;
-      color: var(--primary);
-
-      &:hover {
-        transform: rotate(-90deg);
-      }
-    }
-    .menu--open {
-      transition: all 0.3s ease;
-      display: block;
-    }
-    .hide {
-      display: none;
-    }
+  &::before {
+    content: "";
+    position: absolute;
+    height: 2.2px;
+    left: 0;
+    right: 0;
+    bottom: -0.2rem;
+    transition: var(--transition-150);
+    transform: scaleX(0);
+    background: linear-gradient(#fc4a1f, #ac0d57);
   }
-}
-
-.navbar--mobile {
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  list-style-type: none;
-  padding: 1rem 0.6rem;
-  width: 100%;
-  transition: var(--transition-150);
-  left: 50%;
-  transform: translate(-50%, -35px);
-  background: rgba(0, 0, 0, 0.623);
-  color: white;
-
-  a {
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: bold;
-  }
-  &.active {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translate(-50%, 0px) !important;
+  &:hover::before {
+    transform: scale(1);
   }
 }

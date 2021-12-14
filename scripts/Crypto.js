@@ -93,13 +93,12 @@ const CryptoManager = {
 };
 
 $(document).ready(() => {
-  CryptoManager.fetchCoins();
-  if (getLS("coins")) {
+  if (!getLS("coins")) CryptoManager.fetchCoins();
+  else {
+    AppGlobals.toggleLoader();
     CryptoManager.coins = getLS("coins");
   }
-  if (getLS("toggled-coins")) {
-    CryptoManager.toggledCoins = getLS("toggled-coins");
-  }
 
+  if (getLS("toggled-coins")) CryptoManager.toggledCoins = getLS("toggled-coins");
   new ModalComponent().render();
 });

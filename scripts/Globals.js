@@ -1,15 +1,14 @@
 const AppGlobals = {
   intervals: [],
+  loaderActive: true,
 
-  // Loader functions
-  loaderActive: false,
   toggleLoader() {
     if (this.loaderActive) {
-      $("#appLoader").addClass("hidden");
-      this.loaderActive = false;
-    } else {
-      $("#appLoader").removeClass("hidden");
+      $(".appLoader").addClass("hidden");
       this.loaderActive = true;
+    } else {
+      $(".appLoader").removeClass("hidden");
+      this.loaderActive = false;
     }
   },
 };
@@ -87,4 +86,9 @@ document.addEventListener("route-update", (event) => {
       })
       .totalDuration(1.5);
   }
+});
+
+$(document).ready(() => {
+  setInterval(() => localStorage.removeItem("coin"), 2 * 60 * 1000);
+  // After two minutes, delete the local storage coin item
 });

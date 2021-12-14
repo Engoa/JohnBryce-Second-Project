@@ -68,19 +68,25 @@
           overflow: ellipsis;
           font-size: 0.9rem;
           left: 10px;
+          letter-spacing: 0.1em;
+        }
+        .chip {
+          width: 40px;
+          height: 27px;
         }
         .card-name {
           display: none;
         }
 
         .wave {
-          left: 70px;
+          left: 59px;
+          top: -3px;
         }
         .logo {
           top: 35px;
         }
         .card__button {
-          left: -11px;
+          left: -14px;
           position: absolute;
           bottom: -20px;
 
@@ -88,7 +94,7 @@
             font-size: 0.85rem;
             padding: 0.3rem;
             &::before {
-              content: "Info";
+              content: "More Info";
             }
           }
         }
@@ -122,9 +128,15 @@
       }
 
       .card__button {
+        transition: var(--transition-250);
         a {
-          &:hover {
-            color: white;
+          transition: var(--transition-250);
+          background: rgba(0, 0, 0, 0.856) !important;
+        }
+        &:hover {
+          a {
+            background: white !important;
+            color: black !important;
           }
         }
       }
@@ -168,7 +180,7 @@
 
     &:hover {
       a {
-        color: rgb(209, 23, 85);
+        color: rgba(0, 0, 0, 0.801) !important;
       }
     }
     a {
@@ -179,7 +191,7 @@
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
-      background: rgb(0, 0, 0);
+      background: linear-gradient(#fc4a1f, #ac0d57) !important;
       border-radius: 0.2rem;
       padding: 0.25rem 1rem;
       &::before {
@@ -325,6 +337,6 @@
   }
   canvas {
     border-radius: 5px;
-    background: rgba(000, 000, 000, 0.5);
+    background: rgba(000, 000, 000, 0.75);
   }
 }

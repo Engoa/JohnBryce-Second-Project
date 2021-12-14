@@ -1,5 +1,5 @@
-let navLogo = new Rellax(".nav-logo");
-let bgImage = new Rellax(".bg");
+new Rellax(".nav-logo");
+new Rellax(".bg");
 
 // Global Variables
 const getLS = (key) => JSON.parse(localStorage.getItem(key));
@@ -29,16 +29,4 @@ const toggleSnackBar = (text) => {
     snackBarElement.classList.remove("show");
   }, 2500);
   snackBarElement.innerHTML = text;
-};
-
-// Nav Stuff
-const menuBtn = document.getElementById("menubtn");
-const navbarMobile = document.querySelector(".navbar--mobile");
-
-const menuToggle = () => {
-  navbarMobile.classList.toggle("active");
-};
-
-const closeNav = () => {
-  navbarMobile.classList.remove("active");
 };

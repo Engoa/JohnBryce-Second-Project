@@ -45,6 +45,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
   </head>
@@ -56,50 +57,26 @@
       <div class="nav-logo">
         <img src="./assets/images/logo2.png" alt="Crypto Logo" data-rellax-speed="10" />
       </div>
-      <div id="nav__container">
-        <ul class="navbar--mobile">
-          <li class="link">
+
+      <nav class="nav-desktop">
+        <ul class="desktop navlinks" id="menuList">
+          <li class="contact link">
             <div class="anchor--wrapper">
-              <a onclick="closeNav()" href="#home">Home</a>
+              <a href="#home">Home</a>
             </div>
           </li>
           <li class="link">
             <div class="anchor--wrapper">
-              <a onclick="closeNav()" href="#portfolio">Portfolio</a>
+              <a href="#portfolio">Portfolio</a>
             </div>
           </li>
           <li class="link">
             <div class="anchor--wrapper">
-              <a onclick="closeNav()" href="#about">About</a>
+              <a href="#about">About</a>
             </div>
           </li>
         </ul>
-
-        <nav>
-          <div class="nav--container">
-            <ul class="desktop navlinks" id="menuList">
-              <li class="contact link">
-                <div class="anchor--wrapper">
-                  <a onclick="closeNav()" href="#home">Home</a>
-                </div>
-              </li>
-              <li class="link">
-                <div class="anchor--wrapper">
-                  <a onclick="closeNav()" href="#portfolio">Portfolio</a>
-                </div>
-              </li>
-              <li class="link">
-                <div class="anchor--wrapper">
-                  <a onclick="closeNav()" href="#about">About</a>
-                </div>
-              </li>
-            </ul>
-
-            <i class="fas fa-bars hamburger-menu" id="menubtn" onclick="menuToggle()"></i>
-            <!-- <i class="fas fa-times hamburger-menu menu--close" id="menu--close" onclick="menuToggle()"></i> -->
-          </div>
-        </nav>
-      </div>
+      </nav>
       <main>
         <div id="app"></div>
       </main>
@@ -107,7 +84,7 @@
 
     <div class="snackbar"></div>
 
-    <div class="lds-roller__wrapper" id="appLoader">
+    <div class="lds-roller__wrapper appLoader">
       <div class="lds-roller">
         <div></div>
         <div></div>

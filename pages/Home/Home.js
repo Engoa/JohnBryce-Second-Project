@@ -18,7 +18,10 @@
       });
     }
     unToggleAll() {
-      $("#togglebtn").on("click", () => CryptoManager.unToggleAllCoins());
+      $("#togglebtn").on("click", () => {
+        CryptoManager.unToggleAllCoins();
+        toggleSnackBar(`All Cards successfully removed from Portfolio`);
+      });
     }
 
     drawCoins(count) {

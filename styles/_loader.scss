@@ -1,11 +1,18 @@
+.appLoader {
+  opacity: 1;
+  visibility: visible;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 .lds-roller {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 9999999;
   transform: translateX(-40px);
-  opacity: 1;
-  visibility: visible;
 
   &__wrapper {
     position: fixed;
@@ -14,20 +21,12 @@
     z-index: 9999999;
     opacity: 1;
     visibility: visible;
-
     pointer-events: none;
-    &.hidden {
-      opacity: 0;
-      visibility: hidden;
 
-      pointer-events: all;
-      .lds-roller {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
+    pointer-events: all;
   }
 }
+
 .lds-roller div {
   animation: lds-roller 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   transform-origin: 40px 40px;

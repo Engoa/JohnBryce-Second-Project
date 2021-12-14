@@ -48,12 +48,11 @@ a {
 
 @media (max-width: 1049px) {
   .container-wrapper {
-    padding: 0 0.5rem;
+    padding: 0;
   }
 }
 
 .container-wrapper .nav-logo {
-  width: 100%;
   left: 3rem;
   top: 1rem;
   position: fixed;
@@ -134,7 +133,7 @@ a {
 @media (max-width: 1049px) {
   .header {
     margin-top: 2rem;
-    min-height: 40vh;
+    min-height: 20vh;
   }
 }
 
@@ -146,7 +145,7 @@ a {
 
 @media (max-width: 1049px) {
   .header .head {
-    font-size: 2.4rem !important;
+    font-size: 2.7rem !important;
   }
 }
 
@@ -178,9 +177,6 @@ a {
 @media (max-width: 631px) {
   .search__wrapper .input-group input {
     width: 300px;
-    -webkit-box-flex: unset !important;
-        -ms-flex: unset !important;
-            flex: unset !important;
     margin: auto;
   }
 }
@@ -442,6 +438,16 @@ a {
   }
 }
 
+.appLoader {
+  opacity: 1;
+  visibility: visible;
+}
+
+.appLoader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .lds-roller {
   position: absolute;
   left: 50%;
@@ -449,8 +455,6 @@ a {
   z-index: 9999999;
   -webkit-transform: translateX(-40px);
           transform: translateX(-40px);
-  opacity: 1;
-  visibility: visible;
 }
 
 .lds-roller__wrapper {
@@ -462,17 +466,7 @@ a {
   opacity: 1;
   visibility: visible;
   pointer-events: none;
-}
-
-.lds-roller__wrapper.hidden {
-  opacity: 0;
-  visibility: hidden;
   pointer-events: all;
-}
-
-.lds-roller__wrapper.hidden .lds-roller {
-  opacity: 0;
-  visibility: hidden;
 }
 
 .lds-roller div {
@@ -595,6 +589,39 @@ a {
   }
 }
 
+.nav-desktop {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1rem 0 2rem 0;
+}
+
+@media (max-width: 1049px) {
+  .nav-desktop {
+    padding: unset;
+    padding-top: 1rem;
+  }
+}
+
+.nav-desktop .desktop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 !important;
+}
+
+.nav-desktop .desktop a {
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+}
+
 .link {
   position: relative;
 }
@@ -610,137 +637,13 @@ a {
   transition: var(--transition-150);
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
-  background-color: var(--primary);
+  background: -webkit-gradient(linear, left top, left bottom, from(#fc4a1f), to(#ac0d57));
+  background: linear-gradient(#fc4a1f, #ac0d57);
 }
 
 .link:hover::before {
   -webkit-transform: scale(1);
           transform: scale(1);
-}
-
-nav {
-  max-width: 1440px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-nav .nav--container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0.8rem;
-}
-
-@media (max-width: 1049px) {
-  nav .nav--container {
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    margin-top: 0;
-  }
-}
-
-nav .hamburger-menu {
-  display: none;
-}
-
-nav .desktop {
-  visibility: visible;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  list-style: none;
-  width: 40%;
-}
-
-nav .desktop a {
-  text-decoration: none;
-  color: var(--primary);
-  font-size: 1.05rem;
-  font-size: clamp(0.9rem, 2vw, 1.05rem);
-}
-
-@media (max-width: 1049px) {
-  nav .desktop {
-    display: none;
-  }
-  nav .hamburger-menu {
-    font-size: 1.25rem;
-    color: var(--primary);
-    cursor: pointer;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    z-index: 3;
-    min-height: 24px;
-  }
-  nav .menu--close {
-    font-size: 1.5rem;
-    display: none;
-    color: var(--primary);
-  }
-  nav .menu--close:hover {
-    -webkit-transform: rotate(-90deg);
-            transform: rotate(-90deg);
-  }
-  nav .menu--open {
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    display: block;
-  }
-  nav .hide {
-    display: none;
-  }
-}
-
-.navbar--mobile {
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  list-style-type: none;
-  padding: 1rem 0.6rem;
-  width: 100%;
-  -webkit-transition: var(--transition-150);
-  transition: var(--transition-150);
-  left: 50%;
-  -webkit-transform: translate(-50%, -35px);
-          transform: translate(-50%, -35px);
-  background: rgba(0, 0, 0, 0.623);
-  color: white;
-}
-
-.navbar--mobile a {
-  text-decoration: none;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-.navbar--mobile.active {
-  opacity: 1 !important;
-  visibility: visible !important;
-  -webkit-transform: translate(-50%, 0px) !important;
-          transform: translate(-50%, 0px) !important;
 }
 
 .modal__overlay {
@@ -963,7 +866,7 @@ nav .desktop a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
           box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border-radius: 0.5rem;
@@ -1301,7 +1204,7 @@ nav .desktop a {
   height: 100%;
   width: 100%;
   gap: 1rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
           box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border-radius: 0.5rem;
@@ -1333,10 +1236,10 @@ nav .desktop a {
 }
 
 .about__page {
-  height: 550px;
-  max-height: 550px;
+  height: calc(100vh - 66.78px - 3rem);
   max-width: 890px;
   margin: auto;
+  margin-bottom: 3rem;
 }
 
 .about__top {
@@ -1539,18 +1442,24 @@ nav .desktop a {
     overflow: ellipsis;
     font-size: 0.9rem;
     left: 10px;
+    letter-spacing: 0.1em;
+  }
+  .coins--small .coins__item .chip {
+    width: 40px;
+    height: 27px;
   }
   .coins--small .coins__item .card-name {
     display: none;
   }
   .coins--small .coins__item .wave {
-    left: 70px;
+    left: 59px;
+    top: -3px;
   }
   .coins--small .coins__item .logo {
     top: 35px;
   }
   .coins--small .coins__item .card__button {
-    left: -11px;
+    left: -14px;
     position: absolute;
     bottom: -20px;
   }
@@ -1559,7 +1468,7 @@ nav .desktop a {
     padding: 0.3rem;
   }
   .coins--small .coins__item .card__button .coins__btn::before {
-    content: "Info";
+    content: "More Info";
   }
 }
 
@@ -1604,8 +1513,20 @@ nav .desktop a {
   background: linear-gradient(#fc4a1f, #ac0d57) !important;
 }
 
-.coins__item--active .card__button a:hover {
-  color: white;
+.coins__item--active .card__button {
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
+}
+
+.coins__item--active .card__button a {
+  -webkit-transition: var(--transition-250);
+  transition: var(--transition-250);
+  background: rgba(0, 0, 0, 0.856) !important;
+}
+
+.coins__item--active .card__button:hover a {
+  background: white !important;
+  color: black !important;
 }
 
 .card {
@@ -1655,7 +1576,7 @@ nav .desktop a {
 }
 
 .card__button:hover a {
-  color: #d11755;
+  color: rgba(0, 0, 0, 0.801) !important;
 }
 
 .card__button a {
@@ -1667,7 +1588,8 @@ nav .desktop a {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  background: black;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fc4a1f), to(#ac0d57)) !important;
+  background: linear-gradient(#fc4a1f, #ac0d57) !important;
   border-radius: 0.2rem;
   padding: 0.25rem 1rem;
 }
@@ -1858,6 +1780,6 @@ nav .desktop a {
 
 .chart__chart canvas {
   border-radius: 5px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.75);
 }
 /*# sourceMappingURL=crypto.css.map */

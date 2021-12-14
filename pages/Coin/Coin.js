@@ -1,6 +1,7 @@
 (() => {
   class CoinPageComponent extends Component {
     coinRaw = CryptoManager.findCoin(Router.getCurrentQuery().id);
+
     constructor(props) {
       super(props);
       this.fetchData();
@@ -18,17 +19,24 @@
       return num?.toLocaleString("fullwide", { useGrouping: true });
     }
     async fetchData() {
+      const LSCoin = getLS("coin");
       try {
-        AppGlobals.toggleLoader(true);
-        const res = await CryptoManager.fetchCoinByID(this.coinRaw.id);
-
-        CryptoManager.selectedCoin = res;
-        this.render();
-        setLS(`coin`, CryptoManager.selectedCoin);
-        if (!CryptoManager.selectedCoin) this.renderError(e);
+        if (LSCoin?.id === this.coinRaw.id) {
+          CryptoManager.selectedCoin = LSCoin;
+          this.render();
+          // Check if available in local storage and if not, fetch from API
+          // Coin Local storage will auto delete after 2 minutes everytime
+        } else {
+          AppGlobals.toggleLoader(true);
+          const res = await CryptoManager.fetchCoinByID(this.coinRaw.id);
+          CryptoManager.selectedCoin = res;
+          this.render();
+          setLS(`coin`, CryptoManager.selectedCoin);
+          if (!CryptoManager.selectedCoin) this.renderError(e);
+        }
       } catch (e) {
         this.renderError(e);
-        console.log(e);
+        console.error(e);
       } finally {
         AppGlobals.toggleLoader(false);
       }

@@ -5,7 +5,7 @@
   height: 100%;
   width: 100%;
   gap: 1rem;
-  background: rgba(000, 000, 000, 0.5);
+  background: rgba(000, 000, 000, 0.75);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border-radius: 0.5rem;
   padding: 1rem;
@@ -17,10 +17,10 @@
   }
 
   &__page {
-    height: 550px;
-    max-height: 550px;
+    height: calc(100vh - 66.78px - 3rem);
     max-width: 890px;
     margin: auto;
+    margin-bottom: 3rem;
   }
   &__top {
     @include flexCenter;
