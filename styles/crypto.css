@@ -1509,6 +1509,11 @@ nav .desktop a {
   }
 }
 
+.coins__actions #togglebtn {
+  background: -webkit-gradient(linear, left top, left bottom, from(#fc4a1f), to(#ac0d57)) !important;
+  background: linear-gradient(#fc4a1f, #ac0d57) !important;
+}
+
 @media (min-width: 1051px) {
   .coins--small {
     gap: 1rem;
@@ -1595,7 +1600,8 @@ nav .desktop a {
 .coins__item--active .front {
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
-  background: #a0102f !important;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fc4a1f), to(#ac0d57)) !important;
+  background: linear-gradient(#fc4a1f, #ac0d57) !important;
 }
 
 .coins__item--active .card__button a:hover {

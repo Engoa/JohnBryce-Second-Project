@@ -37,6 +37,10 @@
     @include media("<md") {
       display: none;
     }
+
+    #togglebtn {
+      background: linear-gradient(#fc4a1f, #ac0d57) !important;
+    }
   }
   @include media(">md") {
     &--small {
@@ -114,7 +118,7 @@
 
       .front {
         transition: var(--transition-250);
-        background: rgb(160, 16, 47) !important;
+        background: linear-gradient(#fc4a1f, #ac0d57) !important;
       }
 
       .card__button {
