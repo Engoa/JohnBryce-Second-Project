@@ -22,7 +22,7 @@ a {
   position: relative;
   z-index: 2;
   @include media("<md") {
-    padding: 0;
+    padding: 0 0.5rem;
   }
 
   .nav-logo {

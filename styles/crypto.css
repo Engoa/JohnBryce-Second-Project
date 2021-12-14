@@ -48,7 +48,7 @@ a {
 
 @media (max-width: 1049px) {
   .container-wrapper {
-    padding: 0;
+    padding: 0 0.5rem;
   }
 }
 
@@ -165,6 +165,13 @@ a {
   z-index: 2;
 }
 
+@media (max-width: 631px) {
+  .search__wrapper .input-group {
+    width: 300px;
+    margin: auto;
+  }
+}
+
 .search__wrapper .input-group input {
   background: rgba(0, 0, 0, 0.5) !important;
   color: white !important;
@@ -172,13 +179,6 @@ a {
   font-weight: bold;
   font-family: var(--ff-text);
   border-color: black !important;
-}
-
-@media (max-width: 631px) {
-  .search__wrapper .input-group input {
-    width: 300px;
-    margin: auto;
-  }
 }
 
 .search__results-wrap {
