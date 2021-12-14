@@ -8,6 +8,15 @@
       const watch = ["update-coins", "coin-selected"];
       super(props, watch);
     }
+
+    changeCardLayout() {
+      $("#smallLayout").on("click", () => {
+        $(".coins").addClass("coins--small");
+      });
+      $("#bigLayout").on("click", () => {
+        $(".coins").removeClass("coins--small");
+      });
+    }
     unToggleAll() {
       $("#togglebtn").on("click", () => CryptoManager.unToggleAllCoins());
     }
@@ -34,7 +43,7 @@
             }
           }),
         {
-          rootMargin: "100px",
+          rootMargin: "10px",
           threshold: 1.0,
         }
       );
@@ -48,6 +57,7 @@
       const searchBar = new SearchBarComponent().render();
       $(".search-bar").replaceWith(searchBar);
       this.unToggleAll();
+      this.changeCardLayout();
     }
 
     watchListeners() {
@@ -57,6 +67,7 @@
   }
 
   const hp = new HomePageComponent().render();
+
   $(document).ready(() => {
     if (!CryptoManager.toggledCoins.length) $("#unToggleBtn").css("visibility", "hidden");
     else $("#unToggleBtn").css("visibility", "visible");

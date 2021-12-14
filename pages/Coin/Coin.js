@@ -1,14 +1,22 @@
 (() => {
-  class CoinPageComponent extends ModalComponent {
+  class CoinPageComponent extends Component {
     coinRaw = CryptoManager.findCoin(Router.getCurrentQuery().id);
     constructor(props) {
       super(props);
       this.fetchData();
     }
+    get fetchRecommendedCoins() {
+      let recommendedCoins = [];
+      let n = 0;
+      while (n < 3) {
+        recommendedCoins.push(CryptoManager.coins[Math.floor(Math.random() * CryptoManager.coins.length)]);
+        n++;
+      }
+      return recommendedCoins;
+    }
     formatToNumber(num) {
       return num?.toLocaleString("fullwide", { useGrouping: true });
     }
-
     async fetchData() {
       try {
         AppGlobals.toggleLoader(true);
@@ -27,15 +35,14 @@
     }
 
     onClick() {
-      $(".form-switch").on("click", () => {
-        const isDisabled = this.containerEl.disabled;
-        if (isDisabled) this.openModal();
+      $(".coin-page__details .form-switch").on("click", () => {
+        const isDisabled = this.checkBoxElement.disabled;
+        if (isDisabled) dispatchToggleModal();
       });
     }
 
     render() {
       const coin = CryptoManager.selectedCoin || {};
-      const id = Router.getCurrentQuery()?.id;
 
       $(".coin-page__name__rank").html(`Rank #${coin?.coingecko_rank ?? "N/A"}`);
       $(".coin-page__name__score").html(`Score #${coin?.community_score ?? "N/A"}`);
@@ -53,12 +60,15 @@
       $(".volume").html("$" + coin?.market_data.total_volume.usd ?? "N/A");
       $(".liquidity").html(coin?.liquidity_score ?? "N/A");
 
-      const Switch = new SwitchComponent({ id: id });
-      this.containerEl = document.querySelector(".form-switch").appendChild(Switch.render());
-      $(this.containerEl).attr("id", "coin-page__checkbox");
+      this.fetchRecommendedCoins.map((coin) => $(".coin-recommended__list").append(new CardComponent({ data: coin }).render()));
+
+      const id = Router.getCurrentQuery()?.id;
+      const Switch = new SwitchComponent({ id });
+      this.checkBoxElement = document.querySelector(".form-switch").appendChild(Switch.render());
+      $(this.checkBoxElement).attr("id", "coin-page__checkbox");
 
       this.onClick();
-      return this.containerEl;
+      return this.checkBoxElement;
     }
 
     renderError(e) {

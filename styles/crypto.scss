@@ -10,44 +10,88 @@
 @import "./about";
 
 .coins__page {
-  margin-top: 35%;
   min-height: 100%;
   @include media("<md") {
     margin-top: 1rem;
   }
-
-  &__button {
-    margin: 2rem 0;
-    @include flexCenter;
-    visibility: hidden;
-
-    .btn {
-      font-weight: 600;
-      background: black !important;
-      transition: var(--transition-150);
-      z-index: 2;
-      &:hover {
-        color: white !important;
-        background: #212529 !important;
-        border-color: #212529;
-        transform: scale(1.03);
-      }
-      &:active {
-        transform: scale(0.95);
-      }
-    }
-  }
 }
+
 .coins {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
-
   gap: 2rem;
   @include media("<md") {
     gap: 1rem;
+    justify-content: center;
   }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    position: sticky;
+    @include media("<md") {
+      display: none;
+    }
+  }
+  @include media(">md") {
+    &--small {
+      gap: 1rem;
+
+      .coins__item {
+        height: 150px !important;
+        min-height: 150px !important;
+        width: 230px !important;
+        position: relative;
+
+        &--active {
+          transform: scale(1.05);
+        }
+        .strip {
+          &-top {
+            width: 120px !important;
+          }
+          &-bottom {
+            width: 130px !important;
+          }
+        }
+        .investor,
+        .chip {
+          overflow: ellipsis;
+          font-size: 0.9rem;
+          left: 10px;
+        }
+        .card-name {
+          display: none;
+        }
+
+        .wave {
+          left: 70px;
+        }
+        .logo {
+          top: 35px;
+        }
+        .card__button {
+          left: -11px;
+          position: absolute;
+          bottom: -20px;
+
+          .coins__btn {
+            font-size: 0.85rem;
+            padding: 0.3rem;
+            &::before {
+              content: "Info";
+            }
+          }
+        }
+      }
+    }
+  }
+
   &__item {
     flex: 0 0 0;
     background-color: transparent;
@@ -63,9 +107,9 @@
 
     &--active {
       transition: var(--transition-250);
-      transform: scale(1.08);
+      transform: scale(1.075);
       @include media("<ssmd") {
-        transform: scale(1.05);
+        transform: scale(1.045);
       }
 
       .front {
@@ -134,6 +178,9 @@
       background: rgb(0, 0, 0);
       border-radius: 0.2rem;
       padding: 0.25rem 1rem;
+      &::before {
+        content: "More Info";
+      }
     }
   }
 }
@@ -262,7 +309,7 @@
   font-weight: bold;
 }
 .chart__chart {
-  margin: 2rem auto;
+  margin: 1rem auto;
   min-width: 100%;
   min-height: 100%;
   @include media(">md") {

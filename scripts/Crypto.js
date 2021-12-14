@@ -94,7 +94,6 @@ const CryptoManager = {
 
 $(document).ready(() => {
   CryptoManager.fetchCoins();
-
   if (getLS("coins")) {
     CryptoManager.coins = getLS("coins");
   }

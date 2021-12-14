@@ -9,9 +9,9 @@
   --card-stripe5: linear-gradient(to bottom, #443840, #32924f);
   --card-stripe6: linear-gradient(to bottom, #d12659, #c0c9d1);
   --card-stripe7: linear-gradient(to bottom, #7e7a7a, #6193be);
-  --transition-350: all 350ms linear;
-  --transition-250: all 250ms linear;
-  --transition-150: all 150ms linear;
+  --transition-350: transform 350ms linear, opacity 350ms linear, color 350ms linear, background-color 350ms linear, border-color 350ms linear;
+  --transition-250: transform 250ms linear, opacity 250ms linear, color 250ms linear, background-color 250ms linear, border-color 250ms linear;
+  --transition-150: transform 150ms linear, opacity 150ms linear, color 150ms linear, background-color 150ms linear, border-color 150ms linear;
   --box-shadow: rgba(0, 0, 0, 0.473) 1px 3px 30px -15px;
   --ff-text: "Montserrat", sans-serif;
   --ff-header: "Bungee", "cursive", sans-serif;
@@ -25,4 +25,19 @@ $ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5.5px;
+    background-color: rgba(#1f1f1f, 0.5);
+    &:hover {
+      background: rgba(#1f1f1f, 0.65);
+    }
+    &:active {
+      background: rgba(#1f1f1f, 0.8);
+    }
+  }
 }

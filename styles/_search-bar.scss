@@ -2,16 +2,16 @@
   position: relative;
   z-index: 5;
   margin-top: 5rem;
+  min-height: 60vh;
   @include media("<md") {
     margin-top: 2rem;
+    min-height: 40vh;
   }
   .head {
     text-transform: uppercase !important;
     font-weight: bolder !important;
-    background: linear-gradient(#fc4a1f, #ac0d57);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     letter-spacing: 0.07em;
+
     @include media("<md") {
       font-size: 2.4rem !important;
     }
@@ -55,6 +55,7 @@
     width: 100%;
     z-index: 1;
     overflow-y: auto;
+    @include scrollbar;
 
     transition: var(--transition-150);
     opacity: 1;

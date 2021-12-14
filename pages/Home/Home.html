@@ -1,15 +1,27 @@
 <header class="header container-fluid" id="header">
   <div class="container">
-    <h1 class="head display-1 text-center font-weight-bold">Cryptonite</h1>
+    <h1 class="head display-1 text-center font-weight-bold gradient-title">Cryptonite</h1>
   </div>
   <div class="search-bar"></div>
 </header>
 
 <section class="coins__page">
-  <div id="unToggleBtn" class="coins__page__button">
-    <button id="togglebtn" type="button" class="btn btn-dark">Remove All</button>
+  <div class="coins--wrapper container">
+    <div class="coins__actions">
+      <div id="unToggleBtn" class="coins__page__button">
+        <button id="togglebtn" class="btn btn-danger">Remove All</button>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button id="smallLayout" class="btn btn-success">
+          <i class="fas fa-compress-arrows-alt"></i>
+        </button>
+        <button id="bigLayout" class="btn btn-success">
+          <i class="fas fa-compress"></i>
+        </button>
+      </div>
+    </div>
+    <div class="coins coins"></div>
   </div>
-  <div class="coins"></div>
 
   <div id="coins-loader" class="d-flex position-relative my-4">
     <div class="lds-roller">

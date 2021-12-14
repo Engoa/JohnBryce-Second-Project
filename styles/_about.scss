@@ -10,8 +10,10 @@
   border-radius: 0.5rem;
   padding: 1rem;
   overflow-y: auto;
+  @include scrollbar;
+
   @include media("<md") {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   &__page {
@@ -34,14 +36,15 @@
       min-height: 170px;
       width: 170px;
       height: 170px;
-      border-radius: 50%;
       transition: var(--transition-150);
-
-      &:hover {
-        transform: scale(1.06);
+      overflow: hidden;
+      border-radius: 50%;
+      &:hover img {
+        transform: scale(1.1);
       }
     }
     img {
+      transition: var(--transition-150);
       border-radius: 50%;
       object-fit: cover;
       object-position: center;
