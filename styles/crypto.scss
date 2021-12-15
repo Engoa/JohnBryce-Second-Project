@@ -53,7 +53,7 @@
         position: relative;
 
         &--active {
-          transform: scale(1.05);
+          transform: scale(1.04);
         }
         .strip {
           &-top {
@@ -323,21 +323,19 @@
   display: flex;
   justify-content: center;
   font-weight: bold;
+  @include media("<md") {
+    margin-top: 1rem;
+  }
 }
 .chart__chart {
-  margin: 1rem auto;
-  min-width: 100% !important;
-  min-height: 100% !important;
-  max-width: 100% !important;
-  max-height: 100% !important;
-  @include media(">md") {
-    height: 80% !important;
-    width: 80% !important;
-    min-height: 80% !important;
-    min-width: 80% !important;
-    max-width: 80% !important;
-    max-height: 80% !important;
-    margin: auto;
+  margin: auto;
+  height: 80% !important;
+  width: 80% !important;
+  min-height: 500px !important;
+  min-width: 1100px !important;
+  @include media("<md") {
+    min-width: 359px !important;
+    min-height: 359px !important;
   }
   canvas {
     border-radius: 5px;

@@ -76,7 +76,7 @@ class SearchBarComponent extends Component {
         }),
       {
         root: $(container).find(".search__results-wrap")[0],
-        rootMargin: "50px",
+        rootMargin: "0px",
         threshold: 1.0,
       }
     );

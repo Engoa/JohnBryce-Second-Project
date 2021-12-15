@@ -11,9 +11,17 @@
     text-transform: uppercase !important;
     font-weight: bolder !important;
     letter-spacing: 0.07em;
+    transition: var(--transition-250);
+    user-select: none;
 
     @include media("<md") {
       font-size: 2.7rem !important;
+      &:hover {
+        transform: unset !important;
+      }
+    }
+    &:hover {
+      transform: perspective(1000px) scaleY(1) scaleX(1) rotateY(5deg) rotate(-3deg) skewX(-3deg);
     }
   }
 }

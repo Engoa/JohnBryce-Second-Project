@@ -31,13 +31,14 @@ document.addEventListener("route-update", () => {
   AppGlobals.intervals = [];
 });
 
+// Animations
 document.addEventListener("route-update", (event) => {
   if (event.detail.to === "Home" || event.detail.to === "Coin" || event.detail.to === "About") {
     document.title = `Cryptonite`;
     gsap
       .from(document.querySelectorAll(".header, .coin-page__details, .about__page"), {
         autoAlpha: 0,
-        y: 250,
+        y: 150,
         filter: "blur(5px)",
         opacity: 0,
         ease: Power1.ease,

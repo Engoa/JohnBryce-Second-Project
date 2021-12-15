@@ -50,15 +50,15 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
   </head>
   <body>
-    <div class="bg-wrapper">
-      <div class="bg" data-rellax-speed="10"></div>
-    </div>
     <div class="container-wrapper">
       <div class="nav-logo">
         <img src="./assets/images/logo2.png" alt="Crypto Logo" />
       </div>
 
       <nav class="nav-desktop">
+        <div class="bg-wrapper">
+          <div class="bg" data-rellax-speed="28"></div>
+        </div>
         <ul class="desktop navlinks" id="menuList">
           <li class="contact link">
             <div class="anchor--wrapper">
@@ -99,7 +99,9 @@
 
     <div class="modal__overlay" id="overlay--active">
       <div class="toggles__modal">
-        <h5 class="gradient-title">Max amount of Coins reached (5)</h5>
+        <div>
+          <h5 class="gradient-title">Max amount of Coins reached (5)</h5>
+        </div>
         <div class="toggles__modal__coins"></div>
         <i class="fas fa-times" id="closeModalBtn"></i>
       </div>

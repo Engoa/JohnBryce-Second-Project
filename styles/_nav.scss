@@ -19,8 +19,12 @@
     a {
       text-decoration: none;
       color: var(--primary);
-      font-size: 1.05rem;
-      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      font-size: 1.2rem;
+      letter-spacing: 0.07em;
+      font-weight: 400;
+      @include media("<md") {
+        font-size: 1.05rem;
+      }
     }
   }
 }
