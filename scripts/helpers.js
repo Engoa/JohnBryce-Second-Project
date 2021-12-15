@@ -1,4 +1,3 @@
-new Rellax(".nav-logo");
 new Rellax(".bg");
 
 // Global Variables

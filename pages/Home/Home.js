@@ -46,7 +46,7 @@
             }
           }),
         {
-          rootMargin: "10px",
+          rootMargin: "0px",
           threshold: 1.0,
         }
       );

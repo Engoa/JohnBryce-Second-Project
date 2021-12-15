@@ -24,19 +24,20 @@ a {
   @include media("<md") {
     padding: 0 0.5rem;
   }
+}
+.nav-logo {
+  left: 1rem;
+  top: 1rem;
+  position: fixed;
+  cursor: pointer;
+  z-index: 10;
 
-  .nav-logo {
-    left: 3rem;
-    top: 1rem;
-    position: fixed;
-
-    img {
-      max-width: 90px;
-      width: 100%;
-    }
-    @include media("<md") {
-      display: none;
-    }
+  img {
+    max-width: 90px;
+    width: 100%;
+  }
+  @include media("<md") {
+    display: none;
   }
 }
 

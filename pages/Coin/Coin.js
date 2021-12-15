@@ -39,6 +39,7 @@
         console.error(e);
       } finally {
         AppGlobals.toggleLoader(false);
+        document.title = `Cryptonite | ${CryptoManager.selectedCoin?.name} `;
       }
     }
 
@@ -56,16 +57,16 @@
       $(".coin-page__name__score").html(`Score #${coin?.community_score ?? "N/A"}`);
       $(".coin-page__name__votes").html(`Votes #${coin?.coingecko_score ?? "N/A"}`);
       $(".coin-page__name span").html(`${coin?.name ?? "N/A"} (<b>${coin?.symbol.toUpperCase() ?? "N/A"}</b>)`);
-      $(".coin-page__price span").html("$" + this.formatToNumber(coin?.market_data?.current_price?.usd));
+      $(".coin-page__price span").html("$" + this.formatToNumber(coin?.market_data?.current_price?.usd ?? "N/A"));
       $(".coin-page__address span").html(coin?.contract_address ?? "Unknown wallet address");
       $(".coin-page__image").attr("src", coin?.image?.thumb);
       $(".coin-page__bottom__description").html(coin?.description.en ?? "Unknown coin description");
       $(".usd").html(`<b>USD:</b> $${this.formatToNumber(coin?.market_data.current_price?.usd ?? "N/A")}`);
       $(".eur").html(`<b>EUR:</b> €${this.formatToNumber(coin?.market_data.current_price?.eur ?? "N/A")}`);
       $(".ils").html(`<b>ILS:</b> ₪${this.formatToNumber(coin?.market_data.current_price?.ils ?? "N/A")}`);
-      $(".supply").html(`${coin?.market_data.total_supply?.toLocaleString() ?? "N/A"}`);
-      $(".circulating-supply").html(coin?.market_data.circulating_supply ?? "N/A");
-      $(".volume").html("$" + coin?.market_data.total_volume.usd ?? "N/A");
+      $(".supply").html(`${coin?.market_data?.total_supply?.toLocaleString() ?? "N/A"}`);
+      $(".circulating-supply").html(coin?.market_data?.circulating_supply ?? "N/A");
+      $(".volume").html("$" + coin?.market_data?.total_volume.usd ?? "N/A");
       $(".liquidity").html(coin?.liquidity_score ?? "N/A");
 
       this.fetchRecommendedCoins.map((coin) => $(".coin-recommended__list").append(new CardComponent({ data: coin }).render()));
