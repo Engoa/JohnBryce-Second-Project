@@ -1,6 +1,7 @@
 (() => {
   class CoinPageComponent extends Component {
     coinRaw = CryptoManager.findCoin(Router.getCurrentQuery().id);
+    skeletonActive = true;
 
     constructor(props) {
       super(props);
@@ -21,25 +22,25 @@
     async fetchData() {
       const LSCoin = getLS("coin");
       try {
+        this.renderSkeletons();
         if (LSCoin?.id === this.coinRaw.id) {
           CryptoManager.selectedCoin = LSCoin;
           this.render();
           // Check if available in local storage and if not, fetch from API
           // Coin Local storage will auto delete after 2 minutes everytime
         } else {
-          AppGlobals.toggleLoader(true);
+          if (!CryptoManager.selectedCoin) this.renderError(e);
           const res = await CryptoManager.fetchCoinByID(this.coinRaw.id);
           CryptoManager.selectedCoin = res;
           this.render();
           setLS(`coin`, CryptoManager.selectedCoin);
-          if (!CryptoManager.selectedCoin) this.renderError(e);
         }
       } catch (e) {
         this.renderError(e);
         console.error(e);
       } finally {
-        AppGlobals.toggleLoader(false);
-        document.title = `Cryptonite | ${CryptoManager.selectedCoin?.name} `;
+        this.toggleSkeleton();
+        document.title = `Cryptonite | ${CryptoManager.selectedCoin?.name || "Coin"} `;
       }
     }
 
@@ -60,7 +61,9 @@
       $(".coin-page__price span").html("$" + this.formatToNumber(coin?.market_data?.current_price?.usd ?? "N/A"));
       $(".coin-page__address span").html(coin?.contract_address ?? "Unknown wallet address");
       $(".coin-page__image").attr("src", coin?.image?.thumb);
-      $(".coin-page__bottom__description").html(coin?.description.en ?? "Unknown coin description");
+      $(".coin-page__bottom__description").html(
+        coin?.description.en === "" || !coin?.description.en ? "Unknown coin description" : coin?.description.en
+      );
       $(".usd").html(`<b>USD:</b> $${this.formatToNumber(coin?.market_data.current_price?.usd ?? "N/A")}`);
       $(".eur").html(`<b>EUR:</b> €${this.formatToNumber(coin?.market_data.current_price?.eur ?? "N/A")}`);
       $(".ils").html(`<b>ILS:</b> ₪${this.formatToNumber(coin?.market_data.current_price?.ils ?? "N/A")}`);
@@ -78,6 +81,122 @@
 
       this.onClick();
       return this.checkBoxElement;
+    }
+
+    renderSkeletons() {
+      $(".coin-page__top").css("display", "none");
+      $(".bottom-wrapper").css("display", "none");
+      // Make the current text dissapear
+
+      $(".coin-page-skeleton-top").html(`
+       <main>
+  <ul class="o-vertical-spacing o-vertical-spacing--l">
+    <li class="blog-post o-media">
+      <div class="o-media__figure">
+        <span class="skeleton-box" style="width:100px;height:80px;"></span>
+      </div>
+      <div class="o-media__body">
+        <div class="o-vertical-spacing">
+          <h3 class="blog-post__headline">
+            <span class="skeleton-box" style="width:55%;"></span>
+          </h3>
+          <p>
+            <span class="skeleton-box" style="width:90%;"></span>
+            <span class="skeleton-box" style="width:83%;"></span>
+          </p>
+          <div class="blog-post__meta">
+            <span class="skeleton-box" style="width:70px;"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</main>`);
+
+      $(".coin-page-skeleton-bottom").html(`
+      <main>
+  <ul class="o-vertical-spacing o-vertical-spacing--l">
+    <li class="blog-post o-media">
+      <div class="o-media__figure">
+        <span class="skeleton-box" style="width:100px;height:80px;"></span>
+      </div>
+      <div class="o-media__body">
+        <div class="o-vertical-spacing">
+          <h3 class="blog-post__headline">
+            <span class="skeleton-box" style="width:55%;"></span>
+          </h3>
+          <p>
+            <span class="skeleton-box" style="width:80%;"></span>
+            <span class="skeleton-box" style="width:90%;"></span>
+            <span class="skeleton-box" style="width:83%;"></span>
+            <span class="skeleton-box" style="width:80%;"></span>
+          </p>
+          <div class="blog-post__meta">
+            <span class="skeleton-box" style="width:70px;"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="blog-post o-media">
+      <div class="o-media__figure">
+        <span class="skeleton-box" style="width:100px;height:80px;"></span>
+      </div>
+      <div class="o-media__body">
+        <div class="o-vertical-spacing">
+          <h3 class="blog-post__headline">
+            <span class="skeleton-box" style="width:55%;"></span>
+          </h3>
+          <p>
+            <span class="skeleton-box" style="width:80%;"></span>
+            <span class="skeleton-box" style="width:90%;"></span>
+            <span class="skeleton-box" style="width:83%;"></span>
+            <span class="skeleton-box" style="width:80%;"></span>
+          </p>
+          <div class="blog-post__meta">
+            <span class="skeleton-box" style="width:70px;"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="blog-post o-media">
+      <div class="o-media__figure">
+        <span class="skeleton-box" style="width:100px;height:80px;"></span>
+      </div>
+      <div class="o-media__body">
+        <div class="o-vertical-spacing">
+          <h3 class="blog-post__headline">
+            <span class="skeleton-box" style="width:55%;"></span>
+          </h3>
+          <p>
+            <span class="skeleton-box" style="width:80%;"></span>
+            <span class="skeleton-box" style="width:90%;"></span>
+            <span class="skeleton-box" style="width:83%;"></span>
+            <span class="skeleton-box" style="width:80%;"></span>
+          </p>
+          <div class="blog-post__meta">
+            <span class="skeleton-box" style="width:70px;"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</main>`);
+    }
+
+    toggleSkeleton() {
+      if (this.skeletonActive) {
+        $(".coin-page-skeleton-top").addClass("hidden");
+        $(".coin-page-skeleton-bottom").addClass("hidden");
+        this.skeletonActive = true;
+      } else {
+        $(".coin-page-skeleton-top").removeClass("hidden");
+        $(".coin-page-skeleton-bottom").removeClass("hidden");
+        this.skeletonActive = false;
+      }
+
+      $(".coin-page__top").css("display", "flex");
+      $(".bottom-wrapper").css("display", "unset");
+      // Render the data normally after hiding the skeleton
     }
 
     renderError(e) {

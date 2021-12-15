@@ -20,7 +20,7 @@
     unToggleAll() {
       $("#togglebtn").on("click", () => {
         CryptoManager.unToggleAllCoins();
-        toggleSnackBar(`All Cards successfully removed from Portfolio`);
+        toggleSnackBar(`All Coins successfully removed from Portfolio`);
       });
     }
 

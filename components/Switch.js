@@ -31,10 +31,10 @@ class SwitchComponent extends Component {
   onClick($el) {
     if (!$el.checked) {
       CryptoManager.removeCoin(this.props.id);
-      toggleSnackBar(`Card successfully removed from Portfolio ${CryptoManager.toggledCoins.length}/5 `);
+      toggleSnackBar(`Coin successfully removed from Portfolio ${CryptoManager.toggledCoins.length}/5 `);
     } else {
       CryptoManager.addCoin(this.props.id);
-      toggleSnackBar(`Card successfully added to Portfolio ${CryptoManager.toggledCoins.length}/5 `);
+      toggleSnackBar(`Coin successfully added to Portfolio ${CryptoManager.toggledCoins.length}/5 `);
     }
   }
 
