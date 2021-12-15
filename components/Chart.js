@@ -73,7 +73,7 @@ class ChartComponent extends Component {
   updateChartWithPrices(pricesObject) {
     this.chartObj.data.labels.push(dayjs().format("hh:mm:ss"));
     this.chartObj.data.datasets.forEach((dataset) => {
-      const coinId = CryptoManager.findBySymbol(dataset.label).id;
+      const coinId = CryptoManager.findByName(dataset.label).id;
       const price = pricesObject[coinId].usd;
       dataset.data.push(price);
     });
@@ -84,9 +84,8 @@ class ChartComponent extends Component {
     const labels = CryptoManager.toggledCoins.map(() => dayjs().format("hh:mm:ss"));
 
     const datasets = CryptoManager.toggledCoins.map((coin, index) => {
-      const price = coin.market_data?.current_price.usd || 0;
       return {
-        label: coin.symbol,
+        label: coin.name,
         data: [0], // Starts at 0 and pushes PRICE to the data array after 2 seconds
         borderColor: CHART_COLORS()[index],
         backgroundColor: CHART_COLORS(0.5)[index],

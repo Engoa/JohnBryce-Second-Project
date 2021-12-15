@@ -23,6 +23,9 @@ const CryptoManager = {
   findBySymbol(symbol) {
     return this.toggledCoins.find((coin) => symbol === coin.symbol);
   },
+  findByName(name) {
+    return this.toggledCoins.find((coin) => name === coin.name);
+  },
 
   findSelectedCrypto(id) {
     return this.toggledCoins.find((coin) => id === coin.id);
