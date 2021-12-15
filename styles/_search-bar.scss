@@ -33,13 +33,14 @@
     @include media("<md") {
       margin: 2rem auto;
     }
+    @include media("<=ssmd") {
+      width: 300px;
+      margin: auto;
+      margin-top: 1rem;
+    }
 
     .input-group {
       z-index: 2;
-      @include media("<=ssmd") {
-        width: 300px;
-        margin: auto;
-      }
       input {
         background: rgba(000, 000, 000, 0.5) !important;
         color: white !important;

@@ -14,7 +14,7 @@
     flex-direction: column;
     gap: 1.5rem;
     @include media("<md") {
-      gap: 0.5rem;
+      gap: 1rem;
     }
   }
   &__details {

@@ -184,15 +184,16 @@ main {
   }
 }
 
-.search__wrapper .input-group {
-  z-index: 2;
-}
-
 @media (max-width: 631px) {
-  .search__wrapper .input-group {
+  .search__wrapper {
     width: 300px;
     margin: auto;
+    margin-top: 1rem;
   }
+}
+
+.search__wrapper .input-group {
+  z-index: 2;
 }
 
 .search__wrapper .input-group input {
@@ -891,7 +892,7 @@ main {
 
 @media (max-width: 1049px) {
   .coin-page__top {
-    gap: 0.5rem;
+    gap: 1rem;
   }
 }
 
