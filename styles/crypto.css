@@ -155,6 +155,7 @@ main {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  will-change: transform;
 }
 
 @media (max-width: 1049px) {
@@ -168,8 +169,8 @@ main {
 }
 
 .header .head:hover {
-  -webkit-transform: perspective(1000px) scaleY(1) scaleX(1) rotateY(5deg) rotate(-3deg) skewX(-3deg);
-          transform: perspective(1000px) scaleY(1) scaleX(1) rotateY(5deg) rotate(-3deg) skewX(-3deg);
+  -webkit-transform: perspective(1000px) scaleY(1.05) scaleX(1.05) rotateY(5deg) rotate(-3deg) skewX(-3deg);
+          transform: perspective(1000px) scaleY(1.05) scaleX(1.05) rotateY(5deg) rotate(-3deg) skewX(-3deg);
 }
 
 .search__wrapper {
@@ -639,6 +640,14 @@ main {
   padding: 0 !important;
 }
 
+@media (max-width: 1049px) {
+  .nav-desktop .desktop {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
 .nav-desktop .desktop a {
   text-decoration: none;
   color: var(--primary);
@@ -651,6 +660,20 @@ main {
   .nav-desktop .desktop a {
     font-size: 1.05rem;
   }
+}
+
+.nav-desktop .anchor--wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .link {
@@ -1203,6 +1226,7 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 2rem;
+  width: 100%;
 }
 
 .coin-page .coin-recommended__header h4 {
@@ -1219,13 +1243,13 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 1rem;
   padding-bottom: 3rem;
+  width: 100%;
 }
 
 .coin-page-skeleton-top.hidden {
@@ -1323,7 +1347,7 @@ main {
           flex-direction: column;
   height: 100%;
   width: 100%;
-  gap: 1rem;
+  gap: 1.5rem;
   background: rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
           box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -1352,6 +1376,7 @@ main {
 @media (max-width: 1049px) {
   .about {
     margin-top: 1rem;
+    gap: 1rem;
   }
 }
 
@@ -1380,12 +1405,32 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 0.5rem;
+  position: relative;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .about__top h5 {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+}
+
+.about__top::before {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  -webkit-transform: translateX(-54%);
+          transform: translateX(-54%);
+  width: 100%;
+  height: 2px;
+  background: black;
+  background: -webkit-gradient(linear, left top, right top, color-stop(10%, transparent), color-stop(20%, #cecece), color-stop(90%, #d1d1d1), color-stop(98%, transparent), to(transparent));
+  background: linear-gradient(to right, transparent 10%, #cecece 20%, #d1d1d1 90%, transparent 98%, transparent 100%);
 }
 
 .about__top__image {
@@ -1414,6 +1459,7 @@ main {
      object-position: center;
   width: 100%;
   height: 100%;
+  will-change: transform;
 }
 
 .about__project {
