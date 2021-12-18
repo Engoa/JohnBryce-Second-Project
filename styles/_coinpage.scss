@@ -34,6 +34,7 @@
     overflow-y: auto;
     gap: 2rem;
     @include scrollbar;
+    backdrop-filter: blur(3px);
   }
   &__tags {
     display: flex;

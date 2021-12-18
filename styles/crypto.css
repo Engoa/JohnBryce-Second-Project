@@ -713,6 +713,8 @@ main {
   opacity: 0;
   -webkit-transition: var(--transition-250);
   transition: var(--transition-250);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
 }
 
 .modal__overlay--active {
@@ -945,6 +947,8 @@ main {
   padding: 1rem;
   overflow-y: auto;
   gap: 2rem;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
 }
 
 .coin-page__details::-webkit-scrollbar {

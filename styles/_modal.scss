@@ -10,6 +10,7 @@
   visibility: hidden;
   opacity: 0;
   transition: var(--transition-250);
+  backdrop-filter: blur(8px);
   &--active {
     visibility: visible;
     opacity: 1;
