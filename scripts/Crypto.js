@@ -59,9 +59,6 @@ const CryptoManager = {
     this.coinToggled();
   },
 
-  async getMoreInfo(id) {
-    await this.fetchCoinByID(id);
-  },
   async fetchCoins() {
     try {
       AppGlobals.toggleLoader(true);

@@ -4,7 +4,6 @@ async function fetchHtmlAsText(url) {
   return await $.ajax(url);
 }
 
-// this is your `load_home() function`
 async function loadPage(page, oldPage) {
   // Setting our template to html
   const contentDiv = document.getElementById("app");

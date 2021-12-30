@@ -22,9 +22,7 @@ const AppGlobals = {
   },
 };
 
-$(".nav-logo").on("click", () => {
-  AppGlobals.scrollToTop();
-});
+$(".nav-logo").on("click", () => AppGlobals.scrollToTop());
 
 document.addEventListener("route-update", () => {
   AppGlobals.intervals.forEach((interval) => clearInterval(interval));
