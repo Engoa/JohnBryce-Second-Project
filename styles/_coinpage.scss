@@ -225,6 +225,7 @@
           text-transform: uppercase;
           font-weight: bold !important;
           color: rgb(194, 36, 62);
+          text-align: center;
         }
       }
       &__list {
@@ -234,6 +235,9 @@
         flex-wrap: wrap;
         padding-bottom: 3rem;
         width: 100%;
+        @include media("<md") {
+          gap: 1rem;
+        }
       }
     }
   }

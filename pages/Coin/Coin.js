@@ -7,15 +7,17 @@
       super(props);
       this.fetchData();
     }
+
     get fetchRecommendedCoins() {
       let recommendedCoins = [];
       let n = 0;
-      while (n < 3) {
+      while (n < 4) {
         recommendedCoins.push(CryptoManager.coins[Math.floor(Math.random() * CryptoManager.coins.length)]);
         n++;
       }
       return recommendedCoins;
     }
+
     formatToNumber(num) {
       return num?.toLocaleString("fullwide", { useGrouping: true });
     }

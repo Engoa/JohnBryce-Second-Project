@@ -1238,6 +1238,7 @@ main {
   text-transform: uppercase;
   font-weight: bold !important;
   color: #c2243e;
+  text-align: center;
 }
 
 .coin-page .coin-recommended__list {
@@ -1254,6 +1255,12 @@ main {
       flex-wrap: wrap;
   padding-bottom: 3rem;
   width: 100%;
+}
+
+@media (max-width: 1049px) {
+  .coin-page .coin-recommended__list {
+    gap: 1rem;
+  }
 }
 
 .coin-page-skeleton-top.hidden {
