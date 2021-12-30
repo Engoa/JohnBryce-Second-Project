@@ -31,7 +31,6 @@
           // Check if available in local storage and if not, fetch from API
           // Coin Local storage will auto delete after 2 minutes everytime
         } else {
-          if (!CryptoManager.selectedCoin) this.renderError(e);
           const res = await CryptoManager.fetchCoinByID(this.coinRaw.id);
           CryptoManager.selectedCoin = res;
           this.render();
